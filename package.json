@@ -1,0 +1,25 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "Min ho Kim <minho42@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "ing-au-login": "^2.0.5",
+    "morgan": "^1.10.0",
+    "puppeteer": "^10.4.0"
+  }
+}
