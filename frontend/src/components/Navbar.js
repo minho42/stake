@@ -39,7 +39,7 @@ export const Navbar = () => {
               pathname === "/" ? " border-green-500" : "border-white"
             }`}
           >
-            Portfolio
+            List
           </Link>
           {!stakeToken && (
             <Link

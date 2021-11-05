@@ -6,8 +6,6 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const fetchCurrency = require("./utils");
 const stakeRouter = require("./routers/stake");
-const coinbaseRouter = require("./routers/coinbase");
-const ingRouter = require("./routers/ing");
 const chartRouter = require("./routers/chart");
 
 const app = express();
@@ -24,8 +22,6 @@ app.use(morgan("dev"));
 app.use(helmet());
 app.use(express.json());
 app.use(stakeRouter);
-app.use(coinbaseRouter);
-app.use(ingRouter);
 app.use(chartRouter);
 
 app.get("", (req, res) => {

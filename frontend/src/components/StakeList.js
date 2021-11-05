@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../UserContext";
 import { SiteStatusContext } from "../SiteStatusContext";
-import { useUpdatePortfolioInfo } from "./useUpdatePortfolioInfo";
 import { StakeItem } from "./StakeItem";
 import { isPositive, showValueWithSign, showValueWithComma, getChangePercentage } from "../utils";
 import { Link } from "react-router-dom";
@@ -16,7 +15,6 @@ export const StakeList = () => {
   const [equityValue, setEquityValue] = useLocalStorage("stakeEquityValue", 0);
   const [transactionHistory, setTransactionHistory] = useLocalStorage("stakeTransactionHistory", []);
   const [equityValueInAud, setEquityValueInAud] = useState(0);
-  useUpdatePortfolioInfo("Stake", equityValueInAud);
   const [currencyUsdAud, setCurrencyUsdAud] = useLocalStorage("currencyUsdAud", 0);
   const [currencyAudUsd, setCurrencyAudUsd] = useLocalStorage("currencyAudUsd", 0);
   const [userInfo, setUserInfo] = useLocalStorage("stakeUserInfo", {});
@@ -234,7 +232,6 @@ export const StakeList = () => {
   return (
     <div className=" flex flex-col flex-grow px-3 py-3 space-y-3 bg-white rounded-xl border border-gray-300">
       <div className="flex justify-center relative text-gray-500">
-        Stake
         <StakePieChart equityPositions={equityPositions} equityValue={equityValue} />
         <div className="absolute top-0 right-0 text-xs text-gray-500 space-y-0.5">
           {stakeToken && userInfo && (

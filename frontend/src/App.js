@@ -2,10 +2,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Login } from "./components/Login";
 import { About } from "./components/About";
-import { PortfolioList } from "./components/PortfolioList";
+import { StakeList } from "./components/StakeList";
 
 import { UserProvider } from "./UserContext";
-import { PortfolioProvider } from "./PortfolioContext";
 import { SiteStatusProvider } from "./SiteStatusContext";
 
 function App() {
@@ -13,22 +12,22 @@ function App() {
     <div>
       <Router>
         <UserProvider>
-          <PortfolioProvider>
-            <SiteStatusProvider>
-              <Navbar />
-              <Switch>
-                <Route exact path="/">
-                  <PortfolioList />
-                </Route>
-                <Route exact path="/login">
-                  <Login />
-                </Route>
-                <Route exact path="/about">
-                  <About />
-                </Route>
-              </Switch>
-            </SiteStatusProvider>
-          </PortfolioProvider>
+          <SiteStatusProvider>
+            <Navbar />
+            <Switch>
+              <Route exact path="/">
+                <div className="flex justify-center p-2 bg-gray-100 ">
+                  <StakeList />
+                </div>
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/about">
+                <About />
+              </Route>
+            </Switch>
+          </SiteStatusProvider>
         </UserProvider>
       </Router>
     </div>
