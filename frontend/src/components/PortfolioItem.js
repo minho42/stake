@@ -3,7 +3,7 @@ import { isPositive, showValueWithSign, showValueWithComma, getChangePercentage 
 import { StakeRatings } from "./StakeRatings";
 import { StakeChartModal } from "./StakeChartModal";
 
-export const StakeItem = ({
+export const PortfolioItem = ({
   index,
   focusedIndex,
   setFocusedIndex,

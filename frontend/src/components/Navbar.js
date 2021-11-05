@@ -35,45 +35,61 @@ export const Navbar = () => {
         <div className="flex items-center justify-end h-10">
           <Link
             to="/"
-            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 ${
+            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
               pathname === "/" ? " border-green-500" : "border-white"
             }`}
           >
-            List
+            portfolio
+          </Link>
+          <Link
+            to="/dividend"
+            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
+              pathname === "/dividend" ? " border-green-500" : "border-white"
+            }`}
+          >
+            dividend
+          </Link>
+          <Link
+            to="/ratings"
+            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
+              pathname === "/ratings" ? " border-green-500" : "border-white"
+            }`}
+          >
+            ratings
+          </Link>
+          <Link
+            to="/settings"
+            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
+              pathname === "/settings" ? " border-green-500" : "border-white"
+            }`}
+          >
+            settings
           </Link>
           {!stakeToken && (
             <Link
               to="/login"
-              className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 ${
+              className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
                 pathname === "/login" ? " border-green-500" : "border-white"
               }`}
             >
-              Login
+              login
             </Link>
           )}
           {stakeToken && (
             <button
               onClick={() => requestLogout(stakeToken, setStakeToken, history)}
-              className="flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 border-white"
+              className="flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize border-white"
             >
-              Logout
+              logout
             </button>
           )}
           <Link
-            to="/settings"
-            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 ${
-              pathname === "/settings" ? " border-green-500" : "border-white"
-            }`}
-          >
-            Settings
-          </Link>
-          <Link
             to="/about"
-            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 ${
+            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
               pathname === "/about" ? " border-green-500" : "border-white"
             }`}
           >
-            About
+            about
           </Link>
         </div>
       </header>

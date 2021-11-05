@@ -4,14 +4,7 @@ export const About = () => {
       <div className="flex justify-center bg-gradient-to-r from-green-700 to-green-400 py-8 text-center">
         <div className="flex flex-col justify-center max-w-lg w-full text-2xl font-semibold leading-snug text-white">
           Stake
-          <a
-            className="underline text-green-100 block"
-            href="https://github.com/minho42/stake"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            github
-          </a>
+          <div className="text-green-100 block">How to login</div>
         </div>
       </div>
       <div className="flex justify-center">

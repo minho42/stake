@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { LoadingIcon } from "./LoadingIcon";
 import { useLocalStorage } from "./useLocalStorage";
 import { Line, ComposedChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
-import { SiteStatusContext } from "../SiteStatusContext";
+import { SiteContext } from "../SiteContext";
 import { isPositive, showValueWithSign, timestampToDate, dateStrToTimestamp } from "../utils";
 import { StakeTransactions } from "./StakeTransactions";
 
@@ -21,7 +21,7 @@ export const StakeChartModal = ({
   const [chartDataTimeFramed, setChartDataTimeFramed] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedTimeFrameName, setSelectedTimeFrameName] = useLocalStorage(`stakeChartTimeFrame`, "1y");
-  const { isStateChartModalOpen, setIsStateChartModalOpen } = useContext(SiteStatusContext);
+  const { setIsStakeChartModalOpen } = useContext(SiteContext);
   const timeFrames = [
     {
       name: "1m",
@@ -157,18 +157,18 @@ export const StakeChartModal = ({
 
   useEffect(() => {
     document.addEventListener("keydown", keyboardShortcuts);
-    setIsStateChartModalOpen(true);
+    setIsStakeChartModalOpen(true);
     return () => {
       document.removeEventListener("keydown", keyboardShortcuts);
-      setIsStateChartModalOpen(false);
+      setIsStakeChartModalOpen(false);
     };
   }, [selectedTimeFrameName]);
 
   useEffect(() => {
     fetchChartData(symbol);
-    setIsStateChartModalOpen(true);
+    setIsStakeChartModalOpen(true);
     return () => {
-      setIsStateChartModalOpen(false);
+      setIsStakeChartModalOpen(false);
     };
   }, []);
 

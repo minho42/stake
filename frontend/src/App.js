@@ -2,22 +2,22 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Login } from "./components/Login";
 import { About } from "./components/About";
-import { StakeList } from "./components/StakeList";
+import { PortfolioList } from "./components/PortfolioList";
 
 import { UserProvider } from "./UserContext";
-import { SiteStatusProvider } from "./SiteStatusContext";
+import { SiteProvider } from "./SiteContext";
 
 function App() {
   return (
     <div>
       <Router>
         <UserProvider>
-          <SiteStatusProvider>
+          <SiteProvider>
             <Navbar />
             <Switch>
               <Route exact path="/">
                 <div className="flex justify-center p-2 bg-gray-100 ">
-                  <StakeList />
+                  <PortfolioList />
                 </div>
               </Route>
               <Route exact path="/login">
@@ -27,7 +27,7 @@ function App() {
                 <About />
               </Route>
             </Switch>
-          </SiteStatusProvider>
+          </SiteProvider>
         </UserProvider>
       </Router>
     </div>

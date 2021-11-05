@@ -1,16 +1,16 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../UserContext";
-import { SiteStatusContext } from "../SiteStatusContext";
-import { StakeItem } from "./StakeItem";
+import { SiteContext } from "../SiteContext";
+import { PortfolioItem } from "./PortfolioItem";
 import { isPositive, showValueWithSign, showValueWithComma, getChangePercentage } from "../utils";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
 import { LoadingIcon } from "./LoadingIcon";
 import { StakePieChart } from "./StakePieChart";
 
-export const StakeList = () => {
+export const PortfolioList = () => {
   const { stakeToken, isStakeAuthLoading } = useContext(UserContext);
-  const { isStateChartModalOpen } = useContext(SiteStatusContext);
+  const { isStakeChartModalOpen } = useContext(SiteContext);
   const [equityPositions, setEquityPositions] = useLocalStorage("stakeEquityPositions", []);
   const [equityValue, setEquityValue] = useLocalStorage("stakeEquityValue", 0);
   const [transactionHistory, setTransactionHistory] = useLocalStorage("stakeTransactionHistory", []);
@@ -33,7 +33,7 @@ export const StakeList = () => {
   const [showItems, setShowItems] = useLocalStorage("stakeShowItems", true);
 
   const keyboardShortcuts = (e) => {
-    if (isStateChartModalOpen) return;
+    if (isStakeChartModalOpen) return;
 
     if (e.keyCode === 40 || e.keyCode === 74) {
       // move down
@@ -195,14 +195,14 @@ export const StakeList = () => {
 
     // TODO: fetchEquityPositions only when market is open
     // TODO: how not to make list blink? (becomes empty then fills in the list)
-    // setInterval(fetchEquityPositions, 60 * 1000);
+    // setInterval(fetchEquityPositions, 30 * 1000);
   }, [stakeToken]);
 
   useEffect(() => {
     fetchCurrencyUsdAud();
     fetchCurrencyAudUsd();
     fetchMarketStatus();
-    // setInterval(fetchMarketStatus, 60 * 1000);
+    setInterval(fetchMarketStatus, 60 * 1000);
     fetchTransactionHistory();
   }, []);
 
@@ -211,7 +211,7 @@ export const StakeList = () => {
     return () => {
       document.removeEventListener("keydown", keyboardShortcuts);
     };
-  }, [focusedIndex, isStateChartModalOpen]);
+  }, [focusedIndex, isStakeChartModalOpen]);
 
   useEffect(() => {
     getDayChangeSum();
@@ -301,7 +301,7 @@ export const StakeList = () => {
               <tbody className="divide-y divide-gray-300">
                 {equityPositions.map((position, index) => {
                   return (
-                    <StakeItem
+                    <PortfolioItem
                       index={index}
                       focusedIndex={focusedIndex}
                       setFocusedIndex={setFocusedIndex}
