@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { StakeRatingsModal } from "./StakeRatingsModal";
 
-export const StakeRatings = ({ symbol, name }) => {
+export const StakeRatings = ({ symbol, name, filterCount }) => {
   const [ratings, setRatings] = useState(null);
   const [buyCount, setBuyCount] = useState(0);
   const [sellCount, setSellCount] = useState(0);
@@ -49,8 +49,8 @@ export const StakeRatings = ({ symbol, name }) => {
       // ETFs don't have ratings
       if (!ratings) return;
       // setRatings(ratings);
-      setRatings(ratings.slice(0, 10));
-      countBuySell(ratings.slice(0, 10));
+      setRatings(ratings.slice(0, filterCount));
+      countBuySell(ratings.slice(0, filterCount));
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +58,7 @@ export const StakeRatings = ({ symbol, name }) => {
 
   useEffect(() => {
     fetchRatings();
-  }, []);
+  }, [filterCount]);
 
   return (
     <>

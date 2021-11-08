@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { isPositive, showValueWithSign, showValueWithComma, getChangePercentage } from "../utils";
-import { StakeRatings } from "./StakeRatings";
 import { StakeChartModal } from "./StakeChartModal";
 
 export const StakeItem = ({
@@ -96,9 +95,6 @@ export const StakeItem = ({
           <span className="ml-1">({showValueWithSign(unrealizedPLPercentage, "")}%)</span>
         </td>
         <td>{Number.parseFloat(((marketValue / equityValue) * 100).toFixed(2))}%</td>
-        {/* <td>
-          <StakeRatings symbol={symbol} name={name} />
-        </td> */}
       </tr>
 
       {isChartModalOpen && (

@@ -32,7 +32,7 @@ export const StakeRatingsModal = ({ symbol, name, ratings, isOpen, onClose, isRa
           <div className="text-xl text-center">{symbol}</div>
           <div className="text-center text-sm text-gray-500">{name}</div>
         </div>
-        <div className="rounded bg-white p-2 divide-y">
+        <div className="rounded bg-white p-2 divide-y overflow-y-auto">
           {ratings &&
             ratings.map((r) => {
               return (
