@@ -4,8 +4,7 @@ import { LoadingIcon } from "./LoadingIcon";
 
 export const StakePieChart = ({ equityPositions, equityValue }) => {
   const [data, setData] = useState([]);
-  const [isMouseOver, setIsMouseOver] = useState(false);
-  const defaultChartRadius = 16;
+  const defaultChartRadius = 100;
   const [chartRadius, setChartRadius] = useState(defaultChartRadius);
 
   const colors = [
@@ -20,10 +19,9 @@ export const StakePieChart = ({ equityPositions, equityValue }) => {
     "#065F46",
     "#064E3B",
   ];
-  // const chartRadius = 60;
+
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, symbol, percent, index }) => {
-    if (!isMouseOver) return;
     if (percent < 5) return;
 
     const radius = innerRadius + (outerRadius - innerRadius) * 0.3;
@@ -62,19 +60,7 @@ export const StakePieChart = ({ equityPositions, equityValue }) => {
     );
 
   return (
-    <div
-      onMouseOver={() => {
-        setIsMouseOver(true);
-        setChartRadius(100);
-      }}
-      onMouseLeave={() => {
-        setIsMouseOver(false);
-        setChartRadius(defaultChartRadius);
-      }}
-      className={`${
-        isMouseOver ? "opacity-100 shadow-2xl" : "opacity-70"
-      } absolute top-0 left-0 bg-gray-400 rounded-full p-0.5`}
-    >
+    <div className="absolute top-0 left-0 bg-gray-400 rounded-full p-0.5">
       <PieChart width={chartRadius * 2} height={chartRadius * 2}>
         {/* <text x={80} y={80} textAnchor="middle" dominantBaseline="middle" fontSize="30" fontWeight="300">
           Stake

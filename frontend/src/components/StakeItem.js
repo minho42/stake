@@ -3,40 +3,21 @@ import { isPositive, showValueWithSign, showValueWithComma, getChangePercentage 
 import { StakeRatings } from "./StakeRatings";
 import { StakeChartModal } from "./StakeChartModal";
 
-export const PortfolioItem = ({
+export const StakeItem = ({
   index,
   focusedIndex,
   setFocusedIndex,
   position: { symbol, openQty, marketValue, unrealizedDayPL, unrealizedPL, encodedName, name },
+  equityValue,
   transactionHistory,
-  addTotalExpectedDividends,
-  addTotalDividend,
-  addTotalDividendTax,
 }) => {
-  const [dividendYield, setDividendYield] = useState(null);
-  const [totalDividend, setTotalDividend] = useState(0);
-  const [totalDividendTax, setTotalDividendTax] = useState(0);
   const [transactions, setTransactions] = useState(null);
-  const [expectedDividend, setExpectedDividend] = useState(0);
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [unrealizedDayPLPercentage, setUnrealizedDayPLPercentage] = useState(0);
   const [unrealizedPLPercentage, setUnrealizedPLPercentage] = useState(0);
 
   const handleChartModalClose = () => {
     setIsChartModalOpen(false);
-  };
-
-  const fetchDividendYield = async () => {
-    try {
-      const res = await fetch(
-        `https://global-prd-api.hellostake.com/api/instruments/getDWInstrumentStats/${encodedName}`
-      );
-      const data = await res.json();
-      return data.fundamentalDataModel.dividendYield;
-    } catch (error) {
-      console.log(error);
-      return -1;
-    }
   };
 
   const getTransactions = () => {
@@ -60,53 +41,15 @@ export const PortfolioItem = ({
     setTransactions(trans);
   };
 
-  const getTotalDividendInfo = () => {
-    if (!transactionHistory) return;
-
-    let dividendSum = 0;
-    let dividendTaxSum = 0;
-
-    transactionHistory.forEach((t) => {
-      if (t.symbol === symbol) {
-        if (t.transactionType === "Dividend") {
-          dividendSum += t.tranAmount;
-        }
-        if (t.transactionType === "Dividend Tax") {
-          dividendTaxSum += t.tranAmount;
-        }
-      }
-    });
-
-    setTotalDividend(dividendSum);
-    setTotalDividendTax(-dividendTaxSum);
-  };
-
   const setPercentages = () => {
     setUnrealizedDayPLPercentage(getChangePercentage(marketValue, unrealizedDayPL));
     setUnrealizedPLPercentage(getChangePercentage(marketValue, unrealizedPL));
   };
 
   useEffect(async () => {
-    const d = await fetchDividendYield();
-    setDividendYield(d);
-    getTotalDividendInfo();
     getTransactions();
     setPercentages();
   }, []);
-
-  useEffect(() => {
-    const expectedDividend = (marketValue * dividendYield) / 100;
-    setExpectedDividend(expectedDividend);
-    addTotalExpectedDividends(expectedDividend);
-  }, [dividendYield]);
-
-  useEffect(() => {
-    addTotalDividend(totalDividend);
-  }, [totalDividend]);
-
-  useEffect(() => {
-    addTotalDividendTax(totalDividendTax);
-  }, [totalDividendTax]);
 
   const keyboardShortcuts = (e) => {
     if (e.keyCode === 79 || e.keyCode === 13) {
@@ -143,19 +86,16 @@ export const PortfolioItem = ({
           {symbol}
         </td>
         {/* <td className="">{showValueWithComma(openQty)}</td> */}
-        <td>${showValueWithComma(marketValue)}</td>
+        <td>{showValueWithComma(marketValue)}</td>
         <td className={` ${isPositive(unrealizedDayPL) ? "text-green-600" : "text-red-600"}`}>
-          {showValueWithSign(unrealizedDayPL)}
+          {showValueWithSign(unrealizedDayPL, "")}
           <span className="ml-1">({showValueWithSign(unrealizedDayPLPercentage, "")}%)</span>
         </td>
         <td className={` ${isPositive(unrealizedPL) ? "text-green-600" : "text-red-600"}`}>
-          {showValueWithSign(unrealizedPL)}
+          {showValueWithSign(unrealizedPL, "")}
           <span className="ml-1">({showValueWithSign(unrealizedPLPercentage, "")}%)</span>
         </td>
-        <td>{dividendYield > 0 ? `${Number.parseFloat(dividendYield).toFixed(2)}%` : ""}</td>
-        <td>{expectedDividend > 0 ? showValueWithComma(expectedDividend) : ""}</td>
-        <td>{totalDividend > 0 ? showValueWithComma(totalDividend) : ""}</td>
-        <td>{totalDividendTax > 0 ? showValueWithComma(totalDividendTax) : ""}</td>
+        <td>{Number.parseFloat(((marketValue / equityValue) * 100).toFixed(2))}%</td>
         {/* <td>
           <StakeRatings symbol={symbol} name={name} />
         </td> */}
