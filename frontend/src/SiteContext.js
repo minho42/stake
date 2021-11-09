@@ -13,8 +13,12 @@ export const SiteProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const fetchEquityPositions = async () => {
+    if (isStakeChartModalOpen) {
+      console.log("open");
+      return;
+    }
     // TODO: fetchEquityPositions only when market is open
-    console.log("fetchEquityPositions");
+    // console.log("fetchEquityPositions");
     setIsEquityPositionsLoading(true);
     if (!stakeToken) {
       setEquityPositions([]);

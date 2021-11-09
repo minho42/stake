@@ -148,7 +148,8 @@ export const StakeList = () => {
   useEffect(() => {
     fetchUserInfo();
     // TODO: how not to make list blink? (becomes empty then fills in the list)
-    setInterval(fetchEquityPositions, 10 * 1000);
+    // TODO: how not to close chartModal?
+    // setInterval(fetchEquityPositions, 10 * 1000);
   }, [stakeToken]);
 
   useEffect(() => {
@@ -189,7 +190,7 @@ export const StakeList = () => {
           {stakeToken && userInfo && (
             <div className="flex justify-end">{userInfo.firstName + " " + userInfo.lastName}</div>
           )}
-          <div>AUD/USD: {currencyAudUsd.toFixed(3)}</div>
+          <div>AUD/USD: {currencyAudUsd && currencyAudUsd.toFixed(3)}</div>
 
           {stakeToken && (
             <div className="flex justify-end">

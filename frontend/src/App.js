@@ -6,7 +6,7 @@ import { StakeList } from "./components/StakeList";
 import { DividendList } from "./components/DividendList";
 import { RatingsList } from "./components/RatingsList";
 import { Settings } from "./components/Settings";
-
+import { PrivateRoute } from "./components/PrivateRoute";
 import { UserProvider } from "./UserContext";
 import { SiteProvider } from "./SiteContext";
 
@@ -18,24 +18,16 @@ function App() {
           <SiteProvider>
             <Navbar />
             <Switch>
-              <Route exact path="/">
-                <StakeList />
-              </Route>
               <Route exact path="/login">
                 <Login />
               </Route>
               <Route exact path="/about">
                 <About />
               </Route>
-              <Route exact path="/dividend">
-                <DividendList />
-              </Route>
-              <Route exact path="/ratings">
-                <RatingsList />
-              </Route>
-              <Route exact path="/settings">
-                <Settings />
-              </Route>
+              <PrivateRoute component={StakeList} path="/" exact />
+              <PrivateRoute component={DividendList} path="/dividend" exact />
+              <PrivateRoute component={RatingsList} path="/ratings" exact />
+              <PrivateRoute component={Settings} path="/settings" exact />
             </Switch>
           </SiteProvider>
         </UserProvider>
