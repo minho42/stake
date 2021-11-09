@@ -32,7 +32,7 @@ export const Navbar = () => {
       <header className="flex justify-between border-b border-gray-300 shadow-sm">
         <div className="flex flex-grow  items-center justify-center ml-10"></div>
 
-        <div className="flex items-center justify-end h-10">
+        <div className="flex items-center justify-end h-14">
           <Link
             to="/"
             className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${

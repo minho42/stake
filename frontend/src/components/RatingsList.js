@@ -34,11 +34,11 @@ export const RatingsList = () => {
         </div>
 
         {stakeToken && equityPositions && (
-          <table className="w-11/12 text-sm font-medium text-center max-w-xl">
+          <table className="w-11/12 text-sm font-medium text-center max-w-md">
             <thead>
               <tr className="border-b-2 border-gray-700">
                 <th>Code</th>
-                <th>Ratings</th>
+                <th className="text-left">Ratings</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-300">
