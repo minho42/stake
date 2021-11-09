@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { isPositive, showValueWithSign, showValueWithComma, getChangePercentage } from "../utils";
+import { showValueWithComma } from "../utils";
 
 export const DividendItem = ({
   position: { symbol, marketValue, encodedName },

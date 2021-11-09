@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { StakeRatingsModal } from "./StakeRatingsModal";
 
-export const StakeRatings = ({ symbol, name, filterCount }) => {
+export const StakeRatings = ({ symbol, name, selectedFilterCount }) => {
   const [ratings, setRatings] = useState(null);
+  const [filteredRatings, setFilteredRatings] = useState(null);
   const [buyCount, setBuyCount] = useState(0);
   const [sellCount, setSellCount] = useState(0);
   const [holdCount, setHoldCount] = useState(0);
@@ -26,6 +27,7 @@ export const StakeRatings = ({ symbol, name, filterCount }) => {
     let buy = 0;
     let sell = 0;
     let hold = 0;
+
     ratings.forEach((r) => {
       if (isRatingBuy(r.rating_current)) {
         buy++;
@@ -48,9 +50,9 @@ export const StakeRatings = ({ symbol, name, filterCount }) => {
       const { ratings } = await res.json();
       // ETFs don't have ratings
       if (!ratings) return;
-      // setRatings(ratings);
-      setRatings(ratings.slice(0, filterCount));
-      countBuySell(ratings.slice(0, filterCount));
+      setRatings(ratings);
+      // setRatings(ratings.slice(0, selectedFilterCount));
+      // countBuySell(ratings.slice(0, selectedFilterCount));
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +60,13 @@ export const StakeRatings = ({ symbol, name, filterCount }) => {
 
   useEffect(() => {
     fetchRatings();
-  }, [filterCount]);
+  }, []);
+
+  useEffect(() => {
+    if (!ratings) return;
+    setFilteredRatings(ratings.slice(0, selectedFilterCount));
+    countBuySell(ratings.slice(0, selectedFilterCount));
+  }, [ratings, selectedFilterCount]);
 
   return (
     <>
@@ -122,7 +130,7 @@ export const StakeRatings = ({ symbol, name, filterCount }) => {
         <StakeRatingsModal
           symbol={symbol}
           name={name}
-          ratings={ratings}
+          ratings={filteredRatings}
           isOpen={isRatingsModalOpen}
           onClose={handleRatingsModalClose}
           isRatingBuy={isRatingBuy}
