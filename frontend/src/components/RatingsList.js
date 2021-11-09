@@ -7,7 +7,7 @@ export const RatingsList = () => {
   const { stakeToken, isStakeAuthLoading } = useContext(UserContext);
   const { equityPositions } = useContext(SiteContext);
   const [filterCount, setFilterCount] = useState(10);
-  const filterCountOptions = [10, 20, 30];
+  const filterCountOptions = [10, 20, 30, 40, 50];
 
   return (
     <div className="flex justify-center">
@@ -17,6 +17,7 @@ export const RatingsList = () => {
           {filterCountOptions.map((count) => {
             return (
               <button
+                key={count}
                 onClick={() => setFilterCount(count)}
                 className={` ${
                   filterCount === count ? "bg-green-200" : "bg-gray-100"
