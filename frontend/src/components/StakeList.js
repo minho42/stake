@@ -164,7 +164,7 @@ export const StakeList = () => {
   }, [currencyUsdAud]);
 
   return (
-    <div className=" flex flex-col flex-grow px-3 py-3 space-y-3">
+    <div className=" flex flex-col flex-grow px-3 pb-3 space-y-3">
       <div className="flex justify-center relative text-gray-500">
         {/* <StakePieChart equityPositions={equityPositions} equityValue={equityValue} /> */}
         <div className="absolute top-0 right-0 text-gray-500 space-y-0.5">
