@@ -40,6 +40,14 @@ export const Navbar = () => {
             portfolio
           </Link>
           <Link
+            to="/watchlist"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
+              pathname === "/watchlist" ? " border-gray-700" : "border-white"
+            }`}
+          >
+            watchlist
+          </Link>
+          <Link
             to="/dividend"
             className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
               pathname === "/dividend" ? " border-gray-700" : "border-white"
