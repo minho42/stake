@@ -228,7 +228,7 @@ export const StakeList = () => {
       </div>
 
       <div className="flex justify-center">
-        <button onClick={() => setShowItems(!showItems)} className="underline">
+        <button onClick={() => setShowItems(!showItems)} className="text-sm text-gray-400 underline">
           {showItems ? "Show less" : "Show more"}
         </button>
       </div>
@@ -264,7 +264,7 @@ export const StakeList = () => {
               </tbody>
               <tfoot>
                 <tr className="border-t-2 border-gray-700 text-sm text-right">
-                  <td className="text-center uppercase py-1">Totals</td>
+                  <td className="text-center py-1">Totals</td>
                   <td></td>
                   <td>US${showValueWithComma(equityValue)}</td>
                   <td className={`${isPositive(dayChangeSum) ? "text-black" : "text-red-600"}`}>
