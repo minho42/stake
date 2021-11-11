@@ -204,7 +204,7 @@ export const StakeChartModal = ({
         onClick={() => onClose()}
       ></div>
 
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex bg-gray-200 rounded-lg shadow-2xl space-x-1 p-2">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex bg-gray-200 rounded shadow-2xl space-x-1 p-2">
         <div className="flex flex-col space-y-1">
           <div className="bg-white rounded p-2 relative">
             <div className="flex justify-center text-xl">

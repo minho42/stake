@@ -195,7 +195,7 @@ export const StakeList = () => {
           {stakeToken && (
             <div className="flex justify-end">
               <div
-                className={`flex items-center justify-center rounded-lg text-white px-2 ${
+                className={`flex items-center justify-center rounded text-white px-2 ${
                   marketStatus === "open" ? "bg-black" : "bg-red-400"
                 }`}
               >
