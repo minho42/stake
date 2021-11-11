@@ -29,47 +29,37 @@ export const Navbar = () => {
 
   return (
     <nav>
-      <header className="flex justify-between border-b border-gray-300 shadow-sm">
-        <div className="flex flex-grow  items-center justify-center ml-10"></div>
-
+      <header className="flex justify-center md:justify-end border-b border-gray-300 shadow-sm">
         <div className="flex items-center justify-end h-14">
           <Link
             to="/"
-            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/" ? " border-green-500" : "border-white"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
+              pathname === "/" ? " border-gray-700" : "border-white"
             }`}
           >
             portfolio
           </Link>
           <Link
             to="/dividend"
-            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/dividend" ? " border-green-500" : "border-white"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
+              pathname === "/dividend" ? " border-gray-700" : "border-white"
             }`}
           >
             dividend
           </Link>
           <Link
             to="/ratings"
-            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/ratings" ? " border-green-500" : "border-white"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
+              pathname === "/ratings" ? " border-gray-700" : "border-white"
             }`}
           >
             ratings
           </Link>
-          <Link
-            to="/settings"
-            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/settings" ? " border-green-500" : "border-white"
-            }`}
-          >
-            settings
-          </Link>
           {!stakeToken && (
             <Link
               to="/login"
-              className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
-                pathname === "/login" ? " border-green-500" : "border-white"
+              className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
+                pathname === "/login" ? " border-gray-700" : "border-white"
               }`}
             >
               login
@@ -78,15 +68,15 @@ export const Navbar = () => {
           {stakeToken && (
             <button
               onClick={() => requestLogout(stakeToken, setStakeToken, history)}
-              className="flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize border-white"
+              className="flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize border-white"
             >
               logout
             </button>
           )}
           <Link
             to="/about"
-            className={`flex items-center h-full font-medium px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/about" ? " border-green-500" : "border-white"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
+              pathname === "/about" ? " border-gray-700" : "border-white"
             }`}
           >
             about

@@ -227,8 +227,8 @@ export const StakeChartModal = ({
                     onClick={handleTimeFrameChange}
                     key={tf.name}
                     className={`${
-                      selectedTimeFrameName === tf.name ? " border-green-500" : ""
-                    } border-b-4 border-white px-2 py-0.5 uppercase focus:outline-none`}
+                      selectedTimeFrameName === tf.name ? " border-black" : "border-white"
+                    } border-b-4  px-2 py-0.5 uppercase focus:outline-none`}
                   >
                     {tf.name}
                   </button>

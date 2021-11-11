@@ -196,7 +196,7 @@ export const StakeList = () => {
             <div className="flex justify-end">
               <div
                 className={`flex items-center justify-center rounded-lg text-white px-2 ${
-                  marketStatus === "open" ? "bg-green-500" : "bg-red-400"
+                  marketStatus === "open" ? "bg-black" : "bg-red-400"
                 }`}
               >
                 {marketStatus}
@@ -210,7 +210,7 @@ export const StakeList = () => {
           <div>Checking token...</div>
         ) : !stakeToken ? (
           <div>
-            <Link to="/login" className="text-green-500 hover:underline">
+            <Link to="/login" className="hover:underline">
               Log in
             </Link>
           </div>
@@ -228,7 +228,7 @@ export const StakeList = () => {
       </div>
 
       <div className="flex justify-center">
-        <button onClick={() => setShowItems(!showItems)} className="text-xs text-gray-400 underline">
+        <button onClick={() => setShowItems(!showItems)} className="underline">
           {showItems ? "Show less" : "Show more"}
         </button>
       </div>
@@ -265,11 +265,11 @@ export const StakeList = () => {
                 <tr className="border-t-2 border-gray-700 text-sm text-right">
                   <td className="text-center uppercase py-1">Totals</td>
                   <td>US${showValueWithComma(equityValue)}</td>
-                  <td className={`${isPositive(dayChangeSum) ? "text-green-600" : "text-red-600"}`}>
+                  <td className={`${isPositive(dayChangeSum) ? "text-black" : "text-red-600"}`}>
                     {showValueWithSign(dayChangeSum, "")}
                     <span className="ml-1">({`${showValueWithSign(dayChangePercentage, "")}%`})</span>
                   </td>
-                  <td className={`${isPositive(totalChangeSum) ? "text-green-600" : "text-red-600"}`}>
+                  <td className={`${isPositive(totalChangeSum) ? "text-black" : "text-red-600"}`}>
                     {showValueWithSign(totalChangeSum, "")}
                     <span className="ml-1">({`${showValueWithSign(totalChangePercentage, "")}%`})</span>
                   </td>

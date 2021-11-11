@@ -24,8 +24,8 @@ export const RatingsList = () => {
                 key={count}
                 onClick={() => setSelectedFilterCount(count)}
                 className={` ${
-                  selectedFilterCount === count ? "bg-green-500 text-white" : "bg-gray-100"
-                } rounded-lg px-2 py-1.5`}
+                  selectedFilterCount === count ? "bg-black text-white" : "bg-gray-200"
+                } rounded px-2 py-1.5`}
               >
                 {count}
               </button>

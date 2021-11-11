@@ -77,7 +77,7 @@ export const StakeRatings = ({ symbol, name, selectedFilterCount }) => {
         }}
         className="flex items-center justify-start space-x-1 cursor-pointer"
       >
-        {/* {buyCount + sellCount + holdCount === 0 ? "-" : ""} */}
+        {buyCount + sellCount + holdCount === 0 ? "-" : ""}
 
         {buyCount > 0 && (
           <div className="flex items-center text-xs">

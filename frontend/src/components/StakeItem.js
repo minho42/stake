@@ -79,22 +79,22 @@ export const StakeItem = ({
       >
         <td
           className={`py-1 text-center text-sm cursor-pointer border-l-8  ${
-            index === focusedIndex ? "border-green-500" : "border-white"
+            index === focusedIndex ? "border-gray-700" : "border-white"
           }`}
         >
           {symbol}
         </td>
         {/* <td className="">{showValueWithComma(openQty)}</td> */}
         <td>{showValueWithComma(marketValue)}</td>
-        <td className={` ${isPositive(unrealizedDayPL) ? "text-green-600" : "text-red-600"}`}>
+        <td className={` ${isPositive(unrealizedDayPL) ? "text-black" : "text-red-600"}`}>
           {showValueWithSign(unrealizedDayPL, "")}
           <span className="ml-1">({showValueWithSign(unrealizedDayPLPercentage, "")}%)</span>
         </td>
-        <td className={` ${isPositive(unrealizedPL) ? "text-green-600" : "text-red-600"}`}>
+        <td className={` ${isPositive(unrealizedPL) ? "text-black" : "text-red-600"}`}>
           {showValueWithSign(unrealizedPL, "")}
           <span className="ml-1">({showValueWithSign(unrealizedPLPercentage, "")}%)</span>
         </td>
-        <td>{Number.parseFloat(((marketValue / equityValue) * 100).toFixed(2))}%</td>
+        <td className="">{Number.parseFloat(((marketValue / equityValue) * 100).toFixed(2))}%</td>
       </tr>
 
       {isChartModalOpen && (

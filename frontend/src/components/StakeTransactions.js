@@ -9,9 +9,7 @@ export const StakeTransactions = ({ transactions }) => {
           <div key={t.id} className="flex items-center text-xs text-gray-500 py-1 hover:bg-gray-100">
             {timestampToDate(dateStrToTimestamp(t.timestamp))}:
             <div
-              className={`${
-                t.transactionType === "Buy" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-              } flex rounded px-1 `}
+              className={`${t.transactionType === "Buy" ? "text-black" : "text-red-800"} flex rounded px-1 `}
             >
               ${showValueWithComma(-t.tranAmount, false)}
             </div>
