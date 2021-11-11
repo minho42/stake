@@ -75,12 +75,12 @@ export const StakeRatings = ({ symbol, name, selectedFilterCount }) => {
           e.stopPropagation();
           setIsRatingsModalOpen(!isRatingsModalOpen);
         }}
-        className="flex items-center justify-start space-x-1 cursor-pointer"
+        className="flex items-center justify-start space-x-2 cursor-pointer"
       >
         {buyCount + sellCount + holdCount === 0 ? "-" : ""}
 
         {buyCount > 0 && (
-          <div className="flex items-center text-xs">
+          <div className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-green-500"
@@ -94,7 +94,7 @@ export const StakeRatings = ({ symbol, name, selectedFilterCount }) => {
         )}
 
         {sellCount > 0 && (
-          <div className="flex items-center text-xs">
+          <div className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-red-400"
@@ -108,7 +108,7 @@ export const StakeRatings = ({ symbol, name, selectedFilterCount }) => {
         )}
 
         {holdCount > 0 && (
-          <div className="flex items-center text-xs">
+          <div className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-gray-300"

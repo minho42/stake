@@ -68,7 +68,7 @@ export const DividendItem = ({
 
   if (dividendYield <= 0) return null;
   return (
-    <tr className="text-sm hover:bg-gray-100 cursor-pointer text-center">
+    <tr className="hover:bg-gray-100 cursor-pointer text-center">
       <td className="py-1 text-center">{symbol}</td>
       <td className="">{showValueWithComma(dividendYield)}%</td>
       <td className="text-right">{showValueWithComma(expectedDividend)}</td>

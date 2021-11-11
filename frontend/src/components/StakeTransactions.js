@@ -6,7 +6,7 @@ export const StakeTransactions = ({ transactions }) => {
       <div className="text-xl text-center">Transactions</div>
       {transactions.map((t) => {
         return (
-          <div key={t.id} className="flex items-center text-xs text-gray-500 py-1 hover:bg-gray-100">
+          <div key={t.id} className="flex items-center text-gray-500 py-1 hover:bg-gray-100">
             {timestampToDate(dateStrToTimestamp(t.timestamp))}:
             <div
               className={`${t.transactionType === "Buy" ? "text-black" : "text-red-800"} flex rounded px-1 `}

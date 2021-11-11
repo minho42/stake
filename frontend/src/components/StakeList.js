@@ -186,7 +186,7 @@ export const StakeList = () => {
     <div className=" flex flex-col flex-grow px-3 py-3 space-y-3">
       <div className="flex justify-center relative text-gray-500">
         {/* <StakePieChart equityPositions={equityPositions} equityValue={equityValue} /> */}
-        <div className="absolute top-0 right-0 text-xs text-gray-500 space-y-0.5">
+        <div className="absolute top-0 right-0 text-gray-500 space-y-0.5">
           {stakeToken && userInfo && (
             <div className="flex justify-end">{userInfo.firstName + " " + userInfo.lastName}</div>
           )}
@@ -228,7 +228,7 @@ export const StakeList = () => {
       </div>
 
       <div className="flex justify-center">
-        <button onClick={() => setShowItems(!showItems)} className="text-sm text-gray-400 underline">
+        <button onClick={() => setShowItems(!showItems)} className="text-gray-400 underline">
           {showItems ? "Show less" : "Show more"}
         </button>
       </div>
@@ -236,7 +236,7 @@ export const StakeList = () => {
       {showItems && (
         <div className="flex justify-center">
           {stakeToken && equityPositions && (
-            <table className="w-11/12 text-sm font-medium text-center max-w-xl">
+            <table className="w-11/12 font-medium text-center max-w-2xl">
               <thead>
                 <tr className="border-b-2 border-gray-700 text-right">
                   <th className="text-center">No</th>
@@ -263,7 +263,7 @@ export const StakeList = () => {
                 })}
               </tbody>
               <tfoot>
-                <tr className="border-t-2 border-gray-700 text-sm text-right">
+                <tr className="border-t-2 border-gray-700 text-right">
                   <td className="text-center py-1">Totals</td>
                   <td></td>
                   <td>US${showValueWithComma(equityValue)}</td>

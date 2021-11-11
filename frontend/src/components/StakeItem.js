@@ -73,12 +73,10 @@ export const StakeItem = ({
           setFocusedIndex(index);
           setIsChartModalOpen(!isChartModalOpen);
         }}
-        className={`text-right text-sm hover:shadow-md cursor-pointer ${
-          index === focusedIndex ? "shadow-md" : ""
-        }`}
+        className={`text-right hover:shadow-md cursor-pointer ${index === focusedIndex ? "shadow-md" : ""}`}
       >
         <td
-          className={`py-1 text-center text-sm cursor-pointer border-l-8  ${
+          className={`py-1 text-center cursor-pointer border-l-8  ${
             index === focusedIndex ? "border-black" : "border-white"
           }`}
         >

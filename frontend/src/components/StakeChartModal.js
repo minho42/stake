@@ -214,13 +214,13 @@ export const StakeChartModal = ({
                 <div className="ml-2">({showValueWithSign(unrealizedPLPercentage, "")}%)</div>
               </div>
             </div>
-            <div className="text-center text-sm text-gray-500">{name}</div>
+            <div className="text-center text-gray-500">{name}</div>
             <div className="absolute top-2 right-2">
               {(isLoading || !chartDataTimeFramed) && <LoadingIcon />}
             </div>
           </div>
           <div className="bg-white rounded p-2">
-            <div className="flex justify-center text-sm text-gray-600 space-x-1">
+            <div className="flex justify-center text-gray-600 space-x-1">
               {timeFrames.map((tf) => {
                 return (
                   <button

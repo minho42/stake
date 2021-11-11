@@ -58,7 +58,7 @@ export const Login = () => {
             <span className="text-2xl font-medium">Log in to Stake</span>
             <form className="space-y-4">
               <div>
-                <label htmlFor="inputToken" className="font-medium text-gray-600 text-sm">
+                <label htmlFor="inputToken" className="font-medium text-gray-600">
                   Token
                 </label>
                 <input
