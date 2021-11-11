@@ -9,7 +9,7 @@ import { LoadingIcon } from "./LoadingIcon";
 import { StakePieChart } from "./StakePieChart";
 
 export const StakeList = () => {
-  const { stakeToken, isStakeAuthLoading } = useContext(UserContext);
+  const { stakeToken, isStakeAuthLoading, userInfo } = useContext(UserContext);
   const {
     isStakeChartModalOpen,
     equityPositions,
@@ -25,8 +25,6 @@ export const StakeList = () => {
   const [equityValueInAud, setEquityValueInAud] = useState(0);
   const [currencyUsdAud, setCurrencyUsdAud] = useLocalStorage("currencyUsdAud", 0);
   const [currencyAudUsd, setCurrencyAudUsd] = useLocalStorage("currencyAudUsd", 0);
-  const [userInfo, setUserInfo] = useLocalStorage("stakeUserInfo", {});
-  // const [focusedIndex, setFocusedIndex] = useState(0);
   const [focusedIndex, setFocusedIndex] = useLocalStorage("stakeFocusedIndex", 0);
   const [dayChangeSum, setDayChangeSum] = useState(0);
   const [totalChangeSum, setTotalChangeSum] = useState(0);
@@ -67,22 +65,6 @@ export const StakeList = () => {
     } catch (error) {
       console.log(error);
       setMarketStatus(null);
-    }
-  };
-
-  const fetchUserInfo = async () => {
-    if (!stakeToken) return;
-
-    try {
-      const res = await fetch(`https://global-prd-api.hellostake.com/api/sessions/v2/${stakeToken}`);
-      if (!res.ok) {
-        throw new Error("fetchUserInfo failed");
-      }
-      const data = await res.json();
-      setUserInfo(data);
-    } catch (error) {
-      console.log(error);
-      setUserInfo(null);
     }
   };
 
@@ -146,7 +128,6 @@ export const StakeList = () => {
   };
 
   useEffect(() => {
-    fetchUserInfo();
     // TODO: how not to make list blink? (becomes empty then fills in the list)
     // TODO: how not to close chartModal?
     // setInterval(fetchEquityPositions, 10 * 1000);
