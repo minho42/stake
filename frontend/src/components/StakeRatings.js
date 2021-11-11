@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { StakeRatingsModal } from "./StakeRatingsModal";
 
-export const StakeRatings = ({ symbol, name, selectedFilterCount }) => {
+export const StakeRatings = ({ symbol, selectedFilterCount }) => {
   const [ratings, setRatings] = useState(null);
   const [filteredRatings, setFilteredRatings] = useState(null);
   const [buyCount, setBuyCount] = useState(0);
@@ -129,7 +129,6 @@ export const StakeRatings = ({ symbol, name, selectedFilterCount }) => {
       {ratings && isRatingsModalOpen && (
         <StakeRatingsModal
           symbol={symbol}
-          name={name}
           ratings={filteredRatings}
           isOpen={isRatingsModalOpen}
           onClose={handleRatingsModalClose}
