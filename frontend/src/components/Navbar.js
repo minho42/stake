@@ -33,32 +33,32 @@ export const Navbar = () => {
         <div className="flex items-center justify-end h-14">
           <Link
             to="/"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/" ? " border-gray-700" : "border-white"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize ${
+              pathname === "/" ? " border-gray-700" : "border-transparent"
             }`}
           >
             portfolio
           </Link>
           <Link
             to="/watchlist"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/watchlist" ? " border-gray-700" : "border-white"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize ${
+              pathname === "/watchlist" ? " border-gray-700" : "border-transparent"
             }`}
           >
             watchlist
           </Link>
           <Link
             to="/dividend"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/dividend" ? " border-gray-700" : "border-white"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize ${
+              pathname === "/dividend" ? " border-gray-700" : "border-transparent"
             }`}
           >
             dividend
           </Link>
           <Link
             to="/ratings"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/ratings" ? " border-gray-700" : "border-white"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize ${
+              pathname === "/ratings" ? " border-gray-700" : "border-transparent"
             }`}
           >
             ratings
@@ -66,8 +66,8 @@ export const Navbar = () => {
           {!stakeToken && (
             <Link
               to="/login"
-              className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
-                pathname === "/login" ? " border-gray-700" : "border-white"
+              className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize ${
+                pathname === "/login" ? " border-gray-700" : "border-transparent"
               }`}
             >
               login
@@ -76,15 +76,29 @@ export const Navbar = () => {
           {stakeToken && (
             <button
               onClick={() => requestLogout(stakeToken, setStakeToken, history)}
-              className="flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize border-white"
+              className="flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize border-transparent"
             >
               logout
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 ml-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                />
+              </svg>
             </button>
           )}
           <Link
             to="/about"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize ${
-              pathname === "/about" ? " border-gray-700" : "border-white"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize ${
+              pathname === "/about" ? " border-gray-700" : "border-transparent"
             }`}
           >
             about
