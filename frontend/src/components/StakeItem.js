@@ -79,13 +79,13 @@ export const StakeItem = ({
       >
         <td
           className={`py-1 text-center text-sm cursor-pointer border-l-8  ${
-            index === focusedIndex ? "border-gray-700" : "border-white"
+            index === focusedIndex ? "border-black" : "border-white"
           }`}
         >
-          {symbol}
+          {index + 1}
         </td>
-        {/* <td className="">{showValueWithComma(openQty)}</td> */}
-        <td>{showValueWithComma(marketValue)}</td>
+        <td className="text-center">{symbol}</td>
+        <td>${showValueWithComma(marketValue, false)}</td>
         <td className={` ${isPositive(unrealizedDayPL) ? "text-black" : "text-red-600"}`}>
           {showValueWithSign(unrealizedDayPL, "")}
           <span className="ml-1">({showValueWithSign(unrealizedDayPLPercentage, "")}%)</span>

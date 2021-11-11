@@ -239,7 +239,8 @@ export const StakeList = () => {
             <table className="w-11/12 text-sm font-medium text-center max-w-xl">
               <thead>
                 <tr className="border-b-2 border-gray-700 text-right">
-                  <th className=" text-center">Code</th>
+                  <th className="text-center">No</th>
+                  <th className="text-center">Code</th>
                   <th className="">Value</th>
                   <th className="">Day P/L</th>
                   <th className="">Total P/L</th>
@@ -264,6 +265,7 @@ export const StakeList = () => {
               <tfoot>
                 <tr className="border-t-2 border-gray-700 text-sm text-right">
                   <td className="text-center uppercase py-1">Totals</td>
+                  <td></td>
                   <td>US${showValueWithComma(equityValue)}</td>
                   <td className={`${isPositive(dayChangeSum) ? "text-black" : "text-red-600"}`}>
                     {showValueWithSign(dayChangeSum, "")}
