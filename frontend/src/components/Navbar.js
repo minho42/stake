@@ -29,7 +29,7 @@ export const Navbar = () => {
 
   return (
     <nav>
-      <header className="flex justify-center border-b border-gray-300 shadow-sm">
+      <header className="flex justify-center border-b border-gray-300 shadow-sm text-base">
         <div className="flex items-center justify-end h-14">
           <Link
             to="/"
