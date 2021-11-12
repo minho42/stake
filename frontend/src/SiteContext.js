@@ -11,6 +11,26 @@ export const SiteProvider = ({ children }) => {
   const [equityValue, setEquityValue] = useLocalStorage("stakeEquityValue", 0);
   const [isEquityPositionsLoading, setIsEquityPositionsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [transactionHistory, setTransactionHistory] = useLocalStorage("stakeTransactionHistory", []);
+
+  const fetchTransactionHistory = async () => {
+    try {
+      const res = await fetch("http://localhost:4000/stake/transaction-history", {
+        credentials: "include",
+      });
+      if (res.status !== 200) {
+        throw new Error("fetchTransactionHistory error");
+      }
+      const { data } = await res.json();
+      if (data) {
+        setTransactionHistory(data);
+      } else {
+        setTransactionHistory([]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchEquityPositions = async () => {
     if (isStakeChartModalOpen) {
@@ -68,6 +88,7 @@ export const SiteProvider = ({ children }) => {
         errorMessage,
         setErrorMessage,
         fetchEquityPositions,
+        transactionHistory,
       }}
     >
       {children}

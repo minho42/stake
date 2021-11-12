@@ -43,7 +43,7 @@ export const UserProvider = ({ children }) => {
       data.instrumentsWatchList.forEach((d) => {
         symbols.push(d.product.symbol);
       });
-      console.log(symbols);
+      // console.log(symbols);
       setWatchlistSymbols(symbols);
     } catch (error) {
       console.log(error);

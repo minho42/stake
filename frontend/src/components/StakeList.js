@@ -20,8 +20,8 @@ export const StakeList = () => {
     setIsEquityPositionsLoading,
     errorMessage,
     fetchEquityPositions,
+    transactionHistory,
   } = useContext(SiteContext);
-  const [transactionHistory, setTransactionHistory] = useLocalStorage("stakeTransactionHistory", []);
   const [equityValueInAud, setEquityValueInAud] = useState(0);
   const [currencyUsdAud, setCurrencyUsdAud] = useLocalStorage("currencyUsdAud", 0);
   const [currencyAudUsd, setCurrencyAudUsd] = useLocalStorage("currencyAudUsd", 0);
@@ -87,25 +87,6 @@ export const StakeList = () => {
     } catch (error) {
       console.log(error);
       setCurrencyAudUsd(0);
-    }
-  };
-
-  const fetchTransactionHistory = async () => {
-    try {
-      const res = await fetch("http://localhost:4000/stake/transaction-history", {
-        credentials: "include",
-      });
-      if (res.status !== 200) {
-        throw new Error("fetchTransactionHistory error");
-      }
-      const { data } = await res.json();
-      if (data) {
-        setTransactionHistory(data);
-      } else {
-        setTransactionHistory([]);
-      }
-    } catch (error) {
-      console.log(error);
     }
   };
 

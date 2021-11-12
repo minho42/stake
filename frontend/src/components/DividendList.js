@@ -3,15 +3,13 @@ import { DividendItem } from "./DividendItem";
 import { UserContext } from "../UserContext";
 import { SiteContext } from "../SiteContext";
 import { showValueWithComma } from "../utils";
-import { useLocalStorage } from "./useLocalStorage";
 
 export const DividendList = () => {
   const { stakeToken, isStakeAuthLoading } = useContext(UserContext);
-  const { equityPositions } = useContext(SiteContext);
+  const { equityPositions, transactionHistory } = useContext(SiteContext);
   const [totalExpectedDividends, setTotalExpectedDividends] = useState(0);
   const [totalDividend, setTotalDividend] = useState(0);
   const [totalDividendTax, setTotalDividendTax] = useState(0);
-  const [transactionHistory, setTransactionHistory] = useLocalStorage("stakeTransactionHistory", []);
 
   const addTotalExpectedDividends = (n) => {
     setTotalExpectedDividends(totalExpectedDividends + n);
@@ -23,29 +21,6 @@ export const DividendList = () => {
   const addTotalDividendTax = (n) => {
     setTotalDividendTax(totalDividendTax + n);
   };
-
-  const fetchTransactionHistory = async () => {
-    try {
-      const res = await fetch("http://localhost:4000/stake/transaction-history", {
-        credentials: "include",
-      });
-      if (res.status !== 200) {
-        throw new Error("fetchTransactionHistory error");
-      }
-      const { data } = await res.json();
-      if (data) {
-        setTransactionHistory(data);
-      } else {
-        setTransactionHistory([]);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchTransactionHistory();
-  }, []);
 
   return (
     <div className="flex justify-center">
