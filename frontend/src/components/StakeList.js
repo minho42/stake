@@ -196,7 +196,7 @@ export const StakeList = () => {
             </Link>
           </div>
         ) : equityValue ? (
-          <div className="flex items-center text-3xl font-light">
+          <div className="flex items-center text-2xl">
             <div>${showValueWithComma(equityValueInAud, true)}</div>
             <div className={`ml-2 ${isPositive(totalChangeSum) ? "text-green-600" : "text-red-600"}`}>
               ({`${showValueWithSign(totalChangePercentage, "")}%`})
