@@ -72,6 +72,7 @@ export const SiteProvider = ({ children }) => {
 
   useEffect(() => {
     fetchEquityPositions();
+    fetchTransactionHistory();
   }, [stakeToken]);
 
   return (
