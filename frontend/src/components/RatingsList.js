@@ -35,13 +35,13 @@ export const RatingsList = () => {
 
         <div className="flex items-start justify-center gap-6 w-6/12">
           <div className="flex flex-col space-y-2">
-            <div className="text-center text-lg font-semibold bg-gray-200 rounded">Portfolio</div>
+            <div className="text-center text-base font-semibold bg-gray-200 rounded">Portfolio</div>
             {stakeToken && equityPositions && (
               <table className="w-11/12 font-medium text-center max-w-md">
                 <thead>
                   <tr className="border-b-2 border-gray-700">
                     <th>Code</th>
-                    <th className="text-left">Ratings</th>
+                    <th className="">Ratings</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300">
@@ -60,13 +60,13 @@ export const RatingsList = () => {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <div className="text-center text-lg font-semibold bg-gray-200 rounded">Watchlist</div>
+            <div className="text-center text-base font-semibold bg-gray-200 rounded">Watchlist</div>
             {stakeToken && watchlistSymbols && (
               <table className="w-11/12 font-medium text-center max-w-md">
                 <thead>
                   <tr className="border-b-2 border-gray-700">
                     <th>Code</th>
-                    <th className="text-left">Ratings</th>
+                    <th className="">Ratings</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-300">

@@ -75,7 +75,7 @@ export const StakeRatings = ({ symbol, selectedFilterCount }) => {
           e.stopPropagation();
           setIsRatingsModalOpen(!isRatingsModalOpen);
         }}
-        className="flex items-center justify-start space-x-2 cursor-pointer"
+        className="flex items-center justify-start space-x-2 px-1 hover:bg-gray-100 cursor-pointer"
       >
         {buyCount + sellCount + holdCount === 0 ? "-" : ""}
 
