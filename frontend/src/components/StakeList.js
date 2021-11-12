@@ -158,7 +158,7 @@ export const StakeList = () => {
             <div className="flex justify-end">
               <div
                 className={`flex items-center justify-center rounded text-white px-2 ${
-                  marketStatus === "open" ? "bg-green-600" : "bg-red-400"
+                  marketStatus === "open" ? "bg-green-500" : "bg-red-400"
                 }`}
               >
                 {marketStatus}
