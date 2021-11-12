@@ -111,7 +111,7 @@ export const StakeList = () => {
   useEffect(() => {
     // TODO: how not to make list blink? (becomes empty then fills in the list)
     // TODO: how not to close chartModal?
-    // setInterval(fetchEquityPositions, 10 * 1000);
+    setInterval(fetchEquityPositions, 30 * 1000);
   }, [stakeToken]);
 
   useEffect(() => {
@@ -158,7 +158,7 @@ export const StakeList = () => {
             <div className="flex justify-end">
               <div
                 className={`flex items-center justify-center rounded text-white px-2 ${
-                  marketStatus === "open" ? "bg-black" : "bg-red-400"
+                  marketStatus === "open" ? "text-green-600" : "bg-red-400"
                 }`}
               >
                 {marketStatus}
@@ -229,11 +229,11 @@ export const StakeList = () => {
                   <td className="text-center py-1">Totals</td>
                   <td></td>
                   <td>US${showValueWithComma(equityValue)}</td>
-                  <td className={`${isPositive(dayChangeSum) ? "text-black" : "text-red-600"}`}>
+                  <td className={`${isPositive(dayChangeSum) ? "text-green-600" : "text-red-600"}`}>
                     {showValueWithSign(dayChangeSum, "")}
                     <span className="ml-1">({`${showValueWithSign(dayChangePercentage, "")}%`})</span>
                   </td>
-                  <td className={`${isPositive(totalChangeSum) ? "text-black" : "text-red-600"}`}>
+                  <td className={`${isPositive(totalChangeSum) ? "text-green-600" : "text-red-600"}`}>
                     {showValueWithSign(totalChangeSum, "")}
                     <span className="ml-1">({`${showValueWithSign(totalChangePercentage, "")}%`})</span>
                   </td>

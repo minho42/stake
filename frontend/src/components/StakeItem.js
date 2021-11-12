@@ -84,11 +84,11 @@ export const StakeItem = ({
         </td>
         <td className="text-center">{symbol}</td>
         <td>${showValueWithComma(marketValue, false)}</td>
-        <td className={` ${isPositive(unrealizedDayPL) ? "text-black" : "text-red-600"}`}>
+        <td className={` ${isPositive(unrealizedDayPL) ? "text-green-600" : "text-red-600"}`}>
           {showValueWithSign(unrealizedDayPL, "")}
           <span className="ml-1">({showValueWithSign(unrealizedDayPLPercentage, "")}%)</span>
         </td>
-        <td className={` ${isPositive(unrealizedPL) ? "text-black" : "text-red-600"}`}>
+        <td className={` ${isPositive(unrealizedPL) ? "text-green-600" : "text-red-600"}`}>
           {showValueWithSign(unrealizedPL, "")}
           <span className="ml-1">({showValueWithSign(unrealizedPLPercentage, "")}%)</span>
         </td>
