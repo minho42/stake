@@ -126,7 +126,7 @@ export const StakeList = () => {
     return () => {
       document.removeEventListener("keydown", keyboardShortcuts);
     };
-  }, [focusedIndex, isStakeChartModalOpen]);
+  }, [focusedIndex, equityPositions, isStakeChartModalOpen]);
 
   useEffect(() => {
     getDayChangeSum();
