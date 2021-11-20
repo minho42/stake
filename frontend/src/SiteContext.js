@@ -103,6 +103,7 @@ export const SiteProvider = ({ children }) => {
         setErrorMessage,
         fetchEquityPositions,
         transactionHistory,
+        prevSymbols,
       }}
     >
       {children}
