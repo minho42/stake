@@ -8,6 +8,7 @@ export const SiteProvider = ({ children }) => {
   const { stakeToken, isStakeAuthLoading } = useContext(UserContext);
   const [isStakeChartModalOpen, setIsStakeChartModalOpen] = useState(false);
   const [equityPositions, setEquityPositions] = useLocalStorage("stakeEquityPositions", []);
+  const [prevSymbols, setPrevSymbols] = useLocalStorage("stakePrevSymbols", []);
   const [equityValue, setEquityValue] = useLocalStorage("stakeEquityValue", 0);
   const [isEquityPositionsLoading, setIsEquityPositionsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -44,6 +45,7 @@ export const SiteProvider = ({ children }) => {
       setEquityPositions([]);
       setEquityValue(null);
       setIsEquityPositionsLoading(false);
+      setPrevSymbols([]);
       return;
     }
     try {
@@ -74,6 +76,17 @@ export const SiteProvider = ({ children }) => {
     fetchEquityPositions();
     fetchTransactionHistory();
   }, [stakeToken]);
+
+  useEffect(() => {
+    if (!equityPositions || !transactionHistory) return;
+
+    const currentSymbols = equityPositions.map((p) => p.symbol);
+    const totalSymbols = transactionHistory.filter((t) => t.symbol).map((t) => t.symbol);
+    const uniqueTotalSymbols = [...new Set(totalSymbols)];
+    const prevUniqueSymbols = uniqueTotalSymbols.filter((symbol) => !currentSymbols.includes(symbol));
+    setPrevSymbols(prevUniqueSymbols);
+    // TODO: change dependencies only to symbols from the lists
+  }, [equityPositions, transactionHistory]);
 
   return (
     <SiteContext.Provider
