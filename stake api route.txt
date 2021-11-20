@@ -1,0 +1,1 @@
+https://global-prd-api.hellostake.com/api/quotes/marketData/AMZN,UPWK,DOCN,NET,COST,ZM

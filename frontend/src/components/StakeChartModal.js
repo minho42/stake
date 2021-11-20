@@ -209,12 +209,14 @@ export const StakeChartModal = ({
           <div className="bg-white rounded p-2 relative">
             <div className="flex justify-center text-xl">
               {symbol}
-              <div className={`flex ${isPositive(unrealizedPL) ? "text-green-600" : "text-red-600"}`}>
-                <div className="ml-2">{showValueWithSign(unrealizedPL)}</div>
-                <div className="ml-2">({showValueWithSign(unrealizedPLPercentage, "")}%)</div>
-              </div>
+              {unrealizedPL && (
+                <div className={`flex ${isPositive(unrealizedPL) ? "text-green-600" : "text-red-500"}`}>
+                  <div className="ml-2">{showValueWithSign(unrealizedPL)}</div>
+                  <div className="ml-2">({showValueWithSign(unrealizedPLPercentage, "")}%)</div>
+                </div>
+              )}
             </div>
-            <div className="text-center text-gray-500">{name}</div>
+            {name && <div className="text-center text-gray-500">{name}</div>}
             <div className="absolute top-2 right-2">
               {(isLoading || !chartDataTimeFramed) && <LoadingIcon />}
             </div>

@@ -40,6 +40,14 @@ export const Navbar = () => {
             portfolio
           </Link>
           <Link
+            to="/history"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
+              pathname === "/history" ? " border-gray-700" : "border-transparent"
+            }`}
+          >
+            history
+          </Link>
+          <Link
             to="/dividend"
             className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
               pathname === "/dividend" ? " border-gray-700" : "border-transparent"
