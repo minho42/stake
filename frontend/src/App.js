@@ -4,7 +4,7 @@ import { Login } from "./components/Login";
 import { About } from "./components/About";
 import { StakeList } from "./components/StakeList";
 import { DividendList } from "./components/DividendList";
-import { RatingsList } from "./components/RatingsList";
+import { Ratings } from "./components/Ratings";
 import { Settings } from "./components/Settings";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { UserProvider } from "./UserContext";
@@ -26,7 +26,7 @@ function App() {
               </Route>
               <PrivateRoute component={StakeList} path="/" exact />
               <PrivateRoute component={DividendList} path="/dividend" exact />
-              <PrivateRoute component={RatingsList} path="/ratings" exact />
+              <PrivateRoute component={Ratings} path="/ratings" exact />
               <PrivateRoute component={Settings} path="/settings" exact />
             </Switch>
           </SiteProvider>
