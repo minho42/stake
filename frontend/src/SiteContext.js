@@ -85,8 +85,8 @@ export const SiteProvider = ({ children }) => {
     const uniqueTotalSymbols = [...new Set(totalSymbols)];
     const prevUniqueSymbols = uniqueTotalSymbols.filter((symbol) => !currentSymbols.includes(symbol));
     setPrevSymbols(prevUniqueSymbols);
-    // TODO: change dependencies only to symbols from the lists
-  }, [equityPositions, transactionHistory]);
+    // TODO: change dependency only to symbols from the lists so it doesn't get triggers if dependency is fetched regularly
+  }, [transactionHistory]);
 
   return (
     <SiteContext.Provider

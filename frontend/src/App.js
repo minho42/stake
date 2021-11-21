@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Login } from "./components/Login";
 import { About } from "./components/About";
-import { StakeList } from "./components/StakeList";
+import { PortfolioList } from "./components/PortfolioList";
 import { StakePrevList } from "./components/StakePrevList";
 import { DividendList } from "./components/DividendList";
 import { Ratings } from "./components/Ratings";
@@ -25,7 +25,7 @@ function App() {
               <Route exact path="/about">
                 <About />
               </Route>
-              <PrivateRoute component={StakeList} path="/" exact />
+              <PrivateRoute component={PortfolioList} path="/" exact />
               <PrivateRoute component={StakePrevList} path="/history" exact />
               <PrivateRoute component={DividendList} path="/dividend" exact />
               <PrivateRoute component={Ratings} path="/ratings" exact />

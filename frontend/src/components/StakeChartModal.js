@@ -102,6 +102,7 @@ export const StakeChartModal = ({
             timestamp: dateStrToTimestamp(t.timestamp),
             quote: transactionDateFromChartData.quote,
             transaction: transactionDateFromChartData.quote,
+            transactionType: t.transactionType,
           });
         });
       }
@@ -111,11 +112,12 @@ export const StakeChartModal = ({
         else return -1;
       });
 
-      tempChartData = tempChartData.map(({ timestamp, quote, transaction }) => {
+      tempChartData = tempChartData.map(({ timestamp, quote, transaction, transactionType }) => {
         return {
           timestamp: timestampToDate(timestamp),
           quote,
           transaction,
+          transactionType,
         };
       });
 
@@ -210,7 +212,7 @@ export const StakeChartModal = ({
             <div className="flex justify-center text-xl">
               {symbol}
               {unrealizedPL && (
-                <div className={`flex ${isPositive(unrealizedPL) ? "text-green-600" : "text-red-500"}`}>
+                <div className={`flex ${isPositive(unrealizedPL) ? "text-green-600" : "text-red-600"}`}>
                   <div className="ml-2">{showValueWithSign(unrealizedPL)}</div>
                   <div className="ml-2">({showValueWithSign(unrealizedPLPercentage, "")}%)</div>
                 </div>

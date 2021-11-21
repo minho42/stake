@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { StakeChartModal } from "./StakeChartModal";
+import { isPositive, showValueWithSign } from "../utils";
 
 export const StakePrevItem = ({
   index,
@@ -10,6 +11,7 @@ export const StakePrevItem = ({
 }) => {
   const [transactions, setTransactions] = useState(null);
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
+  const [changeSum, setChangeSum] = useState(0);
 
   const handleChartModalClose = () => {
     setIsChartModalOpen(false);
@@ -39,6 +41,20 @@ export const StakePrevItem = ({
   useEffect(async () => {
     getTransactions();
   }, []);
+
+  const getTotalChangeSum = () => {
+    if (!transactions) return;
+    let sum = 0;
+    transactions.forEach((t) => {
+      sum += Number.parseFloat(t.tranAmount);
+    });
+    // setChangeSum(sum.toFixed(2));
+    setChangeSum(sum);
+  };
+
+  useEffect(() => {
+    getTotalChangeSum();
+  }, [transactions]);
 
   const keyboardShortcuts = (e) => {
     if (e.keyCode === 79 || e.keyCode === 13) {
@@ -75,6 +91,9 @@ export const StakePrevItem = ({
           {index + 1}
         </td>
         <td className="text-center">{symbol}</td>
+        <td className={`${isPositive(changeSum) ? "text-green-600" : "text-red-600"} text-right`}>
+          {showValueWithSign(changeSum, "")}
+        </td>
       </tr>
 
       {isChartModalOpen && (

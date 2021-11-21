@@ -5,11 +5,11 @@ export const isPositive = (str) => {
 export const showValueWithSign = (str, prefix = "$") => {
   return Math.sign(Number.parseFloat(str)) >= 0
     ? `+${prefix}${showValueWithComma(str)}`
-    : `-${prefix}${-showValueWithComma(str)}`;
+    : `-${prefix}${showValueWithComma(Math.abs(str))}`;
 };
 
 export const showValueWithComma = (str, short = false) => {
-  if (short && Number.parseFloat(str) >= 1000) {
+  if (short && Math.abs(Number.parseFloat(str)) >= 1000) {
     return Number.parseFloat(Number.parseFloat(str / 1000).toFixed(1)).toLocaleString() + "K";
   }
   return Number.parseFloat(Number.parseFloat(str).toFixed(2)).toLocaleString();

@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { SiteContext } from "../SiteContext";
 import { StakePrevItem } from "./StakePrevItem";
+import { isPositive, showValueWithSign } from "../utils";
 
 export const StakePrevList = () => {
   const { isStakeChartModalOpen, transactionHistory, prevSymbols } = useContext(SiteContext);
@@ -35,11 +36,12 @@ export const StakePrevList = () => {
 
   return (
     <div className="flex justify-center">
-      <table className="w-11/12 font-medium text-center max-w-2xl">
+      <table className="w-11/12 font-medium text-center max-w-xs">
         <thead>
           <tr className="border-b-2 border-gray-700 text-right">
             <th className="text-center">No</th>
             <th className="text-center">Code</th>
+            <th>Total P/L</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-300">
