@@ -38,6 +38,45 @@ const getEquityPositions = async (token) => {
   }
 };
 
+const getEquityPositionsAsx = async (token) => {
+  if (!token) {
+    throw new Error("getEquityPositionsAsx: !token");
+  }
+  const config = {
+    method: "get",
+    url: "https://global-prd-api.hellostake.com/api/asx/instrument/equityPositions",
+    headers: {
+      authority: "global-prd-api.hellostake.com",
+      pragma: "no-cache",
+      "cache-control": "no-cache",
+      "sec-ch-ua": '"Google Chrome";v="95", "Chromium";v="95", ";Not A Brand";v="99"',
+      accept: "application/json",
+      "stake-session-token": token,
+      "sec-ch-ua-mobile": "?0",
+      "user-agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
+      "x-server-select": "AUS",
+      "sec-ch-ua-platform": '"macOS"',
+      origin: "https://trading.hellostake.com",
+      "sec-fetch-site": "same-site",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-dest": "empty",
+      referer: "https://trading.hellostake.com/",
+      "accept-language": "en-AU,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+    },
+  };
+
+  try {
+    const { data } = await axios(config);
+
+    console.log("getEquityPositions: ");
+    // console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getTransactionHistory = async (token) => {
   if (!token) {
     throw new Error("getTransactionHistory: !token");
@@ -83,4 +122,4 @@ const getTransactionHistory = async (token) => {
   }
 };
 
-module.exports = { getEquityPositions, getTransactionHistory };
+module.exports = { getEquityPositions, getEquityPositionsAsx, getTransactionHistory };
