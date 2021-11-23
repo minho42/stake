@@ -204,7 +204,7 @@ export const PortfolioList = ({}) => {
   return (
     <div className="flex flex-col flex-grow px-3 pb-3 space-y-3 bg-gray-100 min-h-screen">
       <div className="flex justify-center relative text-gray-500">
-        <div className="absolute top-0 right-0 text-gray-500 space-y-0.5 text-xs">
+        <div className="absolute top-1 right-0 text-gray-500 space-y-0.5 text-xs">
           {stakeToken && userInfo && (
             <div className="flex justify-end">{userInfo.firstName + " " + userInfo.lastName}</div>
           )}
