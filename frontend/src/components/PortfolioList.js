@@ -1,11 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../UserContext";
 import { SiteContext } from "../SiteContext";
-import { StakeItem } from "./StakeItem";
-import { isPositive, showValueWithSign, showValueWithComma, getChangePercentage } from "../utils";
+import { getChangePercentage } from "../utils";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
-import { LoadingIcon } from "./LoadingIcon";
 import { StakeList } from "./StakeList";
 
 export const PortfolioList = ({}) => {
@@ -23,12 +21,6 @@ export const PortfolioList = ({}) => {
     fetchEquityPositionsAsx,
     transactionHistory,
     transactionHistoryAsx,
-    setEquityPositions,
-    setEquityPositionsAsx,
-    setEquityValue,
-    setEquityValueAsx,
-    setIsEquityPositionsLoading,
-    setIsEquityPositionsLoadingAsx,
   } = useContext(SiteContext);
   const [equityValueInAud, setEquityValueInAud] = useState(0);
   const [currencyUsdAud, setCurrencyUsdAud] = useLocalStorage("currencyUsdAud", 0);
@@ -155,7 +147,8 @@ export const PortfolioList = ({}) => {
   useEffect(() => {
     // TODO: how not to make list blink? (becomes empty then fills in the list)
     // TODO: how not to close chartModal?
-    setInterval(fetchEquityPositions, 30 * 1000);
+    setInterval(fetchEquityPositions, 1000 * 30);
+    setInterval(fetchEquityPositionsAsx, 1000 * 60 * 10);
   }, [stakeToken]);
 
   useEffect(() => {

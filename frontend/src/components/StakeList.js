@@ -1,9 +1,5 @@
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../UserContext";
-import { SiteContext } from "../SiteContext";
 import { StakeItem } from "./StakeItem";
-import { isPositive, showValueWithSign, showValueWithComma, getChangePercentage } from "../utils";
-import { Link } from "react-router-dom";
+import { isPositive, showValueWithSign, showValueWithComma } from "../utils";
 import { useLocalStorage } from "./useLocalStorage";
 import { LoadingIcon } from "./LoadingIcon";
 
@@ -27,10 +23,10 @@ export const StakeList = ({
 
   return (
     <div className="flex flex-col bg-white border-xl border-2 border-black rounded-lg shadow-lg py-3 px-4 w-2/5 min-w-min">
-      <div className="flex justify-center relative text-gray-500">
-        <div className="absolute -top-4 -left-3 uppercase">
+      <div className="flex justify-center relative">
+        <div className="absolute -top-4 -left-3 uppercase text-center">
           <div className="text-4xl">{flag}</div>
-          {name}
+          <div className="text-xs text-gray-500">{name}</div>
         </div>
         <div className="absolute -top-1 -right-3 text-gray-500 space-y-0.5 text-sm">
           <div className="flex flex-col justify-end gap-1">
