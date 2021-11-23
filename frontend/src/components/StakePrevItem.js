@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { StakeChartModal } from "./StakeChartModal";
 import { isPositive, showValueWithSign } from "../utils";
+import { formatDistance } from "date-fns";
 
 export const StakePrevItem = ({
   index,
@@ -12,6 +13,17 @@ export const StakePrevItem = ({
   const [transactions, setTransactions] = useState(null);
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [changeSum, setChangeSum] = useState(0);
+  const [lastSoldDate, setLastSoldDate] = useState(null);
+
+  const getLastSoldDate = () => {
+    if (!transactions) return;
+
+    const d = formatDistance(new Date(transactions[0].timestamp), new Date(), {
+      includeSeconds: false,
+      addSuffix: true,
+    });
+    setLastSoldDate(d);
+  };
 
   const handleChartModalClose = () => {
     setIsChartModalOpen(false);
@@ -54,6 +66,7 @@ export const StakePrevItem = ({
 
   useEffect(() => {
     getTotalChangeSum();
+    getLastSoldDate();
   }, [transactions]);
 
   const keyboardShortcuts = (e) => {
@@ -94,6 +107,7 @@ export const StakePrevItem = ({
         <td className={`${isPositive(changeSum) ? "text-green-600" : "text-red-600"} text-right`}>
           {showValueWithSign(changeSum, "")}
         </td>
+        <td>{lastSoldDate}</td>
       </tr>
 
       {isChartModalOpen && (

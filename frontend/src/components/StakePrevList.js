@@ -35,13 +35,14 @@ export const StakePrevList = () => {
   }, [focusedIndexHistory, prevSymbols, isStakeChartModalOpen]);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center py-3">
       <table className="w-11/12 font-medium text-center max-w-xs">
         <thead>
           <tr className="border-b-2 border-gray-700 text-right">
             <th className="text-center">No</th>
             <th className="text-center">Code</th>
             <th>Total P/L</th>
+            <th>Last sold</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-300">
