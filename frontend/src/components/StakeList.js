@@ -82,7 +82,7 @@ export const StakeList = ({
                   return (
                     <StakeItem
                       index={index}
-                      focusedIndex={focusedIndex}
+                      focusedIndex={name === "asx" ? -1 : focusedIndex}
                       setFocusedIndex={setFocusedIndex}
                       key={position.symbol}
                       position={position}
