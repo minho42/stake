@@ -24,7 +24,7 @@ export const DividendList = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="flex justify-center px-3 py-6 min-w-full space-y-3">
+      <div className="flex justify-center px-3 py-3 min-w-full space-y-3">
         {stakeToken && equityPositions && (
           <table className="w-11/12 font-medium text-center max-w-md">
             <thead>
