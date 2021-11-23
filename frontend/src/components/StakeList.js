@@ -26,7 +26,7 @@ export const StakeList = ({
   const [showItems, setShowItems] = useLocalStorage("stakeShowItems", true);
 
   return (
-    <div className="flex flex-col bg-white border-xl border-2 border-black rounded-lg shadow-lg py-3 px-4 w-1/3 min-w-min">
+    <div className="flex flex-col bg-white border-xl border-2 border-black rounded-lg shadow-lg py-3 px-4 w-2/5 min-w-min">
       <div className="flex justify-center relative text-gray-500">
         <div className="absolute -top-4 -left-3 uppercase">
           <div className="text-4xl">{flag}</div>
@@ -92,7 +92,7 @@ export const StakeList = ({
                 <tr className="border-t-2 border-gray-700 text-right">
                   <td className="text-center py-1">Totals</td>
                   <td></td>
-                  <td>US${showValueWithComma(equityValue)}</td>
+                  <td>${showValueWithComma(equityValue)}</td>
                   <td className={`${isPositive(dayChangeSum) ? "text-green-600" : "text-red-600"}`}>
                     {showValueWithSign(dayChangeSum, "")}
                     <span className="ml-1">({`${showValueWithSign(dayChangePercentage, "")}%`})</span>
