@@ -13,23 +13,35 @@ export const PortfolioList = ({}) => {
   const {
     isStakeChartModalOpen,
     equityPositions,
-    setEquityPositions,
+    equityPositionsAsx,
     equityValue,
-    setEquityValue,
+    equityValueAsx,
     isEquityPositionsLoading,
-    setIsEquityPositionsLoading,
+    isEquityPositionsLoadingAsx,
     errorMessage,
     fetchEquityPositions,
+    fetchEquityPositionsAsx,
     transactionHistory,
+    transactionHistoryAsx,
+    setEquityPositions,
+    setEquityPositionsAsx,
+    setEquityValue,
+    setEquityValueAsx,
+    setIsEquityPositionsLoading,
+    setIsEquityPositionsLoadingAsx,
   } = useContext(SiteContext);
   const [equityValueInAud, setEquityValueInAud] = useState(0);
   const [currencyUsdAud, setCurrencyUsdAud] = useLocalStorage("currencyUsdAud", 0);
   const [currencyAudUsd, setCurrencyAudUsd] = useLocalStorage("currencyAudUsd", 0);
   const [focusedIndex, setFocusedIndex] = useLocalStorage("stakeFocusedIndex", 0);
   const [dayChangeSum, setDayChangeSum] = useState(0);
+  const [dayChangeSumAsx, setDayChangeSumAsx] = useState(0);
   const [totalChangeSum, setTotalChangeSum] = useState(0);
+  const [totalChangeSumAsx, setTotalChangeSumAsx] = useState(0);
   const [dayChangePercentage, setDayChangePercentage] = useState(0);
+  const [dayChangePercentageAsx, setDayChangePercentageAsx] = useState(0);
   const [totalChangePercentage, setTotalChangePercentage] = useState(0);
+  const [totalChangePercentageAsx, setTotalChangePercentageAsx] = useState(0);
   const [marketStatus, setMarketStatus] = useState(null);
   const [marketStatusAsx, setMarketStatusAsx] = useState(null);
 
@@ -113,6 +125,15 @@ export const PortfolioList = ({}) => {
     setDayChangePercentage(getChangePercentage(equityValue, sum));
   };
 
+  const getDayChangeSumAsx = () => {
+    let sum = 0;
+    equityPositionsAsx.forEach((position) => {
+      sum += Number.parseFloat(position.unrealizedDayPL);
+    });
+    setDayChangeSumAsx(sum.toFixed(2));
+    setDayChangePercentageAsx(getChangePercentage(equityValueAsx, sum));
+  };
+
   const getTotalChangeSum = () => {
     let sum = 0;
     equityPositions.forEach((position) => {
@@ -120,6 +141,15 @@ export const PortfolioList = ({}) => {
     });
     setTotalChangeSum(sum.toFixed(2));
     setTotalChangePercentage(getChangePercentage(equityValue, sum));
+  };
+
+  const getTotalChangeSumAsx = () => {
+    let sum = 0;
+    equityPositionsAsx.forEach((position) => {
+      sum += Number.parseFloat(position.unrealizedPL);
+    });
+    setTotalChangeSumAsx(sum.toFixed(2));
+    setTotalChangePercentageAsx(getChangePercentage(equityValue, sum));
   };
 
   useEffect(() => {
@@ -155,6 +185,17 @@ export const PortfolioList = ({}) => {
       }
     }
   }, [equityValue]);
+
+  useEffect(() => {
+    getDayChangeSumAsx();
+    getTotalChangeSumAsx();
+
+    if (equityPositionsAsx && equityPositionsAsx.length) {
+      if (focusedIndex + 1 >= equityPositions.length) {
+        setFocusedIndex(0);
+      }
+    }
+  }, [equityValueAsx]);
 
   useEffect(() => {
     setEquityValueInAud(equityValue * currencyUsdAud);
@@ -211,15 +252,15 @@ export const PortfolioList = ({}) => {
             name="asx"
             flag="🇦🇺"
             marketStatus={marketStatusAsx}
-            equityPositions={equityPositions}
-            equityValue={equityValue}
-            totalChangeSum={totalChangeSum}
-            equityValueInAud={equityValueInAud}
-            isEquityPositionsLoading={isEquityPositionsLoading}
-            dayChangeSum={dayChangeSum}
-            dayChangePercentage={dayChangePercentage}
-            totalChangePercentage={totalChangePercentage}
-            transactionHistory={transactionHistory}
+            equityPositions={equityPositionsAsx}
+            equityValue={equityValueAsx}
+            totalChangeSum={totalChangeSumAsx}
+            equityValueInAud={equityValueAsx}
+            isEquityPositionsLoading={isEquityPositionsLoadingAsx}
+            dayChangeSum={dayChangeSumAsx}
+            dayChangePercentage={dayChangePercentageAsx}
+            totalChangePercentage={totalChangePercentageAsx}
+            transactionHistory={transactionHistoryAsx}
             setFocusedIndex={setFocusedIndex}
             focusedIndex={focusedIndex}
           />
