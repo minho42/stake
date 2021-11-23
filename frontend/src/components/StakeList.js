@@ -32,11 +32,15 @@ export const StakeList = ({
           <div className="text-4xl">{flag}</div>
           {name}
         </div>
-        <div className="absolute -top-1 -right-3 text-gray-500 space-y-0.5 text-xs">
+        <div className="absolute -top-1 -right-3 text-gray-500 space-y-0.5 text-sm">
           <div className="flex flex-col justify-end gap-1">
             <div
-              className={`flex items-center justify-center rounded text-white px-2 ${
-                marketStatus === "open" ? "bg-green-500" : "bg-red-400"
+              className={`flex items-center justify-center rounded-lg text-white px-2 ${
+                marketStatus === "open"
+                  ? "bg-green-500"
+                  : marketStatus === "pre"
+                  ? "bg-yellow-500"
+                  : "bg-red-400"
               }`}
             >
               {marketStatus}
