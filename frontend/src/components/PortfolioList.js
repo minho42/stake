@@ -149,7 +149,7 @@ export const PortfolioList = ({}) => {
       sum += Number.parseFloat(position.unrealizedPL);
     });
     setTotalChangeSumAsx(sum.toFixed(2));
-    setTotalChangePercentageAsx(getChangePercentage(equityValue, sum));
+    setTotalChangePercentageAsx(getChangePercentage(equityValueAsx, sum));
   };
 
   useEffect(() => {
