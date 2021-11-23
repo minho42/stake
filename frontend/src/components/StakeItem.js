@@ -15,6 +15,13 @@ export const StakeItem = ({
   const [unrealizedDayPLPercentage, setUnrealizedDayPLPercentage] = useState(0);
   const [unrealizedPLPercentage, setUnrealizedPLPercentage] = useState(0);
 
+  const getAllocationPercentage = () => {
+    if (!equityValue) {
+      return 100;
+    }
+    return Number.parseFloat(((marketValue / equityValue) * 100).toFixed(2));
+  };
+
   const handleChartModalClose = () => {
     setIsChartModalOpen(false);
   };
@@ -92,7 +99,7 @@ export const StakeItem = ({
           {showValueWithSign(unrealizedPL, "")}
           <span className="ml-1">({showValueWithSign(unrealizedPLPercentage, "")}%)</span>
         </td>
-        <td className="">{Number.parseFloat(((marketValue / equityValue) * 100).toFixed(2))}%</td>
+        <td>{getAllocationPercentage()}%</td>
       </tr>
 
       {isChartModalOpen && (
