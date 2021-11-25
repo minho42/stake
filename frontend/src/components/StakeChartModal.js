@@ -74,7 +74,7 @@ export const StakeChartModal = ({
       let tempChartData = [];
       if (timestamp && quote) {
         timestamp.forEach((item, i) => {
-          tempChartData.push({ timestamp: item, quote: quote[i].toFixed(2) });
+          tempChartData.push({ timestamp: item, quote: quote[i] });
         });
       }
 
