@@ -1,7 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { getEquityPositions, getEquityPositionsAsx, getTransactionHistory } = require("../stake");
+const {
+  getEquityPositions,
+  getEquityPositionsAsx,
+  getTransactionHistory,
+  getTransactionHistoryAsx,
+} = require("../stake");
 const checkUser = require("../checkUser");
 const stakeAuth = require("../middleware/stakeAuth");
 
@@ -42,6 +47,20 @@ router.get("/stake/transaction-history", stakeAuth, async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const data = await getTransactionHistory(stakeToken);
+
+    res.send({
+      data: data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send();
+  }
+});
+
+router.get("/stake/asx/transaction-history", stakeAuth, async (req, res) => {
+  try {
+    const stakeToken = req.cookies.stakeToken;
+    const data = await getTransactionHistoryAsx(stakeToken);
 
     res.send({
       data: data,
