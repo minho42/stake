@@ -4,7 +4,7 @@ import { useLocalStorage } from "./useLocalStorage";
 import { LoadingIcon } from "./LoadingIcon";
 
 export const StakeList = ({
-  name,
+  marketName,
   flag,
   marketStatus,
   equityPositions,
@@ -26,7 +26,7 @@ export const StakeList = ({
       <div className="flex justify-center relative">
         <div className="absolute -top-4 -left-3 uppercase text-center">
           <div className="text-4xl">{flag}</div>
-          <div className="text-xs text-gray-500">{name}</div>
+          <div className="text-xs text-gray-500">{marketName}</div>
         </div>
         <div className="absolute -top-1 -right-3 text-gray-500 space-y-0.5 text-sm">
           <div className="flex flex-col justify-end gap-1">
@@ -78,7 +78,8 @@ export const StakeList = ({
                   return (
                     <StakeItem
                       index={index}
-                      focusedIndex={name === "asx" ? -1 : focusedIndex}
+                      marketName={marketName}
+                      focusedIndex={marketName === "asx" ? -1 : focusedIndex}
                       setFocusedIndex={setFocusedIndex}
                       key={position.symbol}
                       position={position}

@@ -4,6 +4,7 @@ import { StakeChartModal } from "./StakeChartModal";
 
 export const StakeItem = ({
   index,
+  marketName,
   focusedIndex,
   setFocusedIndex,
   position: { symbol, openQty, marketValue, unrealizedDayPL, unrealizedPL, encodedName, name },
@@ -104,7 +105,7 @@ export const StakeItem = ({
 
       {isChartModalOpen && (
         <StakeChartModal
-          symbol={symbol}
+          symbol={marketName === "asx" ? `${symbol}.AX` : symbol}
           name={name}
           marketValue={marketValue}
           unrealizedPL={unrealizedPL}
