@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 
 const getLocalStorageValue = (key, initialValue) => {
   const value = JSON.parse(localStorage.getItem(key));
-  if (value) {
+  // console.log(`key: ${key}, value: ${value}, initialValue: ${initialValue}`);
+  if (value !== null) {
     return value;
   }
   if (initialValue instanceof Function) {
