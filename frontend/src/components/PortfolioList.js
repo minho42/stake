@@ -172,8 +172,8 @@ export const PortfolioList = ({}) => {
           {stakeToken && userInfo && (
             <div className="flex justify-end">{userInfo.firstName + " " + userInfo.lastName}</div>
           )}
-          <div>AUD/USD: {currencyAudUsd && currencyAudUsd.toFixed(3)}</div>
-          <div>USD/AUD: {currencyUsdAud && currencyUsdAud.toFixed(3)}</div>
+          <div className="invisible lg:visible">AUD/USD: {currencyAudUsd && currencyAudUsd.toFixed(3)}</div>
+          <div className="invisible lg:visible">USD/AUD: {currencyUsdAud && currencyUsdAud.toFixed(3)}</div>
         </div>
       </div>
 
