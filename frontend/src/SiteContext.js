@@ -18,8 +18,37 @@ export const SiteProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [transactionHistory, setTransactionHistory] = useLocalStorage("stakeTransactionHistory", []);
   const [transactionHistoryAsx, setTransactionHistoryAsx] = useLocalStorage("stakeTransactionHistoryASx", []);
+  const [marketStatus, setMarketStatus] = useState(null);
+  const [marketStatusAsx, setMarketStatusAsx] = useState(null);
 
-  const fetchTransactionHistoryAsx = async () => {};
+  const fetchMarketStatus = async () => {
+    try {
+      const res = await fetch("https://global-prd-api.hellostake.com/api/utils/marketStatus");
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error("fetchMarketStatus failed");
+      }
+      // console.log(data.response.status.current);
+      setMarketStatus(data.response.status.current);
+    } catch (error) {
+      console.log(error);
+      setMarketStatus(null);
+    }
+  };
+
+  const fetchMarketStatusAsx = async () => {
+    try {
+      const res = await fetch("https://early-bird-promo.hellostake.com/marketStatus");
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error("fetchMarketStatusAsx failed");
+      }
+      setMarketStatusAsx(data.status.current);
+    } catch (error) {
+      console.log(error);
+      setMarketStatusAsx(null);
+    }
+  };
 
   const fetchTransactionHistory = async () => {
     try {
@@ -40,13 +69,54 @@ export const SiteProvider = ({ children }) => {
     }
   };
 
-  const fetchEquityPositionsAsx = async () => {
-    if (isStakeChartModalOpen) {
-      console.log("open");
+  const fetchTransactionHistoryAsx = async () => {};
+
+  const fetchEquityPositions = async () => {
+    if (isStakeChartModalOpen) return;
+    if (equityPositions.length > 0 && marketStatus !== "open") {
+      setIsEquityPositionsLoading(false);
       return;
     }
-    // TODO: fetchEquityPositionsAsx only when market is open
-    // console.log("fetchEquityPositionsAsx");
+
+    setIsEquityPositionsLoading(true);
+    if (!stakeToken) {
+      setEquityPositions([]);
+      setEquityValue(null);
+      setIsEquityPositionsLoading(false);
+      setPrevSymbols([]);
+      return;
+    }
+    try {
+      const res = await fetch("http://localhost:4000/stake/equity-positions", {
+        credentials: "include",
+      });
+      if (res.status !== 200) {
+        throw new Error("fetchEquityPositions error");
+      }
+      const {
+        data: { equityPositions, equityValue },
+      } = await res.json();
+
+      const equityPositionsSortedByValue = [...equityPositions].sort((a, b) => {
+        if (Number.parseFloat(a.marketValue) >= Number.parseFloat(b.marketValue)) return -1;
+        return 1;
+      });
+      setEquityPositions(equityPositionsSortedByValue);
+      setEquityValue(equityValue);
+      setIsEquityPositionsLoading(false);
+    } catch (error) {
+      setIsEquityPositionsLoading(false);
+      setErrorMessage(error.message);
+    }
+  };
+
+  const fetchEquityPositionsAsx = async () => {
+    if (isStakeChartModalOpen) return;
+    if (equityPositionsAsx.length > 0 && marketStatusAsx !== "open") {
+      setIsEquityPositionsLoadingAsx(false);
+      return;
+    }
+
     setIsEquityPositionsLoadingAsx(true);
     if (!stakeToken) {
       setEquityPositionsAsx([]);
@@ -83,53 +153,16 @@ export const SiteProvider = ({ children }) => {
     }
   };
 
-  const fetchEquityPositions = async () => {
-    if (isStakeChartModalOpen) {
-      console.log("open");
-      return;
-    }
-    // TODO: fetchEquityPositions only when market is open
-    // console.log("fetchEquityPositions");
-    setIsEquityPositionsLoading(true);
-    if (!stakeToken) {
-      setEquityPositions([]);
-      setEquityValue(null);
-      setIsEquityPositionsLoading(false);
-      setPrevSymbols([]);
-      return;
-    }
-    try {
-      const res = await fetch("http://localhost:4000/stake/equity-positions", {
-        credentials: "include",
-      });
-      if (res.status !== 200) {
-        throw new Error("fetchEquityPositions error");
-      }
-      const {
-        data: { equityPositions, equityValue },
-      } = await res.json();
-
-      const equityPositionsSortedByValue = [...equityPositions].sort((a, b) => {
-        if (Number.parseFloat(a.marketValue) >= Number.parseFloat(b.marketValue)) return -1;
-        return 1;
-      });
-      setEquityPositions(equityPositionsSortedByValue);
-      setEquityValue(equityValue);
-      setIsEquityPositionsLoading(false);
-    } catch (error) {
-      setIsEquityPositionsLoading(false);
-      setErrorMessage(error.message);
-    }
-  };
-
   useEffect(() => {
     fetchEquityPositions();
     fetchEquityPositionsAsx();
     fetchTransactionHistory();
     fetchTransactionHistoryAsx();
+    fetchMarketStatus();
+    fetchMarketStatusAsx();
   }, [stakeToken]);
 
-  useEffect(() => {
+  const collectPrevSymbols = () => {
     if (!equityPositions || !transactionHistory) return;
 
     const currentSymbols = equityPositions.map((p) => p.symbol);
@@ -137,8 +170,10 @@ export const SiteProvider = ({ children }) => {
     const uniqueTotalSymbols = [...new Set(totalSymbols)];
     const prevUniqueSymbols = uniqueTotalSymbols.filter((symbol) => !currentSymbols.includes(symbol));
     setPrevSymbols(prevUniqueSymbols);
-    // TODO: ?change dependency only to symbols from the lists so it doesn't get triggers if dependency is fetched regularly
+  };
 
+  useEffect(() => {
+    collectPrevSymbols();
     // setPrevSymbolsAsx(...)
   }, [transactionHistory]);
 
@@ -167,6 +202,10 @@ export const SiteProvider = ({ children }) => {
         transactionHistoryAsx,
         prevSymbols,
         prevSymbolsAsx,
+        marketStatus,
+        marketStatusAsx,
+        fetchMarketStatus,
+        fetchMarketStatusAsx,
       }}
     >
       {children}

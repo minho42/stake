@@ -21,6 +21,10 @@ export const PortfolioList = ({}) => {
     fetchEquityPositionsAsx,
     transactionHistory,
     transactionHistoryAsx,
+    marketStatus,
+    marketStatusAsx,
+    fetchMarketStatus,
+    fetchMarketStatusAsx,
   } = useContext(SiteContext);
   const [equityValueInAud, setEquityValueInAud] = useState(0);
   const [currencyUsdAud, setCurrencyUsdAud] = useLocalStorage("currencyUsdAud", 0);
@@ -34,8 +38,6 @@ export const PortfolioList = ({}) => {
   const [dayChangePercentageAsx, setDayChangePercentageAsx] = useState(0);
   const [totalChangePercentage, setTotalChangePercentage] = useState(0);
   const [totalChangePercentageAsx, setTotalChangePercentageAsx] = useState(0);
-  const [marketStatus, setMarketStatus] = useState(null);
-  const [marketStatusAsx, setMarketStatusAsx] = useState(null);
 
   const keyboardShortcuts = (e) => {
     if (isStakeChartModalOpen) return;
@@ -54,35 +56,6 @@ export const PortfolioList = ({}) => {
         newIndex = equityPositions.length - 1;
       }
       setFocusedIndex(newIndex);
-    }
-  };
-
-  const fetchMarketStatus = async () => {
-    try {
-      const res = await fetch("https://global-prd-api.hellostake.com/api/utils/marketStatus");
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error("fetchMarketStatus failed");
-      }
-      // console.log(data.response.status.current);
-      setMarketStatus(data.response.status.current);
-    } catch (error) {
-      console.log(error);
-      setMarketStatus(null);
-    }
-  };
-
-  const fetchMarketStatusAsx = async () => {
-    try {
-      const res = await fetch("https://early-bird-promo.hellostake.com/marketStatus");
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error("fetchMarketStatusAsx failed");
-      }
-      setMarketStatusAsx(data.status.current);
-    } catch (error) {
-      console.log(error);
-      setMarketStatusAsx(null);
     }
   };
 
@@ -145,10 +118,8 @@ export const PortfolioList = ({}) => {
   };
 
   useEffect(() => {
-    // TODO: how not to make list blink? (becomes empty then fills in the list)
-    // TODO: how not to close chartModal?
     setInterval(fetchEquityPositions, 1000 * 30);
-    setInterval(fetchEquityPositionsAsx, 1000 * 60 * 10);
+    setInterval(fetchEquityPositionsAsx, 1000 * 30);
   }, [stakeToken]);
 
   useEffect(() => {
@@ -220,10 +191,31 @@ export const PortfolioList = ({}) => {
         )}
       </div>
 
+      <div className="bg-purple-100 p-3">
+        <span className="bg-purple-100">Views</span>
+        <div className="flex gap-2">
+          <div className="flex items-center space-x-1">
+            <label htmlFor=""></label>
+            <input type="radio" className="w-4 h-4" />
+            <span>list</span>
+          </div>
+          <div className="flex items-center space-x-1">
+            <label htmlFor=""></label>
+            <input type="radio" className="w-4 h-4" />
+            <span>card</span>
+          </div>
+          <div className="flex items-center space-x-1">
+            <label htmlFor=""></label>
+            <input type="radio" className="w-4 h-4" />
+            <span>chart</span>
+          </div>
+        </div>
+      </div>
+
       <div className="flex items-start justify-center gap-3">
         {stakeToken && (
           <StakeList
-            name="wall st"
+            marketName="wall st"
             flag="🇺🇸"
             marketStatus={marketStatus}
             equityPositions={equityPositions}
@@ -242,7 +234,7 @@ export const PortfolioList = ({}) => {
 
         {stakeToken && (
           <StakeList
-            name="asx"
+            marketName="asx"
             flag="🇦🇺"
             marketStatus={marketStatusAsx}
             equityPositions={equityPositionsAsx}
