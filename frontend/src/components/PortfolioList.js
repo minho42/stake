@@ -191,27 +191,6 @@ export const PortfolioList = ({}) => {
         )}
       </div>
 
-      <div className="bg-purple-100 p-3">
-        <span className="bg-purple-100">Views</span>
-        <div className="flex gap-2">
-          <div className="flex items-center space-x-1">
-            <label htmlFor=""></label>
-            <input type="radio" className="w-4 h-4" />
-            <span>list</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <label htmlFor=""></label>
-            <input type="radio" className="w-4 h-4" />
-            <span>card</span>
-          </div>
-          <div className="flex items-center space-x-1">
-            <label htmlFor=""></label>
-            <input type="radio" className="w-4 h-4" />
-            <span>chart</span>
-          </div>
-        </div>
-      </div>
-
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-3">
         {stakeToken && (
           <StakeList
