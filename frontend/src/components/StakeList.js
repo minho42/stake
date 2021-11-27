@@ -68,6 +68,7 @@ export const StakeList = ({
                 <tr className="border-b-2 border-gray-700 text-right">
                   <th className="text-center">No</th>
                   <th className="text-center">Code</th>
+                  <th className="">Last</th>
                   <th className="">Value</th>
                   <th className="">Day P/L</th>
                   <th className="">Total P/L</th>
@@ -94,7 +95,8 @@ export const StakeList = ({
                 <tr className="border-t-2 border-gray-700 text-right">
                   <td className="text-center py-1">Totals</td>
                   <td></td>
-                  <td>${showValueWithComma(equityValue)}</td>
+                  <td></td>
+                  <td>{showValueWithComma(equityValue)}</td>
                   <td className={`${isPositive(dayChangeSum) ? "text-green-600" : "text-red-600"}`}>
                     {showValueWithSign(dayChangeSum, "")}
                     <span className="ml-1">({`${showValueWithSign(dayChangePercentage, "")}%`})</span>

@@ -7,7 +7,7 @@ export const StakeItem = ({
   marketName,
   focusedIndex,
   setFocusedIndex,
-  position: { symbol, openQty, marketValue, unrealizedDayPL, unrealizedPL, encodedName, name },
+  position: { symbol, openQty, mktPrice, marketValue, unrealizedDayPL, unrealizedPL, encodedName, name },
   equityValue,
   transactionHistory,
 }) => {
@@ -91,7 +91,8 @@ export const StakeItem = ({
           {index + 1}
         </td>
         <td className="text-center">{symbol}</td>
-        <td>${showValueWithComma(marketValue, false)}</td>
+        <td>{mktPrice}</td>
+        <td>{showValueWithComma(marketValue, false)}</td>
         <td className={` ${isPositive(unrealizedDayPL) ? "text-green-600" : "text-red-600"}`}>
           {showValueWithSign(unrealizedDayPL, "")}
           <span className="ml-1">({showValueWithSign(unrealizedDayPLPercentage, "")}%)</span>
