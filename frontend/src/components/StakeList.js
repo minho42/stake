@@ -23,7 +23,7 @@ export const StakeList = ({
   const [showItems, setShowItems] = useLocalStorage(`stakeShowItems-${flag}`, true);
 
   return (
-    <div className="flex flex-col bg-white border-xl border border-gray-400 rounded-2xl py-3 space-y-2 px-4 w-full lg:w-2/5 min-w-min relative">
+    <div className="flex flex-col bg-white border-xl border border-gray-400 rounded-xl py-3 space-y-2 px-4 w-full lg:w-2/5 min-w-min relative">
       <div className="flex justify-center ">
         <div className="absolute top-0 left-2 uppercase text-center">
           <div className="text-4xl">{flag}</div>
