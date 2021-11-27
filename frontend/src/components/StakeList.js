@@ -23,7 +23,7 @@ export const StakeList = ({
   const [showItems, setShowItems] = useLocalStorage(`stakeShowItems-${flag}`, true);
 
   return (
-    <div className="flex flex-col bg-white border-xl border-2 border-black rounded-lg shadow-lg py-3 px-4 w-2/5 min-w-min">
+    <div className="flex flex-col bg-white border-xl border border-gray-400 rounded-2xl py-3 px-4 w-full min-w-min">
       <div className="flex justify-center relative">
         <div className="absolute -top-4 -left-3 uppercase text-center">
           <div className="text-4xl">{flag}</div>
@@ -46,7 +46,7 @@ export const StakeList = ({
         </div>
       </div>
 
-      <div className="flex items-center justify-center text-2xl py-6">
+      <div className="flex items-center justify-center text-2xl py-3">
         <div>${showValueWithComma(equityValueInAud, true)}</div>
         <div className={`ml-2 ${isPositive(totalChangeSum) ? "text-green-600" : "text-red-600"}`}>
           ({`${showValueWithSign(totalChangePercentage, "")}%`})
