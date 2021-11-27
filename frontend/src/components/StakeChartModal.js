@@ -198,6 +198,11 @@ export const StakeChartModal = ({
     return item.slice(3, 10);
   };
 
+  const yAxisFormatter = (item) => {
+    if (!item) return;
+    return Number(item).toFixed(2);
+  };
+
   return ReactDOM.createPortal(
     <div className="fixed inset-0">
       <div
@@ -271,6 +276,7 @@ export const StakeChartModal = ({
                 tickSize="0"
                 tickCount="7"
                 tickMargin="10"
+                tickFormatter={yAxisFormatter}
                 domain={["dataMin", "dataMax"]}
                 // domain={[
                 //   (dataMin) => {
