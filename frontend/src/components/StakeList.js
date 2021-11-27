@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StakeItem } from "./StakeItem";
 import { isPositive, showValueWithSign, showValueWithComma } from "../utils";
 import { useLocalStorage } from "./useLocalStorage";
@@ -19,7 +20,7 @@ export const StakeList = ({
   setFocusedIndex,
   focusedIndex,
 }) => {
-  const [showItems, setShowItems] = useLocalStorage("stakeShowItems", true);
+  const [showItems, setShowItems] = useLocalStorage(`stakeShowItems-${flag}`, true);
 
   return (
     <div className="flex flex-col bg-white border-xl border-2 border-black rounded-lg shadow-lg py-3 px-4 w-2/5 min-w-min">
