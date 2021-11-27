@@ -23,13 +23,13 @@ export const StakeList = ({
   const [showItems, setShowItems] = useLocalStorage(`stakeShowItems-${flag}`, true);
 
   return (
-    <div className="flex flex-col bg-white border-xl border border-gray-400 rounded-2xl py-3 px-4 w-full lg:w-2/5 min-w-min">
-      <div className="flex justify-center relative">
-        <div className="absolute -top-4 -left-3 uppercase text-center">
+    <div className="flex flex-col bg-white border-xl border border-gray-400 rounded-2xl py-3 space-y-2 px-4 w-full lg:w-2/5 min-w-min relative">
+      <div className="flex justify-center ">
+        <div className="absolute top-0 left-2 uppercase text-center">
           <div className="text-4xl">{flag}</div>
           <div className="invisible lg:visible text-xs text-gray-500">{marketName}</div>
         </div>
-        <div className="absolute -top-1 -right-3 text-gray-500 space-y-0.5 text-sm">
+        <div className="absolute top-2 right-1 text-gray-500 space-y-0.5 text-sm">
           <div className="flex flex-col justify-end gap-1">
             <div
               className={`invisible lg:visible flex items-center justify-center rounded-lg text-xs text-white px-2 ${
@@ -52,12 +52,6 @@ export const StakeList = ({
           ({`${showValueWithSign(totalChangePercentage, "")}%`})
         </div>
         {isEquityPositionsLoading ? <LoadingIcon /> : ""}
-      </div>
-
-      <div className="flex justify-center">
-        <button onClick={() => setShowItems(!showItems)} className="text-gray-400 underline">
-          {showItems ? "Show less" : "Show more"}
-        </button>
       </div>
 
       {showItems && (
@@ -112,6 +106,12 @@ export const StakeList = ({
           )}
         </div>
       )}
+
+      <div className="flex justify-center">
+        <button onClick={() => setShowItems(!showItems)} className="text-gray-500 uppercase text-xs">
+          {showItems ? "Show less" : "Show more"}
+        </button>
+      </div>
     </div>
   );
 };
