@@ -1,8 +1,16 @@
 import { showValueWithComma, timestampToDate, dateStrToTimestamp } from "../utils";
 
 export const StakeTransactions = ({ transactions }) => {
+  if (!transactions || transactions.length < 1) {
+    return (
+      <div className="bg-white rounded p-2 divide-y space-y-1 overflow-y-auto" style={{ height: 470 }}>
+        <div className="text-base text-center">No transaction data</div>
+      </div>
+    );
+  }
+
   return (
-    <div className=" bg-white rounded p-2 divide-y space-y-1 overflow-y-auto" style={{ height: 470 }}>
+    <div className="bg-white rounded p-2 divide-y space-y-1 overflow-y-auto" style={{ height: 470 }}>
       <div className="text-xl text-center">Transactions</div>
       {transactions.map((t) => {
         return (
