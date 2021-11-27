@@ -7,7 +7,7 @@ export const RatingsList = ({ title, symbols, selectedFilterCount }) => {
 
   return (
     <div className="flex flex-col space-y-2">
-      <div className="text-center text-base font-semibold bg-gray-200 rounded capitalize">{title}</div>
+      <div className="text-center text-base font-semibold bg-gray-200 capitalize">{title}</div>
       {stakeToken && symbols && (
         <table className="w-11/12 font-medium text-center max-w-md">
           <thead>

@@ -85,7 +85,7 @@ export const StakeItem = ({
       >
         <td
           className={`py-1 text-center cursor-pointer border-l-8  ${
-            index === focusedIndex ? "border-black" : "border-white"
+            index === focusedIndex ? "border-black" : "border-transparent"
           }`}
         >
           {index + 1}

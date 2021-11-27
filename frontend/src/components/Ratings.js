@@ -26,7 +26,7 @@ export const Ratings = () => {
                 onClick={() => setSelectedFilterCount(count)}
                 className={` ${
                   selectedFilterCount === count ? "bg-black text-white" : "bg-gray-200"
-                } rounded px-2 py-1.5`}
+                } px-2 py-1.5`}
               >
                 {count}
               </button>
