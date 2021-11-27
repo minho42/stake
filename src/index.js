@@ -1,4 +1,5 @@
 require("dotenv").config();
+const apicache = require("apicache");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const cors = require("cors");
@@ -10,6 +11,7 @@ const chartRouter = require("./routers/chart");
 
 const app = express();
 const port = process.env.PORT || 4000;
+const cache = apicache.middleware;
 
 app.use(cookieParser());
 app.use(
@@ -30,12 +32,12 @@ app.get("", (req, res) => {
   });
 });
 
-app.get("/currency/USDAUD", async (req, res) => {
+app.get("/currency/USDAUD", cache("10 minutes"), async (req, res) => {
   const rate = await fetchCurrency("USDAUD");
   res.send({ rate });
 });
 
-app.get("/currency/AUDUSD", async (req, res) => {
+app.get("/currency/AUDUSD", cache("10 minutes"), async (req, res) => {
   const rate = await fetchCurrency("AUDUSD");
   res.send({ rate });
 });
