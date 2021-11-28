@@ -52,7 +52,7 @@ export const Login = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="max-w-md w-full px-4 rounded p-4">
+      <div className="max-w-md w-full px-4 p-4">
         {!stakeToken ? (
           <div className="space-y-4 m-3">
             <span className="text-2xl font-medium">Log in to Stake</span>
