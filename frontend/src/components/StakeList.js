@@ -57,7 +57,7 @@ export const StakeList = ({
       {showItems && (
         <div className="flex justify-center">
           {equityPositions && (
-            <table className="w-6/12 font-medium text-center max-w-2xl">
+            <table className="w-6/12 text-center max-w-2xl">
               <thead>
                 <tr className="border-b-2 border-gray-700 text-right">
                   <th className="text-center">No</th>

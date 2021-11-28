@@ -36,7 +36,7 @@ export const StakePrevList = () => {
 
   return (
     <div className="flex justify-center py-3">
-      <table className="w-11/12 font-medium text-center max-w-xs">
+      <table className="w-11/12 text-center max-w-xs">
         <thead>
           <tr className="border-b-2 border-gray-700 text-right">
             <th className="text-center">No</th>
