@@ -25,8 +25,8 @@ export const DividendList = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center divide-y">
-      <div className="flex justify-center px-3 py-3 min-w-full space-y-3">
+    <div className="flex items-center md:items-start justify-center md:justify-between divide-y md:divide-x flex-col md:flex-row ">
+      <div className="flex justify-center px-3 py-3 w-full md:w-1/2">
         {stakeToken && equityPositions && (
           <table className="w-11/12 text-center max-w-md">
             <thead>
@@ -67,7 +67,7 @@ export const DividendList = () => {
         )}
       </div>
       {selectedSymbolForDetail && (
-        <div className="flex justify-center px-3 py-3 min-w-full space-y-3">
+        <div className="flex justify-center px-3 py-3 w-full md:w-1/2 min-h-screen">
           <DividendDetailList symbol={selectedSymbolForDetail} transactionHistory={transactionHistory} />
         </div>
       )}
