@@ -7,11 +7,17 @@ export const DividendItem = ({
   addTotalExpectedDividends,
   addTotalDividend,
   addTotalDividendTax,
+  selectedSymbolForDetail,
+  setSelectedSymbolForDetail,
 }) => {
   const [dividendYield, setDividendYield] = useState(0);
   const [totalDividend, setTotalDividend] = useState(0);
   const [totalDividendTax, setTotalDividendTax] = useState(0);
   const [expectedDividend, setExpectedDividend] = useState(0);
+
+  const handleClick = () => {
+    setSelectedSymbolForDetail(symbol);
+  };
 
   const fetchDividendYield = async () => {
     try {
@@ -68,7 +74,12 @@ export const DividendItem = ({
 
   if (dividendYield <= 0) return null;
   return (
-    <tr className="hover:bg-gray-100 cursor-pointer text-center">
+    <tr
+      onClick={handleClick}
+      className={`cursor-pointer text-center ${
+        selectedSymbolForDetail === symbol ? "bg-black text-white" : "hover:bg-gray-100 "
+      }`}
+    >
       <td className="py-1 text-center">{symbol}</td>
       <td className="">{showValueWithComma(dividendYield)}%</td>
       <td className="text-right">{showValueWithComma(expectedDividend)}</td>

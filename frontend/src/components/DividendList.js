@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { DividendItem } from "./DividendItem";
+import { DividendDetailList } from "./DividendDetailList";
 import { UserContext } from "../UserContext";
 import { SiteContext } from "../SiteContext";
 import { showValueWithComma } from "../utils";
@@ -10,6 +11,7 @@ export const DividendList = () => {
   const [totalExpectedDividends, setTotalExpectedDividends] = useState(0);
   const [totalDividend, setTotalDividend] = useState(0);
   const [totalDividendTax, setTotalDividendTax] = useState(0);
+  const [selectedSymbolForDetail, setSelectedSymbolForDetail] = useState(null);
 
   const addTotalExpectedDividends = (n) => {
     setTotalExpectedDividends(totalExpectedDividends + n);
@@ -23,7 +25,7 @@ export const DividendList = () => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col justify-center divide-y">
       <div className="flex justify-center px-3 py-3 min-w-full space-y-3">
         {stakeToken && equityPositions && (
           <table className="w-11/12 text-center max-w-md">
@@ -46,6 +48,8 @@ export const DividendList = () => {
                     addTotalExpectedDividends={addTotalExpectedDividends}
                     addTotalDividend={addTotalDividend}
                     addTotalDividendTax={addTotalDividendTax}
+                    selectedSymbolForDetail={selectedSymbolForDetail}
+                    setSelectedSymbolForDetail={setSelectedSymbolForDetail}
                   />
                 );
               })}
@@ -61,8 +65,12 @@ export const DividendList = () => {
             </tfoot>
           </table>
         )}
-        {/* <div className="w-11/12"></div> */}
       </div>
+      {selectedSymbolForDetail && (
+        <div className="flex justify-center px-3 py-3 min-w-full space-y-3">
+          <DividendDetailList symbol={selectedSymbolForDetail} transactionHistory={transactionHistory} />
+        </div>
+      )}
     </div>
   );
 };
