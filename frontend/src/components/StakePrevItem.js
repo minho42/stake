@@ -92,9 +92,7 @@ export const StakePrevItem = ({
           setFocusedIndexHistory(index);
           setIsChartModalOpen(!isChartModalOpen);
         }}
-        className={`text-right hover:shadow-md cursor-pointer ${
-          index === focusedIndexHistory ? "shadow-md" : ""
-        }`}
+        className="text-right hover:bg-gray-100 cursor-pointer"
       >
         <td
           className={`py-1 text-center cursor-pointer border-l-8  ${
@@ -103,7 +101,7 @@ export const StakePrevItem = ({
         >
           {index + 1}
         </td>
-        <td className="text-center">{symbol}</td>
+        <td className="text-left">{symbol}</td>
         <td className={`${isPositive(changeSum) ? "text-green-600" : "text-red-600"} text-right`}>
           {showValueWithSign(changeSum, "")}
         </td>

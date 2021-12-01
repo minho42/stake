@@ -28,14 +28,14 @@ export const DividendList = () => {
     <div className="flex items-center md:items-start justify-center md:justify-between divide-y md:divide-x flex-col md:flex-row ">
       <div className="flex justify-center px-3 py-3 w-full md:w-1/2">
         {stakeToken && equityPositions && (
-          <table className="w-11/12 text-center max-w-md">
+          <table className="w-11/12 text-right max-w-md">
             <thead>
               <tr className="border-b-2 border-gray-700">
-                <th>Code</th>
+                <th className="text-left">Code</th>
                 <th>Dividend yield</th>
-                <th className="text-right">Ex-dividend</th>
-                <th className="text-right">Dividend</th>
-                <th className="text-right">Dividend tax</th>
+                <th className="">Ex-dividend</th>
+                <th className="">Dividend</th>
+                <th className="">Dividend tax</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-300">
@@ -58,9 +58,9 @@ export const DividendList = () => {
               <tr className="border-t-2 border-gray-700">
                 <td className="uppercase py-1">Totals</td>
                 <td>-</td>
-                <td className="text-right">{showValueWithComma(totalExpectedDividends)}</td>
-                <td className="text-right">{showValueWithComma(totalDividend)}</td>
-                <td className="text-right">{showValueWithComma(totalDividendTax)}</td>
+                <td className="">{showValueWithComma(totalExpectedDividends)}</td>
+                <td className="">{showValueWithComma(totalDividend)}</td>
+                <td className="">{showValueWithComma(totalDividendTax)}</td>
               </tr>
             </tfoot>
           </table>

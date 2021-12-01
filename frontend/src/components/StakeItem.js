@@ -90,7 +90,7 @@ export const StakeItem = ({
         >
           {index + 1}
         </td>
-        <td className="text-center">{symbol}</td>
+        <td className="text-left">{symbol}</td>
         <td>{mktPrice}</td>
         <td>{showValueWithComma(marketValue, false)}</td>
         <td className={` ${isPositive(unrealizedDayPL) ? "text-green-600" : "text-red-600"}`}>

@@ -76,15 +76,15 @@ export const DividendItem = ({
   return (
     <tr
       onClick={handleClick}
-      className={`cursor-pointer text-center ${
+      className={`cursor-pointer text-right ${
         selectedSymbolForDetail === symbol ? "bg-black text-white" : "hover:bg-gray-100 "
       }`}
     >
-      <td className="py-1 text-center">{symbol}</td>
+      <td className="py-1 text-left">{symbol}</td>
       <td className="">{showValueWithComma(dividendYield)}%</td>
-      <td className="text-right">{showValueWithComma(expectedDividend)}</td>
-      <td className="text-right">{showValueWithComma(totalDividend)}</td>
-      <td className="text-right">{showValueWithComma(totalDividendTax)}</td>
+      <td className="">{showValueWithComma(expectedDividend)}</td>
+      <td className="">{showValueWithComma(totalDividend)}</td>
+      <td className="">{showValueWithComma(totalDividendTax)}</td>
     </tr>
   );
 };
