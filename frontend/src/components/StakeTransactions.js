@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { showValueWithComma, timestampToDate, dateStrToTimestamp } from "../utils";
 
 export const StakeTransactions = ({ transactions }) => {
@@ -12,20 +13,27 @@ export const StakeTransactions = ({ transactions }) => {
   return (
     <div className="bg-white p-2 divide-y space-y-1 overflow-y-auto" style={{ height: 470 }}>
       <div className="text-xl text-center">Transactions</div>
+
       {transactions.map((t) => {
         return (
-          <div key={t.id} className="flex items-center text-gray-500 py-1 hover:bg-gray-100 gap-1">
-            <div
-              className={`${
-                t.transactionType === "Buy" ? "bg-black" : "bg-red-500"
-              } flex items-center justify-center  w-4 h-4 text-white`}
-            >
-              {`${t.transactionType === "Buy" ? "B" : "S"}`}
+          <div
+            key={t.orderID}
+            className="flex flex-col items-center text-gray-500 py-0.5 hover:bg-gray-100 gap-1"
+          >
+            <div className="flex w-44 items-center gap-1">
+              <div
+                className={`${
+                  t.transactionType === "Buy" ? "bg-black" : "bg-red-500"
+                } flex items-center justify-center  w-4 h-4 text-white`}
+              >
+                {`${t.transactionType === "Buy" ? "B" : "S"}`}
+              </div>
+              <div>{timestampToDate(dateStrToTimestamp(t.timestamp))}:</div>
+              <div className={`${t.transactionType === "Buy" ? "text-black" : "text-red-600"} flex px-1`}>
+                {showValueWithComma(Math.abs(t.tranAmount))}
+              </div>
             </div>
-            {timestampToDate(dateStrToTimestamp(t.timestamp))}:
-            <div className={`${t.transactionType === "Buy" ? "text-black" : "text-red-600"} flex px-1 `}>
-              {showValueWithComma(Math.abs(t.tranAmount))}
-            </div>
+            <div className=" text-xs font-light text-gray-500 px-2 py-0.5">{t.comment}</div>
           </div>
         );
       })}
