@@ -18,7 +18,6 @@ export const Ratings = () => {
     <div className="flex justify-center">
       <div className="flex flex-col items-center justify-center px-3 py-3 min-w-full space-y-3">
         <div className="flex items-center pb-4 gap-2">
-          Filter to latest:
           {filterCountOptions.map((count) => {
             return (
               <button
