@@ -23,7 +23,7 @@ export const StakeList = ({
   const [showItems, setShowItems] = useLocalStorage(`stakeShowItems-${flag}`, true);
 
   return (
-    <div className="flex flex-col bg-white border-xl  py-3 space-y-2 px-4 w-full lg:w-2/5 min-w-min relative">
+    <div className="flex flex-col bg-white border-xl  py-3 space-y-2 px-6 w-full min-w-min relative">
       <div className="flex justify-center ">
         <div className="absolute top-0 left-2 uppercase text-center">
           <div className="text-4xl">{flag}</div>
@@ -47,7 +47,7 @@ export const StakeList = ({
       </div>
 
       <div className="flex items-end justify-center py-3">
-        <div className="text-4xl">{showValueWithComma(equityValueInAud, true)}</div>
+        <div className="text-4xl font-light">{showValueWithComma(equityValueInAud, true)}</div>
         <div className={`text-2xl ml-2 ${isPositive(totalChangeSum) ? "text-green-600" : "text-red-600"}`}>
           ({`${showValueWithSign(totalChangePercentage, "")}%`})
         </div>
@@ -57,7 +57,7 @@ export const StakeList = ({
       {showItems && (
         <div className="flex justify-center">
           {equityPositions && (
-            <table className="w-6/12 text-center max-w-2xl">
+            <table className="w-full text-center max-w-2xl">
               <thead>
                 <tr className="border-b-2 border-gray-700 text-right">
                   <th className="text-center">No</th>
@@ -87,9 +87,9 @@ export const StakeList = ({
               </tbody>
               <tfoot>
                 <tr className="border-t-2 border-gray-700 text-right">
-                  <td className="text-center py-1">Totals</td>
                   <td></td>
                   <td></td>
+                  <td className=" py-1">Totals</td>
                   <td>{showValueWithComma(equityValue)}</td>
                   <td className={`${isPositive(dayChangeSum) ? "text-green-600" : "text-red-600"}`}>
                     {showValueWithSign(dayChangeSum, "")}

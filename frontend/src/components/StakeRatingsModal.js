@@ -27,7 +27,7 @@ export const StakeRatingsModal = ({ symbol, ratings, isOpen, onClose, isRatingBu
         className="min-h-screen min-w-screen bg-black opacity-40"
         onClick={() => onClose()}
       ></div>
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-screen flex flex-col bg-gray-200 shadow-2xl space-y-1 p-2">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-screen flex flex-col bg-gray-200 space-y-1 p-2">
         <div className="bg-white p-2">
           <div className="text-xl text-center">{symbol}</div>
         </div>
