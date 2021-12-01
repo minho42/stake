@@ -32,14 +32,16 @@ export const StakeItem = ({
 
     const trans = [];
 
+    // TODO remove this duplicate code StakePrevItem & StakeItem
     transactionHistory.forEach((t) => {
       if (t.symbol === symbol) {
         if (t.transactionType === "Buy" || t.transactionType === "Sell") {
           trans.push({
-            id: t.orderID,
+            orderID: t.orderID,
             timestamp: t.timestamp,
             tranAmount: t.tranAmount,
             transactionType: t.transactionType,
+            comment: t.comment,
           });
         }
       }
