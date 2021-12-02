@@ -40,7 +40,7 @@ export const StakeTransactions = ({ transactions }) => {
             <div className="flex w-44 items-center gap-1">
               <div
                 className={`${
-                  t.transactionType.toLowerCase() === "buy" ? "bg-black" : "bg-red-500"
+                  t.transactionType.toLowerCase() === "buy" ? "bg-green-600" : "bg-red-500"
                 } flex items-center justify-center  w-4 h-4 text-white`}
               >
                 {`${t.transactionType.toLowerCase() === "buy" ? "B" : "S"}`}
@@ -48,7 +48,7 @@ export const StakeTransactions = ({ transactions }) => {
               <div>{timestampToDate(dateStrToTimestamp(t.timestamp))}:</div>
               <div
                 className={`${
-                  t.transactionType.toLowerCase() === "buy" ? "text-black" : "text-red-600"
+                  t.transactionType.toLowerCase() === "buy" ? "text-green-600" : "text-red-600"
                 } flex px-1`}
               >
                 {showValueWithComma(Math.abs(t.tranAmount))}
