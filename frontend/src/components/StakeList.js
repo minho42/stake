@@ -23,16 +23,16 @@ export const StakeList = ({
   const [showItems, setShowItems] = useLocalStorage(`stakeShowItems-${flag}`, true);
 
   return (
-    <div className="flex flex-col bg-white border-xl  py-3 space-y-2 px-6 w-full min-w-min relative">
+    <div className="flex flex-col bg-white border-xl  py-3 space-y-2 px-6 w-full md:w-2/3 min-w-min relative">
       <div className="flex justify-center ">
         <div className="absolute top-0 left-2 uppercase text-center">
           <div className="text-4xl">{flag}</div>
-          <div className="invisible lg:visible text-xs text-gray-500">{marketName}</div>
+          <div className="text-xs text-gray-500">{marketName}</div>
         </div>
         <div className="absolute top-2 right-1 text-gray-500 space-y-0.5 text-sm">
           <div className="flex flex-col justify-end gap-1">
             <div
-              className={`invisible lg:visible flex items-center justify-center  text-xs text-white px-2 ${
+              className={`flex items-center justify-center  text-xs text-white px-2 ${
                 marketStatus === "open"
                   ? "bg-green-500"
                   : marketStatus === "pre"

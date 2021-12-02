@@ -11,7 +11,7 @@ export const StakeTransactions = ({ transactions }) => {
   }
 
   return (
-    <div className="bg-white p-2 divide-y space-y-1 overflow-y-auto" style={{ height: 470 }}>
+    <div className="bg-white px-2 py-1 divide-y space-y-1 overflow-y-auto" style={{ height: 470 }}>
       <div className="text-xl text-center">Transactions</div>
 
       {transactions.map((t) => {
@@ -37,7 +37,7 @@ export const StakeTransactions = ({ transactions }) => {
                 {showValueWithComma(Math.abs(t.tranAmount))}
               </div>
             </div>
-            <div className=" text-xs font-light text-gray-500 px-2 py-0.5">{t.comment}</div>
+            <div className=" text-sm text-gray-400 px-2 pb-0.5">{t.comment}</div>
           </div>
         );
       })}
