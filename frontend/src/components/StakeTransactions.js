@@ -37,7 +37,7 @@ export const StakeTransactions = ({ transactions }) => {
           <div
             onMouseOver={() => handleHover(t.orderID)}
             key={t.orderID}
-            className="flex flex-col items-center text-gray-500 py-0.5 hover:bg-yellow-100 gap-1 cursor-pointer"
+            className="flex flex-col items-center text-gray-500 px-1 py-0.5 hover:bg-gray-100 gap-1 cursor-pointer"
           >
             <div className="flex w-44 items-center gap-1">
               <div
