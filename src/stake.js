@@ -126,10 +126,10 @@ const getTransactionHistoryAsx = async (token) => {
   if (!token) {
     throw new Error("getTransactionHistoryAsx: !token");
   }
-
-  const config = {
+  const size = 100;
+  let config = {
     method: "get",
-    url: "https://global-prd-api.hellostake.com/api/asx/transactions?status=RECONCILED&size=100&sort=insertedAt%2Cdesc&page=0",
+    url: `https://global-prd-api.hellostake.com/api/asx/orders/tradeActivity?size=${size}&sort=insertedAt%2Cdesc&page=0`,
     headers: {
       authority: "global-prd-api.hellostake.com",
       pragma: "no-cache",

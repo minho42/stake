@@ -17,7 +17,7 @@ export const SiteProvider = ({ children }) => {
   const [isEquityPositionsLoadingAsx, setIsEquityPositionsLoadingAsx] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const [transactionHistory, setTransactionHistory] = useLocalStorage("stakeTransactionHistory", []);
-  const [transactionHistoryAsx, setTransactionHistoryAsx] = useLocalStorage("stakeTransactionHistoryASx", []);
+  const [transactionHistoryAsx, setTransactionHistoryAsx] = useLocalStorage("stakeTransactionHistoryAsx", []);
   const [marketStatus, setMarketStatus] = useState(null);
   const [marketStatusAsx, setMarketStatusAsx] = useState(null);
 
@@ -69,7 +69,26 @@ export const SiteProvider = ({ children }) => {
     }
   };
 
-  const fetchTransactionHistoryAsx = async () => {};
+  const fetchTransactionHistoryAsx = async () => {
+    try {
+      const res = await fetch("http://localhost:4000/stake/asx/transaction-history", {
+        credentials: "include",
+      });
+      if (res.status !== 200) {
+        throw new Error("fetchTransactionHistoryAsx error");
+      }
+      const {
+        data: { items },
+      } = await res.json();
+      if (items) {
+        setTransactionHistoryAsx(items);
+      } else {
+        setTransactionHistoryAsx([]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchEquityPositions = async () => {
     if (isStakeChartModalOpen) return;
@@ -122,7 +141,7 @@ export const SiteProvider = ({ children }) => {
       setEquityPositionsAsx([]);
       setEquityValueAsx(null);
       setIsEquityPositionsLoadingAsx(false);
-      // setPrevSymbolsAsx([]);
+      setPrevSymbolsAsx([]);
       return;
     }
     try {
@@ -172,10 +191,24 @@ export const SiteProvider = ({ children }) => {
     setPrevSymbols(prevUniqueSymbols);
   };
 
+  const collectPrevSymbolsAsx = () => {
+    if (!equityPositionsAsx || !transactionHistoryAsx) return;
+
+    // e.g. symbol: 'VAS.XAU'
+    const currentSymbols = equityPositionsAsx.map((p) => p.instrumentCode);
+    const totalSymbols = transactionHistoryAsx.filter((t) => t.instrumentCode).map((t) => t.instrumentCode);
+    const uniqueTotalSymbols = [...new Set(totalSymbols)];
+    const prevUniqueSymbols = uniqueTotalSymbols.filter((symbol) => !currentSymbols.includes(symbol));
+    setPrevSymbolsAsx(prevUniqueSymbols);
+  };
+
   useEffect(() => {
     collectPrevSymbols();
-    // setPrevSymbolsAsx(...)
   }, [transactionHistory]);
+
+  useEffect(() => {
+    collectPrevSymbolsAsx();
+  }, [transactionHistoryAsx]);
 
   return (
     <SiteContext.Provider

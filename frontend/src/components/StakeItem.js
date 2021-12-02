@@ -35,7 +35,7 @@ export const StakeItem = ({
     // TODO remove this duplicate code StakePrevItem & StakeItem
     transactionHistory.forEach((t) => {
       if (t.symbol === symbol) {
-        if (t.transactionType === "Buy" || t.transactionType === "Sell") {
+        if (t.transactionType.toLowerCase() === "buy" || t.transactionType.toLowerCase() === "sell") {
           trans.push({
             orderID: t.orderID,
             timestamp: t.timestamp,
