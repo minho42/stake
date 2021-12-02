@@ -192,7 +192,7 @@ export const PortfolioList = ({}) => {
       </div>
 
       <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-3">
-        {stakeToken && (
+        {stakeToken && equityPositions && equityPositions.length > 0 && (
           <StakeList
             marketName="wall st"
             flag="🇺🇸"
@@ -211,7 +211,7 @@ export const PortfolioList = ({}) => {
           />
         )}
 
-        {stakeToken && (
+        {stakeToken && equityPositionsAsx && equityPositionsAsx.length > 0 && (
           <StakeList
             marketName="asx"
             flag="🇦🇺"
