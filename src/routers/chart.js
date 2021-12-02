@@ -3,6 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 
 const fetchChartData = async (symbol) => {
+  // TODO: timezone for asx: doesn't show up to the current date but like 2 days back...
   const period2 = Math.round(new Date().getTime() / 1000);
   const config = {
     method: "get",
