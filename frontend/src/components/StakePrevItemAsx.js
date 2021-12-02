@@ -88,7 +88,7 @@ export const StakePrevItemAsx = ({ index, symbol, transactionHistory }) => {
         }}
         className="text-right hover:bg-gray-100 cursor-pointer"
       >
-        <td className="py-1 text-center cursor-pointer border-l-8">{index + 1}</td>
+        <td className="py-1 text-center">{index + 1}</td>
         <td className="text-left">{symbolAsx}</td>
         <td className={`${isPositive(changeSum) ? "text-green-600" : "text-red-600"} text-right`}>
           {showValueWithSign(changeSum, "")}

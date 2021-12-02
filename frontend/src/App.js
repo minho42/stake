@@ -3,7 +3,7 @@ import { Navbar } from "./components/Navbar";
 import { Login } from "./components/Login";
 import { About } from "./components/About";
 import { PortfolioList } from "./components/PortfolioList";
-import { StakePrevList } from "./components/StakePrevList";
+import { StakeHistory } from "./components/StakeHistory";
 import { DividendList } from "./components/DividendList";
 import { Ratings } from "./components/Ratings";
 import { Settings } from "./components/Settings";
@@ -26,7 +26,7 @@ function App() {
                 <About />
               </Route>
               <PrivateRoute component={PortfolioList} path="/" exact />
-              <PrivateRoute component={StakePrevList} path="/history" exact />
+              <PrivateRoute component={StakeHistory} path="/history" exact />
               <PrivateRoute component={DividendList} path="/dividend" exact />
               <PrivateRoute component={Ratings} path="/ratings" exact />
               <PrivateRoute component={Settings} path="/settings" exact />

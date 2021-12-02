@@ -97,7 +97,7 @@ export const StakePrevItem = ({
         className="text-right hover:bg-gray-100 cursor-pointer"
       >
         <td
-          className={`py-1 text-center cursor-pointer border-l-8  ${
+          className={`py-1 text-center border-l-8  ${
             index === focusedIndexHistory ? "border-black" : "border-transparent"
           }`}
         >
