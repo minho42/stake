@@ -22,8 +22,10 @@ export const StakeTransactions = ({ transactions }) => {
     }
     const dot = document.getElementById(id);
     setPrevDotID(id);
-    setPrevDotRadius(dot.getAttribute("r"));
-    dot.setAttribute("r", "10");
+    if (dot) {
+      setPrevDotRadius(dot.getAttribute("r"));
+      dot.setAttribute("r", "10");
+    }
   };
 
   return (
