@@ -36,7 +36,7 @@ export const StakePrevList = ({ marketName, flag, prevSymbols, transactionHistor
   }, [focusedIndexHistory, prevSymbols, isStakeChartModalOpen]);
 
   return (
-    <div className="flex flex-col w-72 space-y-3">
+    <div className="flex flex-col w-80 space-y-3">
       <div className="flex items-center justify-center uppercase font-semibold bg-gray-200 gap-2">
         {marketName}
         <div className="text-3xl">{flag}</div>

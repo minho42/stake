@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { StakeChartModal } from "./StakeChartModal";
-import { isPositive, showValueWithSign } from "../utils";
+import { isPositive, showValueWithSign, getChangePercentage } from "../utils";
 import { formatDistance } from "date-fns";
 
 export const StakePrevItem = ({
@@ -14,6 +14,7 @@ export const StakePrevItem = ({
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [changeSum, setChangeSum] = useState(0);
   const [lastSoldDate, setLastSoldDate] = useState(null);
+  const [totalBoughtAmount, setTotalBoughtAmount] = useState(0);
 
   const getLastSoldDate = () => {
     if (!transactions) return;
@@ -66,8 +67,20 @@ export const StakePrevItem = ({
     setChangeSum(sum);
   };
 
+  const getTotalBoughtAmount = () => {
+    if (!transactions) return;
+    let total = 0;
+    transactions.forEach((t) => {
+      if (t.transactionType.toLowerCase() === "buy") {
+        total += Number.parseFloat(-t.tranAmount);
+      }
+    });
+    setTotalBoughtAmount(total);
+  };
+
   useEffect(() => {
     getTotalChangeSum();
+    getTotalBoughtAmount();
     getLastSoldDate();
   }, [transactions]);
 
@@ -106,6 +119,9 @@ export const StakePrevItem = ({
         <td className="text-left">{symbol}</td>
         <td className={`${isPositive(changeSum) ? "text-green-600" : "text-red-600"} text-right`}>
           {showValueWithSign(changeSum, "")}
+          <span className="ml-1">
+            ({showValueWithSign(getChangePercentage(totalBoughtAmount + changeSum, changeSum), "")}%)
+          </span>
         </td>
         <td>{lastSoldDate}</td>
       </tr>
