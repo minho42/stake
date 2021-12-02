@@ -2,6 +2,9 @@ import { useState } from "react";
 import { showValueWithComma, timestampToDate, dateStrToTimestamp } from "../utils";
 
 export const StakeTransactions = ({ transactions }) => {
+  const [prevDotID, setPrevDotID] = useState(null);
+  const [prevDotRadius, setPrevDotRadius] = useState(null);
+
   if (!transactions || transactions.length < 1) {
     return (
       <div className="bg-white p-2 divide-y space-y-1 overflow-y-auto" style={{ height: 470 }}>
@@ -10,6 +13,19 @@ export const StakeTransactions = ({ transactions }) => {
     );
   }
 
+  const handleHover = (id) => {
+    if (prevDotID) {
+      const prevDot = document.getElementById(prevDotID);
+      if (prevDot) {
+        prevDot.setAttribute("r", prevDotRadius);
+      }
+    }
+    const dot = document.getElementById(id);
+    setPrevDotID(id);
+    setPrevDotRadius(dot.getAttribute("r"));
+    dot.setAttribute("r", "10");
+  };
+
   return (
     <div className="bg-white px-2 py-1 divide-y space-y-1 overflow-y-auto" style={{ height: 470 }}>
       <div className="text-xl text-center">Transactions</div>
@@ -17,8 +33,9 @@ export const StakeTransactions = ({ transactions }) => {
       {transactions.map((t) => {
         return (
           <div
+            onMouseOver={() => handleHover(t.orderID)}
             key={t.orderID}
-            className="flex flex-col items-center text-gray-500 py-0.5 hover:bg-gray-100 gap-1"
+            className="flex flex-col items-center text-gray-500 py-0.5 hover:bg-yellow-100 gap-1 cursor-pointer"
           >
             <div className="flex w-44 items-center gap-1">
               <div

@@ -58,7 +58,10 @@ export const StakeChartModal = ({
   ];
 
   const CustomLineDot = ({ cx, cy, stroke, payload, value }) => {
-    // if (!payload.transaction) return;
+    // if (payload.transaction) {
+    //   console.log(payload);
+    // }
+
     const r = 6;
     const strokeColor = "black";
     const strokeWidth = 1;
@@ -68,18 +71,20 @@ export const StakeChartModal = ({
     if (payload.transactionType && payload.transactionType.toLowerCase() === "buy") {
       return (
         <circle
+          id={payload.orderID}
           cx={cx}
           cy={cy}
           r={r}
           fill="#10B981"
           stroke={strokeColor}
-          stroke-width={strokeWidth}
-          stroke-opacity={strokeOpacity}
+          strokeWidth={strokeWidth}
+          strokeOpacity={strokeOpacity}
         />
       );
     } else if (payload.transactionType && payload.transactionType.toLowerCase() === "sell") {
       return (
         <circle
+          id={payload.orderID}
           cx={cx}
           cy={cy}
           r={r}
@@ -135,6 +140,7 @@ export const StakeChartModal = ({
           }
 
           tempChartData.push({
+            orderID: t.orderID,
             timestamp: dateStrToTimestamp(t.timestamp),
             quote: transactionDateFromChartData.quote,
             transaction: transactionDateFromChartData.quote,
@@ -148,8 +154,9 @@ export const StakeChartModal = ({
         else return -1;
       });
 
-      tempChartData = tempChartData.map(({ timestamp, quote, transaction, transactionType }) => {
+      tempChartData = tempChartData.map(({ orderID, timestamp, quote, transaction, transactionType }) => {
         return {
+          orderID: orderID,
           timestamp: timestampToDate(timestamp),
           quote,
           transaction,
