@@ -46,7 +46,7 @@ export const StakeList = ({
       </div>
 
       <div className="flex items-end justify-center py-3">
-        <div className="text-4xl font-semibold">{showValueWithComma(equityValueInAud, true)}</div>
+        <div className="text-4xl">{showValueWithComma(equityValueInAud, true)}</div>
         <div className={`text-2xl ml-2 ${isPositive(totalChangeSum) ? "text-green-600" : "text-red-600"}`}>
           ({`${showValueWithSign(totalChangePercentage, "")}%`})
         </div>
@@ -88,7 +88,7 @@ export const StakeList = ({
                 <tr className="border-t-2 border-gray-700 text-right">
                   <td></td>
                   <td></td>
-                  <td className=" py-1">Totals</td>
+                  <td className="py-1 font-semibold">Totals</td>
                   <td>{showValueWithComma(equityValue)}</td>
                   <td className={`${isPositive(dayChangeSum) ? "text-green-600" : "text-red-600"}`}>
                     {showValueWithSign(dayChangeSum, "")}
