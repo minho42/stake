@@ -38,8 +38,8 @@ export const StakeTransactions = ({ transactions }) => {
   };
 
   return (
-    <div className="bg-white px-2 py-1 divide-y space-y-1 overflow-y-auto" style={{ height: 470 }}>
-      <div className="text-xl text-center">Transactions</div>
+    <div className="bg-white px-2 py-1 divide-y  overflow-y-auto" style={{ height: 470 }}>
+      <div className="text-xl text-center py-2">Transactions</div>
 
       {transactions.map((t) => {
         return (
@@ -47,9 +47,9 @@ export const StakeTransactions = ({ transactions }) => {
             onMouseOver={() => handleHover(t.orderID)}
             onMouseLeave={handleLeave}
             key={t.orderID}
-            className="flex flex-col items-center px-2 py-0.5 hover:bg-gray-100 gap-1 cursor-pointer"
+            className="flex flex-col px-2 py-1 hover:bg-gray-100 cursor-pointer"
           >
-            <div className="flex w-72 items-start justify-between gap-1">
+            <div className="flex items-center w-52 text-base">
               <div className="flex items-center">
                 <div
                   className={`${
@@ -61,21 +61,19 @@ export const StakeTransactions = ({ transactions }) => {
                 <div
                   className={`${
                     t.transactionType.toLowerCase() === "buy" ? "text-green-600" : "text-red-600"
-                  } flex px-1 text-base`}
+                  } flex px-1 `}
                 >
                   {showValueWithComma(Math.abs(t.tranAmount))}
                 </div>
               </div>
-              <div>
-                {formatDistance(new Date(t.timestamp), new Date(), {
-                  addSuffix: true,
-                })}
-                <span className="ml-1 text-gray-500">
-                  ({timestampToDate(dateStrToTimestamp(t.timestamp))})
-                </span>
-              </div>
+              <div className="ml-0.5">{t.comment.match(/at\s+[.\d]+/gi)[0]}</div>
             </div>
-            <div className="text-xs text-gray-500 px-2 pb-0.5">{t.comment}</div>
+            <div className="text-gray-500">
+              {formatDistance(new Date(t.timestamp), new Date(), {
+                addSuffix: true,
+              })}
+              <span className="ml-1">({timestampToDate(dateStrToTimestamp(t.timestamp))})</span>
+            </div>
           </div>
         );
       })}
