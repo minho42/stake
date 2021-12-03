@@ -30,24 +30,23 @@ export const StakeList = ({
           <div className="text-xs text-gray-500">{marketName}</div>
         </div>
         <div className="absolute top-2 right-2 text-gray-500 space-y-0.5 text-sm">
-          <div className="flex flex-col justify-end gap-1">
+          <div className="flex items-center justify-end gap-1">
             <div
-              className={`flex items-center justify-center  text-xs text-white px-2 ${
+              className={`w-3 h-3 rounded-full ${
                 marketStatus === "open"
                   ? "bg-green-500"
                   : marketStatus === "pre"
                   ? "bg-yellow-500"
                   : "bg-gray-400"
               }`}
-            >
-              {marketStatus}
-            </div>
+            ></div>
+            <div className="text-xs uppercase">{marketStatus}</div>
           </div>
         </div>
       </div>
 
       <div className="flex items-end justify-center py-3">
-        <div className="text-3xl">{showValueWithComma(equityValueInAud, true)}</div>
+        <div className="text-4xl font-semibold">{showValueWithComma(equityValueInAud, true)}</div>
         <div className={`text-2xl ml-2 ${isPositive(totalChangeSum) ? "text-green-600" : "text-red-600"}`}>
           ({`${showValueWithSign(totalChangePercentage, "")}%`})
         </div>
