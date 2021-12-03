@@ -104,6 +104,16 @@ export const StakeItem = ({
           <span className="ml-1">({showValueWithSign(unrealizedPLPercentage, "")}%)</span>
         </td>
         <td>{getAllocationPercentage()}%</td>
+        <td onClick={(e) => e.stopPropagation()}>
+          <a
+            className="hover:text-blue-600 underline"
+            href="https://finance.yahoo.com/quote/DOCN"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {symbol}
+          </a>
+        </td>
       </tr>
 
       {isChartModalOpen && (
