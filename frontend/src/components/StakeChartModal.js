@@ -64,9 +64,9 @@ export const StakeChartModal = ({
 
     const r = 6;
     const strokeColor = "black";
-    const strokeWidth = 1;
+    const strokeWidth = 1.6;
     const strokeOpacity = 0.8;
-    const green = "#065F46";
+    const green = "#22C55E";
     const red = "#EF4444";
     if (payload.transactionType && payload.transactionType.toLowerCase() === "buy") {
       return (
@@ -75,7 +75,7 @@ export const StakeChartModal = ({
           cx={cx}
           cy={cy}
           r={r}
-          fill="#10B981"
+          fill={green}
           stroke={strokeColor}
           strokeWidth={strokeWidth}
           strokeOpacity={strokeOpacity}
@@ -279,7 +279,7 @@ export const StakeChartModal = ({
                     onClick={handleTimeFrameChange}
                     key={tf.name}
                     className={`${
-                      selectedTimeFrameName === tf.name ? " border-black" : "border-white"
+                      selectedTimeFrameName === tf.name ? " border-black font-semibold" : "border-white"
                     } border-b-4  px-2 py-0.5 uppercase focus:outline-none`}
                   >
                     {tf.name}
@@ -299,11 +299,12 @@ export const StakeChartModal = ({
               }}
             >
               <CartesianGrid
-                strokeDasharray="1"
+                // strokeDasharray="1"
                 stroke="#abafb1"
                 xAxis={false}
                 yAxis={false}
-                // color="#f9f9f9"
+                vertical={false}
+                color="#dbdbdb"
               />
               <XAxis
                 dataKey="timestamp"
@@ -334,7 +335,7 @@ export const StakeChartModal = ({
                 // domain={[0, (dataMax) => Math.ceil(dataMax / 100) * 100 + 200]}
                 allowDataOverflow={true}
               />
-              <Tooltip isAnimationActive={false} />
+              <Tooltip isAnimationActive={false} position={{ x: 70, y: 20 }} />
               <defs>
                 <linearGradient id="gradientArea" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#cccccc" stopOpacity={0.5} />
@@ -346,7 +347,7 @@ export const StakeChartModal = ({
                 dataKey="quote"
                 fill="url(#gradientArea)"
                 stroke="#000000"
-                strokeWidth="1.4"
+                strokeWidth="1.6"
                 isAnimationActive={false}
               />
               <Line
