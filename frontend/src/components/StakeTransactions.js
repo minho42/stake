@@ -14,19 +14,27 @@ export const StakeTransactions = ({ transactions }) => {
     );
   }
 
-  const handleHover = (id) => {
+  const removePrevDotHighlight = () => {
     if (prevDotID) {
       const prevDot = document.getElementById(prevDotID);
       if (prevDot) {
         prevDot.setAttribute("r", prevDotRadius);
       }
     }
+  };
+
+  const handleHover = (id) => {
+    removePrevDotHighlight();
     const dot = document.getElementById(id);
     setPrevDotID(id);
     if (dot) {
       setPrevDotRadius(dot.getAttribute("r"));
       dot.setAttribute("r", "10");
     }
+  };
+
+  const handleLeave = () => {
+    removePrevDotHighlight();
   };
 
   return (
@@ -37,6 +45,7 @@ export const StakeTransactions = ({ transactions }) => {
         return (
           <div
             onMouseOver={() => handleHover(t.orderID)}
+            onMouseLeave={handleLeave}
             key={t.orderID}
             className="flex flex-col items-center px-2 py-0.5 hover:bg-gray-100 gap-1 cursor-pointer"
           >
