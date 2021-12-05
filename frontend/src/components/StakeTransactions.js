@@ -66,7 +66,7 @@ export const StakeTransactions = ({ transactions }) => {
                   {showValueWithComma(Math.abs(t.tranAmount))}
                 </div>
               </div>
-              <div className="ml-0.5">{t.comment.match(/at\s+[.\d]+/gi)[0]}</div>
+              <div className="ml-0.5">{t.comment.match(/at\s+[.\d]+/gi)}</div>
             </div>
             <div className="text-gray-500">
               {formatDistance(new Date(t.timestamp), new Date(), {

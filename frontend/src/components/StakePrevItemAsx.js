@@ -46,7 +46,7 @@ export const StakePrevItemAsx = ({ index, symbol, transactionHistory }) => {
             timestamp: t.completedTimestamp,
             tranAmount: t.consideration,
             transactionType: t.side,
-            comment: t.type,
+            comment: "", // t.type
           });
         }
       }
