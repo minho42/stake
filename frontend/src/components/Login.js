@@ -1,6 +1,6 @@
 import { useContext, useState, useRef } from "react";
 import { UserContext } from "../UserContext";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const requestStakeLogin = async (stakeToken, setStakeToken) => {
   try {
@@ -32,7 +32,7 @@ export const Login = () => {
   const [inputToken, setInputToken] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { stakeToken, setStakeToken } = useContext(UserContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const { state } = useLocation();
   const inputTokenRef = useRef();
 
@@ -44,7 +44,7 @@ export const Login = () => {
     }
     const validToken = await requestStakeLogin(inputToken, setStakeToken);
     if (validToken) {
-      return history.push(state?.from || "/");
+      return navigate(state?.from || "/");
     }
     inputTokenRef.current.focus();
     setErrorMessage("Invalid stakeToken");

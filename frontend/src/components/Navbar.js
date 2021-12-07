@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { UserContext } from "../UserContext";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
   const { stakeToken, setStakeToken } = useContext(UserContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const requestLogout = async (stakeToken, setStakeToken, history) => {
+  const requestLogout = async (stakeToken, setStakeToken, navigate) => {
     try {
       const res = await fetch("http://localhost:4000/stake/logout", {
         method: "POST",
@@ -18,12 +18,12 @@ export const Navbar = () => {
       }
       setStakeToken(null);
       localStorage.clear();
-      history.push("/");
+      navigate("/");
     } catch (error) {
       console.log(error);
       setStakeToken(null);
       localStorage.clear();
-      history.push("/");
+      navigate("/");
     }
   };
 
@@ -75,7 +75,7 @@ export const Navbar = () => {
           )}
           {stakeToken && (
             <button
-              onClick={() => requestLogout(stakeToken, setStakeToken, history)}
+              onClick={() => requestLogout(stakeToken, setStakeToken, navigate)}
               className="flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 border-transparent"
             >
               logout

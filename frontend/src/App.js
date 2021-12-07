@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Login } from "./components/Login";
 import { About } from "./components/About";
@@ -18,19 +18,50 @@ function App() {
         <UserProvider>
           <SiteProvider>
             <Navbar />
-            <Switch>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Route exact path="/about">
-                <About />
-              </Route>
-              <PrivateRoute component={PortfolioList} path="/" exact />
-              <PrivateRoute component={StakeHistory} path="/history" exact />
-              <PrivateRoute component={DividendList} path="/dividend" exact />
-              <PrivateRoute component={Ratings} path="/ratings" exact />
-              <PrivateRoute component={Settings} path="/settings" exact />
-            </Switch>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/about" element={<About />} />
+              <Route
+                path="/"
+                element={
+                  <PrivateRoute>
+                    <PortfolioList />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/history"
+                element={
+                  <PrivateRoute>
+                    <StakeHistory />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dividend"
+                element={
+                  <PrivateRoute>
+                    <DividendList />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/ratings"
+                element={
+                  <PrivateRoute>
+                    <Ratings />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <PrivateRoute>
+                    <Settings />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
           </SiteProvider>
         </UserProvider>
       </Router>
