@@ -10,6 +10,7 @@ import { StakeTransactions } from "./StakeTransactions";
 export const StakeChartModal = ({
   symbol,
   name,
+  mktPrice,
   marketValue,
   unrealizedPL,
   unrealizedPLPercentage,
@@ -257,14 +258,17 @@ export const StakeChartModal = ({
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex bg-gray-200 space-x-1 p-2">
         <div className="flex flex-col space-y-1">
           <div className="bg-white p-2 relative">
-            <div className="flex justify-center text-xl">
-              {symbol}
-              {unrealizedPL && (
-                <div className={`flex ${isPositive(unrealizedPL) ? "text-green-600" : "text-red-600"}`}>
-                  <div className="ml-2">{showValueWithSign(unrealizedPL)}</div>
-                  <div className="ml-2">({showValueWithSign(unrealizedPLPercentage, "")}%)</div>
-                </div>
-              )}
+            <div className="flex items-end justify-center text-xl gap-6">
+              <div className="flex">
+                {symbol}
+                {unrealizedPL && (
+                  <div className={`flex ${isPositive(unrealizedPL) ? "text-green-600" : "text-red-600"}`}>
+                    <div className="ml-2">{showValueWithSign(unrealizedPL)}</div>
+                    <div className="ml-2">({showValueWithSign(unrealizedPLPercentage, "")}%)</div>
+                  </div>
+                )}
+              </div>
+              <div className="text-2xl font-semibold">{mktPrice}</div>
             </div>
             {name && <div className="text-center text-gray-500">{name}</div>}
             <div className="absolute top-2 right-2">
