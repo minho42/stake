@@ -91,8 +91,8 @@ export const StakeChartModal = ({
           r={r}
           fill={red}
           stroke={strokeColor}
-          stroke-width={strokeWidth}
-          stroke-opacity={strokeOpacity}
+          strokeWidth={strokeWidth}
+          strokeOpacity={strokeOpacity}
         />
       );
     } else return <></>;

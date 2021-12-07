@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const apicache = require("apicache");
+
+const cache = apicache.middleware;
 
 const fetchChartData = async (symbol) => {
   // TODO: timezone for asx: doesn't show up to the current date but like 2 days back...
@@ -35,7 +38,7 @@ const fetchChartData = async (symbol) => {
   }
 };
 
-router.get("/chart/data/:symbol", async (req, res) => {
+router.get("/chart/data/:symbol", cache("1 minute"), async (req, res) => {
   try {
     const symbol = req.params.symbol.toUpperCase();
     if (!symbol || symbol.length < 1) {
