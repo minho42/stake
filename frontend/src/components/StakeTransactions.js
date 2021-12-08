@@ -29,7 +29,7 @@ export const StakeTransactions = ({ transactions }) => {
     setPrevDotID(id);
     if (dot) {
       setPrevDotRadius(dot.getAttribute("r"));
-      dot.setAttribute("r", "10");
+      dot.setAttribute("r", "12");
     }
   };
 
