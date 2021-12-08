@@ -1,11 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const apicache = require("apicache");
+
+const cache = apicache.middleware;
 
 const {
   getEquityPositions,
   getEquityPositionsAsx,
   getTransactionHistory,
   getTransactionHistoryAsx,
+  getCashAvailableForWithdrawal,
 } = require("../stake");
 const checkUser = require("../checkUser");
 const stakeAuth = require("../middleware/stakeAuth");
@@ -43,7 +47,21 @@ router.post("/stake/logout", stakeAuth, async (req, res) => {
   }
 });
 
-router.get("/stake/transaction-history", stakeAuth, async (req, res) => {
+router.get("/stake/cash", [cache("10 minutes"), stakeAuth], async (req, res) => {
+  try {
+    const stakeToken = req.cookies.stakeToken;
+    const data = await getCashAvailableForWithdrawal(stakeToken);
+
+    res.send({
+      data: data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send();
+  }
+});
+
+router.get("/stake/transaction-history", [cache("5 minutes"), stakeAuth], async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const data = await getTransactionHistory(stakeToken);
@@ -57,7 +75,7 @@ router.get("/stake/transaction-history", stakeAuth, async (req, res) => {
   }
 });
 
-router.get("/stake/asx/transaction-history", stakeAuth, async (req, res) => {
+router.get("/stake/asx/transaction-history", [cache("5 minutes"), stakeAuth], async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const data = await getTransactionHistoryAsx(stakeToken);
@@ -71,7 +89,7 @@ router.get("/stake/asx/transaction-history", stakeAuth, async (req, res) => {
   }
 });
 
-router.get("/stake/equity-positions", stakeAuth, async (req, res) => {
+router.get("/stake/equity-positions", [cache("30 seconds"), stakeAuth], async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const { equityPositions, equityValue } = await getEquityPositions(stakeToken);
@@ -88,7 +106,7 @@ router.get("/stake/equity-positions", stakeAuth, async (req, res) => {
   }
 });
 
-router.get("/stake/asx/equity-positions", stakeAuth, async (req, res) => {
+router.get("/stake/asx/equity-positions", [cache("30 seconds"), stakeAuth], async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const { equityPositions, equityValue } = await getEquityPositionsAsx(stakeToken);
