@@ -326,18 +326,15 @@ export const StakeChartModal = ({
                 tickCount="7"
                 tickMargin="10"
                 tickFormatter={yAxisFormatter}
-                domain={["dataMin", "dataMax"]}
-                // domain={[
-                //   (dataMin) => {
-                //     console.log(dataMin);
-                //     return dataMin;
-                //   },
-                //   (dataMax) => {
-                //     console.log(dataMax);
-                //     return dataMax;
-                //   },
-                // ]}
-                // domain={[0, (dataMax) => Math.ceil(dataMax / 100) * 100 + 200]}
+                domain={[
+                  (dataMin) => {
+                    if (isFinite(dataMin)) {
+                      return dataMin - Math.round(dataMin * 0.01);
+                    }
+                    return dataMin;
+                  },
+                  (dataMax) => dataMax + Math.round(dataMax * 0.01),
+                ]}
                 allowDataOverflow={true}
               />
               <Tooltip isAnimationActive={false} position={{ x: 70, y: 20 }} />
