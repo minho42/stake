@@ -12,7 +12,7 @@ export const RatingsList = ({ title, symbols, selectedFilterCount }) => {
         <table className="w-11/12 text-centel max-w-md">
           <thead>
             <tr className="border-b-2 border-gray-700">
-              <th className="text-left">Code</th>
+              <th className="text-left">Symbol</th>
               <th className="">Ratings</th>
             </tr>
           </thead>

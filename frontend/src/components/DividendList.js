@@ -31,7 +31,7 @@ export const DividendList = () => {
           <table className="w-11/12 text-right max-w-md">
             <thead>
               <tr className="border-b-2 border-gray-700">
-                <th className="text-left">Code</th>
+                <th className="text-left">Symbol</th>
                 <th>Dividend yield</th>
                 <th className="">Ex-dividend</th>
                 <th className="">Dividend</th>

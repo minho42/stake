@@ -46,7 +46,7 @@ export const StakePrevList = ({ marketName, flag, prevSymbols, transactionHistor
           <thead>
             <tr className="border-b-2 border-gray-700 text-right">
               <th className="text-center">No</th>
-              <th className="text-left">Code</th>
+              <th className="text-left">Symbol</th>
               <th>Total P/L</th>
               <th>Last sold</th>
             </tr>
