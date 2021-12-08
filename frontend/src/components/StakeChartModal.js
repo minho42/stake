@@ -348,25 +348,14 @@ export const StakeChartModal = ({
                 </linearGradient>
               </defs>
               <Area
-                type="monotone"
+                type="linear"
                 dataKey="quote"
                 fill="url(#gradientArea)"
                 stroke="#000000"
                 strokeWidth="1.6"
                 isAnimationActive={false}
               />
-              <Line
-                type="monotone"
-                dataKey="transaction"
-                dot={<CustomLineDot />}
-                // dot={{
-                //   fill: "black",
-                //   stroke: "white",
-                //   strokeWidth: 2,
-                //   r: 6,
-                // }}
-                isAnimationActive={false}
-              />
+              <Line type="linear" dataKey="transaction" dot={<CustomLineDot />} isAnimationActive={false} />
             </ComposedChart>
           </div>
         </div>
