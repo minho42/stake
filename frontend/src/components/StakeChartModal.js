@@ -11,7 +11,6 @@ export const StakeChartModal = ({
   symbol,
   name,
   mktPrice,
-  marketValue,
   unrealizedPL,
   unrealizedPLPercentage,
   transactions,

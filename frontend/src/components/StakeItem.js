@@ -121,7 +121,6 @@ export const StakeItem = ({
           symbol={marketName === "asx" ? `${symbol}.AX` : symbol}
           name={name}
           mktPrice={mktPrice}
-          marketValue={marketValue}
           unrealizedPL={unrealizedPL}
           unrealizedPLPercentage={unrealizedPLPercentage}
           transactions={transactions}
