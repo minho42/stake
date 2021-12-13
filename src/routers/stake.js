@@ -47,7 +47,7 @@ router.post("/stake/logout", stakeAuth, async (req, res) => {
   }
 });
 
-router.get("/stake/cash", [cache("10 minutes"), stakeAuth], async (req, res) => {
+router.get("/stake/cash", [cache("1 minute"), stakeAuth], async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const data = await getCashAvailableForWithdrawal(stakeToken);
@@ -61,7 +61,7 @@ router.get("/stake/cash", [cache("10 minutes"), stakeAuth], async (req, res) => 
   }
 });
 
-router.get("/stake/transaction-history", [cache("5 minutes"), stakeAuth], async (req, res) => {
+router.get("/stake/transaction-history", [cache("1 minute"), stakeAuth], async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const data = await getTransactionHistory(stakeToken);
@@ -75,7 +75,7 @@ router.get("/stake/transaction-history", [cache("5 minutes"), stakeAuth], async 
   }
 });
 
-router.get("/stake/asx/transaction-history", [cache("5 minutes"), stakeAuth], async (req, res) => {
+router.get("/stake/asx/transaction-history", [cache("1 minute"), stakeAuth], async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const data = await getTransactionHistoryAsx(stakeToken);

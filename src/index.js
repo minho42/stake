@@ -32,12 +32,12 @@ app.get("", (req, res) => {
   });
 });
 
-app.get("/currency/USDAUD", cache("10 minutes"), async (req, res) => {
+app.get("/currency/USDAUD", cache("5 minutes"), async (req, res) => {
   const rate = await fetchCurrency("USDAUD");
   res.send({ rate });
 });
 
-app.get("/currency/AUDUSD", cache("10 minutes"), async (req, res) => {
+app.get("/currency/AUDUSD", cache("5 minutes"), async (req, res) => {
   const rate = await fetchCurrency("AUDUSD");
   res.send({ rate });
 });
