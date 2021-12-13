@@ -5,6 +5,8 @@ const stakeAuth = async (req, res, next) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     if (!stakeToken) {
+      // This error may be triggered if ASX is activated on hellostake.com
+      // Switching back to WALL ST should resolve this
       throw new Error("stakeAuth: !stakeToken");
     }
     const isTokenValid = await checkUser(stakeToken);
