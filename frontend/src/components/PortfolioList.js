@@ -25,6 +25,7 @@ export const PortfolioList = ({}) => {
     marketStatusAsx,
     fetchMarketStatus,
     fetchMarketStatusAsx,
+    cashStatus,
   } = useContext(SiteContext);
   const [equityValueInAud, setEquityValueInAud] = useState(0);
   const [currencyUsdAud, setCurrencyUsdAud] = useLocalStorage("currencyUsdAud", 0);
@@ -168,12 +169,14 @@ export const PortfolioList = ({}) => {
   return (
     <div className="flex flex-col flex-grow px-3 pb-3 space-y-3 min-h-screen bg-gray-100">
       <div className="flex justify-center relative text-gray-500">
-        <div className="absolute top-1 right-0 text-gray-500 space-y-0.5 text-xs">
+        <div className="absolute top-1 right-0 text-gray-500 space-y-1 divide-y divide-gray-300 text-right uppercase">
           {stakeToken && userInfo && (
             <div className="flex justify-end">{userInfo.firstName + " " + userInfo.lastName}</div>
           )}
-          <div className="invisible lg:visible">AUD/USD: {currencyAudUsd && currencyAudUsd.toFixed(3)}</div>
-          <div className="invisible lg:visible">USD/AUD: {currencyUsdAud && currencyUsdAud.toFixed(3)}</div>
+          <div>AUD/USD: {currencyAudUsd && currencyAudUsd.toFixed(3)}</div>
+          <div>USD/AUD: {currencyUsdAud && currencyUsdAud.toFixed(3)}</div>
+          <div>Buying power: {cashStatus && cashStatus.cashAvailableForTrade}</div>
+          <div>Pending: {cashStatus && cashStatus.pendingOrdersAmount}</div>
         </div>
       </div>
 

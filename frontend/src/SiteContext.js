@@ -20,6 +20,23 @@ export const SiteProvider = ({ children }) => {
   const [transactionHistoryAsx, setTransactionHistoryAsx] = useLocalStorage("stakeTransactionHistoryAsx", []);
   const [marketStatus, setMarketStatus] = useState(null);
   const [marketStatusAsx, setMarketStatusAsx] = useState(null);
+  const [cashStatus, setCashStatus] = useState(null);
+
+  const fetchCashStatus = async () => {
+    try {
+      const res = await fetch("http://localhost:4000/stake/cash", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error("fetchCashStatus failed");
+      }
+      setCashStatus(data.data);
+    } catch (error) {
+      console.log(error);
+      setCashStatus(null);
+    }
+  };
 
   const fetchMarketStatus = async () => {
     try {
@@ -179,6 +196,7 @@ export const SiteProvider = ({ children }) => {
     fetchTransactionHistoryAsx();
     fetchMarketStatus();
     fetchMarketStatusAsx();
+    fetchCashStatus();
   }, [stakeToken]);
 
   const collectPrevSymbols = () => {
@@ -239,6 +257,7 @@ export const SiteProvider = ({ children }) => {
         marketStatusAsx,
         fetchMarketStatus,
         fetchMarketStatusAsx,
+        cashStatus,
       }}
     >
       {children}
