@@ -8,6 +8,8 @@ const helmet = require("helmet");
 const fetchCurrency = require("./utils");
 const stakeRouter = require("./routers/stake");
 const chartRouter = require("./routers/chart");
+const userRouter = require("./routers/user");
+const logRouter = require("./routers/log");
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -25,6 +27,8 @@ app.use(helmet());
 app.use(express.json());
 app.use(stakeRouter);
 app.use(chartRouter);
+app.use(userRouter);
+app.use(logRouter);
 
 app.get("", (req, res) => {
   res.send({
