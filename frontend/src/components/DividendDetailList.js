@@ -20,10 +20,16 @@ export const DividendDetailList = ({ symbol, transactionHistory }) => {
               (t.transactionType === "Dividend" || t.transactionType === "Dividend Tax")
             ) {
               return (
-                <tr>
+                <tr id={t.timestamp}>
                   <td>{timestampToDate(dateStrToTimestamp(t.timestamp))}</td>
                   <td>{t.transactionType}</td>
-                  <td className="text-right">{t.tranAmount}</td>
+                  <td
+                    className={`text-right ${
+                      t.transactionType === "Dividend" ? "text-green-600 font-semibold" : ""
+                    }`}
+                  >
+                    {t.tranAmount}
+                  </td>
                 </tr>
               );
             }
