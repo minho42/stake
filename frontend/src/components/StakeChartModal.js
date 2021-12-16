@@ -6,6 +6,7 @@ import { Line, ComposedChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 
 import { SiteContext } from "../SiteContext";
 import { isPositive, showValueWithSign, timestampToDate, dateStrToTimestamp } from "../utils";
 import { StakeTransactions } from "./StakeTransactions";
+import { differenceInCalendarDays } from "date-fns";
 
 export const StakeChartModal = ({
   symbol,
@@ -22,40 +23,61 @@ export const StakeChartModal = ({
   const [isLoading, setIsLoading] = useState(true);
   const [selectedTimeFrameName, setSelectedTimeFrameName] = useLocalStorage(`stakeChartTimeFrame`, "1y");
   const { setIsStakeChartModalOpen } = useContext(SiteContext);
+
   const timeFrames = [
     {
       name: "1m",
       inDays: 21,
+      inRealDays: 30,
     },
     {
       name: "3m",
       inDays: 21 * 3,
+      inRealDays: 91,
     },
     {
       name: "6m",
       inDays: 21 * 6,
+      inRealDays: 182,
     },
     {
       name: "1y",
       inDays: 5 * 52 * 1,
+      inRealDays: 365,
     },
     {
       name: "2y",
       inDays: 5 * 52 * 2,
+      inRealDays: 730,
     },
     {
       name: "5y",
       inDays: 5 * 52 * 5,
+      inRealDays: 1825,
     },
     // {
     //   name: "10y",
     //   inDays: 5 * 52 * 10,
+    //   inRealDays: 3650,
     // },
     // {
     //   name: "all",
     //   inDays: 0,
     // },
   ];
+
+  const convertDateStringOrder = (str) => {
+    // '28/07/2017' -> '2017/07/28'
+    const s = str.split("/");
+    return new Date(`${s[2]}/${s[1]}/${s[0]}`);
+  };
+
+  const setTimeFrameAvailability = () => {
+    if (!chartData || !chartData[0]) return;
+
+    const firstDay = convertDateStringOrder(chartData[0].timestamp);
+    const differenceInDays = differenceInCalendarDays(new Date(), firstDay);
+  };
 
   const CustomLineDot = ({ cx, cy, stroke, payload, value }) => {
     // if (payload.transaction) {
@@ -70,16 +92,21 @@ export const StakeChartModal = ({
     const red = "#EF4444";
     if (payload.transactionType && payload.transactionType.toLowerCase() === "buy") {
       return (
-        <circle
-          id={payload.orderID}
-          cx={cx}
-          cy={cy}
-          r={r}
-          fill={green}
-          stroke={strokeColor}
-          strokeWidth={strokeWidth}
-          strokeOpacity={strokeOpacity}
-        />
+        <>
+          <circle
+            id={payload.orderID}
+            cx={cx}
+            cy={cy}
+            r={r}
+            fill={green}
+            stroke={strokeColor}
+            strokeWidth={strokeWidth}
+            strokeOpacity={strokeOpacity}
+          />
+          {/* <text x={cx} y={cy} text-anchor="middle" fill="#fff" alignmentBaseline="middle" fontSize="12px">
+            B
+          </text> */}
+        </>
       );
     } else if (payload.transactionType && payload.transactionType.toLowerCase() === "sell") {
       return (
@@ -212,10 +239,15 @@ export const StakeChartModal = ({
   useEffect(() => {
     fetchChartData(symbol);
     setIsStakeChartModalOpen(true);
+
     return () => {
       setIsStakeChartModalOpen(false);
     };
   }, []);
+
+  useEffect(() => {
+    setTimeFrameAvailability();
+  }, [chartData]);
 
   useEffect(() => {
     if (!chartData || !selectedTimeFrameName) return;
