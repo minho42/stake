@@ -5,6 +5,8 @@ import { getChangePercentage } from "../utils";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
 import { StakeList } from "./StakeList";
+import { useDocTitle } from "../useDocTitle";
+import { showValueWithComma } from "../utils";
 
 export const PortfolioList = ({}) => {
   const { stakeToken, isStakeAuthLoading, userInfo } = useContext(UserContext);
@@ -39,6 +41,7 @@ export const PortfolioList = ({}) => {
   const [dayChangePercentageAsx, setDayChangePercentageAsx] = useState(0);
   const [totalChangePercentage, setTotalChangePercentage] = useState(0);
   const [totalChangePercentageAsx, setTotalChangePercentageAsx] = useState(0);
+  const [docTitle, setDocTitle] = useDocTitle("");
 
   const keyboardShortcuts = (e) => {
     if (isStakeChartModalOpen) return;
@@ -143,6 +146,7 @@ export const PortfolioList = ({}) => {
     getDayChangeSum();
     getTotalChangeSum();
     setEquityValueInAud(equityValue * currencyUsdAud);
+    setDocTitle(showValueWithComma(equityValue * currencyUsdAud, true));
 
     if (equityPositions && equityPositions.length) {
       if (focusedIndex + 1 >= equityPositions.length) {
