@@ -13,7 +13,8 @@ export const RatingsList = ({ title, symbols, selectedFilterCount }) => {
           <thead>
             <tr className="border-b-2 border-gray-700">
               <th className="text-left">Symbol</th>
-              <th className="">Ratings</th>
+              <th className="">Stake ratings</th>
+              <th className="">Nasdaq ratings</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-300">
