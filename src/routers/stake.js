@@ -61,7 +61,7 @@ router.get("/stake/cash", [cache("1 minute"), stakeAuth], async (req, res) => {
   }
 });
 
-router.get("/stake/transaction-history", [cache("1 minute"), stakeAuth], async (req, res) => {
+router.get("/stake/transaction-history", stakeAuth, async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const data = await getTransactionHistory(stakeToken);
@@ -75,7 +75,7 @@ router.get("/stake/transaction-history", [cache("1 minute"), stakeAuth], async (
   }
 });
 
-router.get("/stake/asx/transaction-history", [cache("1 minute"), stakeAuth], async (req, res) => {
+router.get("/stake/asx/transaction-history", stakeAuth, async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const data = await getTransactionHistoryAsx(stakeToken);
@@ -89,7 +89,7 @@ router.get("/stake/asx/transaction-history", [cache("1 minute"), stakeAuth], asy
   }
 });
 
-router.get("/stake/equity-positions", [cache("30 seconds"), stakeAuth], async (req, res) => {
+router.get("/stake/equity-positions", stakeAuth, async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const { equityPositions, equityValue } = await getEquityPositions(stakeToken);
@@ -106,7 +106,7 @@ router.get("/stake/equity-positions", [cache("30 seconds"), stakeAuth], async (r
   }
 });
 
-router.get("/stake/asx/equity-positions", [cache("30 seconds"), stakeAuth], async (req, res) => {
+router.get("/stake/asx/equity-positions", stakeAuth, async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const { equityPositions, equityValue } = await getEquityPositionsAsx(stakeToken);

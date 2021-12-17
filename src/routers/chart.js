@@ -38,7 +38,7 @@ const fetchChartData = async (symbol) => {
   }
 };
 
-router.get("/chart/data/:symbol", cache("1 minute"), async (req, res) => {
+router.get("/chart/data/:symbol", cache("30 seconds"), async (req, res) => {
   try {
     const symbol = req.params.symbol.toUpperCase();
     if (!symbol || symbol.length < 1) {
