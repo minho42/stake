@@ -115,7 +115,7 @@ const getTransactionHistory = async (token) => {
     const { data } = await axios(config);
 
     console.log("getTransactionHistory: ");
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -155,7 +155,7 @@ const getTransactionHistoryAsx = async (token) => {
     const { data } = await axios(config);
 
     console.log("getTransactionHistoryAsx: ");
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log(error);
