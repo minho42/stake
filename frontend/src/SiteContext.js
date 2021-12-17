@@ -191,11 +191,11 @@ export const SiteProvider = ({ children }) => {
 
   useEffect(() => {
     fetchEquityPositions();
-    fetchEquityPositionsAsx();
     fetchTransactionHistory();
-    fetchTransactionHistoryAsx();
     fetchMarketStatus();
-    fetchMarketStatusAsx();
+    // fetchEquityPositionsAsx();
+    // fetchTransactionHistoryAsx();
+    // fetchMarketStatusAsx();
     fetchCashStatus();
   }, [stakeToken]);
 
