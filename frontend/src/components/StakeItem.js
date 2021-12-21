@@ -15,6 +15,20 @@ export const StakeItem = ({
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [unrealizedDayPLPercentage, setUnrealizedDayPLPercentage] = useState(0);
   const [unrealizedPLPercentage, setUnrealizedPLPercentage] = useState(0);
+  const [targetPrice, setTargetPrice] = useState(0);
+
+  const fetchTargetPrice = async () => {
+    try {
+      const res = await fetch(`http://localhost:4000/nasdaq/consensus/${symbol}`);
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error("fetchNasdaqConsensusRatings failed");
+      }
+      setTargetPrice(data.data.priceTarget);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getAllocationPercentage = () => {
     if (!equityValue) {
@@ -58,6 +72,7 @@ export const StakeItem = ({
   useEffect(async () => {
     getTransactions();
     setPercentages();
+    fetchTargetPrice();
   }, []);
 
   const keyboardShortcuts = (e) => {
@@ -93,6 +108,7 @@ export const StakeItem = ({
           {index + 1}
         </td>
         <td className="text-left">{symbol}</td>
+        <td>{targetPrice ? targetPrice : "-"}</td>
         <td>{mktPrice}</td>
         <td>{showValueWithComma(marketValue, false)}</td>
         <td className={` ${isPositive(unrealizedDayPL) ? "text-green-600" : "text-red-600"}`}>

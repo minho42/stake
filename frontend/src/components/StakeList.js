@@ -61,6 +61,7 @@ export const StakeList = ({
                 <tr className="border-b-2 border-gray-700 text-right">
                   <th className="text-center">No</th>
                   <th className="text-left">Symbol</th>
+                  <th className="">Target price</th>
                   <th className="">Last</th>
                   <th className="">Value</th>
                   <th className="">Day P/L</th>
