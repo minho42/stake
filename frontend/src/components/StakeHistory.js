@@ -6,7 +6,7 @@ export const StakeHistory = () => {
   const { transactionHistory, transactionHistoryAsx, prevSymbols, prevSymbolsAsx } = useContext(SiteContext);
 
   return (
-    <div className="flex items-start justify-center gap-3 py-3">
+    <div className="flex items-start justify-center gap-3 px-3 py-3">
       <StakePrevList
         marketName="wall st"
         flag="🇺🇸"

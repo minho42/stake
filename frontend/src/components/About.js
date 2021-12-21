@@ -2,7 +2,7 @@ export const About = () => {
   return (
     <div className="space-y-3">
       <div className="flex justify-center py-3 text-center">
-        <div className="flex flex-col justify-center max-w-lg w-full text-2xl">Stake</div>
+        <div className="flex flex-col justify-center max-w-md w-full text-2xl">Stake</div>
       </div>
       <div className="flex justify-center text-center">
         <a
