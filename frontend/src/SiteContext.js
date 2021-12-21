@@ -109,10 +109,12 @@ export const SiteProvider = ({ children }) => {
 
   const fetchEquityPositions = async () => {
     if (isStakeChartModalOpen) return;
-    if (equityPositions.length > 0 && marketStatus !== "open") {
-      setIsEquityPositionsLoading(false);
-      return;
-    }
+
+    // bug: when market closed and equityPositions are not updated, it doesn't fetch to get the latest
+    // if (equityPositions.length > 0 && marketStatus !== "open") {
+    //   setIsEquityPositionsLoading(false);
+    //   return;
+    // }
 
     setIsEquityPositionsLoading(true);
     if (!stakeToken) {
@@ -148,10 +150,12 @@ export const SiteProvider = ({ children }) => {
 
   const fetchEquityPositionsAsx = async () => {
     if (isStakeChartModalOpen) return;
-    if (equityPositionsAsx.length > 0 && marketStatusAsx !== "open") {
-      setIsEquityPositionsLoadingAsx(false);
-      return;
-    }
+
+    // bug: when market closed and equityPositions are not updated, it doesn't fetch to get the latest
+    // if (equityPositionsAsx.length > 0 && marketStatusAsx !== "open") {
+    //   setIsEquityPositionsLoadingAsx(false);
+    //   return;
+    // }
 
     setIsEquityPositionsLoadingAsx(true);
     if (!stakeToken) {
@@ -193,9 +197,9 @@ export const SiteProvider = ({ children }) => {
     fetchEquityPositions();
     fetchTransactionHistory();
     fetchMarketStatus();
-    // fetchEquityPositionsAsx();
-    // fetchTransactionHistoryAsx();
-    // fetchMarketStatusAsx();
+    fetchEquityPositionsAsx();
+    fetchTransactionHistoryAsx();
+    fetchMarketStatusAsx();
     fetchCashStatus();
   }, [stakeToken]);
 
