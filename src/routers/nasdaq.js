@@ -4,7 +4,7 @@ const apicache = require("apicache");
 
 const cache = apicache.middleware;
 
-const { getNasdaqRatings } = require("../nasdaq");
+const { getNasdaqRatings, getNasdaqConsensus } = require("../nasdaq");
 
 router.get("/nasdaq/ratings/:symbol", async (req, res) => {
   const symbol = req.params.symbol;
@@ -13,7 +13,27 @@ router.get("/nasdaq/ratings/:symbol", async (req, res) => {
   }
   try {
     const data = await getNasdaqRatings(symbol);
-    res.send({ data: data });
+    if (data?.status?.rCode !== 200) {
+      throw new Error("status != 200");
+    }
+    res.send({ data: data?.data?.meanRatingType });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send();
+  }
+});
+
+router.get("/nasdaq/consensus/:symbol", async (req, res) => {
+  const symbol = req.params.symbol;
+  if (!symbol || symbol.length < 1) {
+    throw new Error("!symbol");
+  }
+  try {
+    const data = await getNasdaqConsensus(symbol);
+    if (data?.status?.rCode !== 200) {
+      throw new Error("status != 200");
+    }
+    res.send({ data: data?.data?.consensusOverview });
   } catch (error) {
     console.log(error);
     res.status(400).send();

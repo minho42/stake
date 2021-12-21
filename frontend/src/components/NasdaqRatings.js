@@ -11,7 +11,7 @@ export const NasdaqRatings = ({ symbol }) => {
         throw new Error("fetchNasdaqRatings failed");
       }
       // console.log(data.data.data);
-      setRatingType(data.data.data.meanRatingType);
+      setRatingType(data.data);
     } catch (error) {
       console.log(error);
     }
