@@ -6,7 +6,7 @@ const cache = apicache.middleware;
 
 const { getNasdaqRatings, getNasdaqConsensus } = require("../nasdaq");
 
-router.get("/nasdaq/ratings/:symbol", async (req, res) => {
+router.get("/nasdaq/ratings/:symbol", cache("10 minutes"), async (req, res) => {
   const symbol = req.params.symbol;
   if (!symbol || symbol.length < 1) {
     throw new Error("!symbol");
@@ -23,7 +23,7 @@ router.get("/nasdaq/ratings/:symbol", async (req, res) => {
   }
 });
 
-router.get("/nasdaq/consensus/:symbol", async (req, res) => {
+router.get("/nasdaq/consensus/:symbol", cache("10 minutes"), async (req, res) => {
   const symbol = req.params.symbol;
   if (!symbol || symbol.length < 1) {
     throw new Error("!symbol");
