@@ -84,6 +84,28 @@ export const StakeItem = ({
     }
   };
 
+  const targetPriceGraph = () => {
+    if (!targetPrice) return;
+    if (targetPrice > Number(mktPrice) + Number(mktPrice) * 0.2) {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 text-green-600"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+          />
+        </svg>
+      );
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", keyboardShortcuts);
     return () => {
@@ -108,7 +130,10 @@ export const StakeItem = ({
           {index + 1}
         </td>
         <td className="text-left">{symbol}</td>
-        <td>{targetPrice ? targetPrice : "-"}</td>
+        <td className="flex items-center justify-end gap-1">
+          {targetPriceGraph()}
+          {targetPrice ? targetPrice : "-"}
+        </td>
         <td>{mktPrice}</td>
         <td>{showValueWithComma(marketValue, false)}</td>
         <td className={` ${isPositive(unrealizedDayPL) ? "text-green-600" : "text-red-600"}`}>
