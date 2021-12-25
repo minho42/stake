@@ -20,7 +20,7 @@ export const DividendDetailList = ({ symbol, transactionHistory }) => {
               (t.transactionType === "Dividend" || t.transactionType === "Dividend Tax")
             ) {
               return (
-                <tr id={t.timestamp}>
+                <tr key={t.timestamp}>
                   <td>{timestampToDate(dateStrToTimestamp(t.timestamp))}</td>
                   <td>{t.transactionType}</td>
                   <td
