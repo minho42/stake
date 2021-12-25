@@ -25,6 +25,7 @@ export const StakeItem = ({
       if (!res.ok) {
         throw new Error("fetchNasdaqConsensusRatings failed");
       }
+      // TODO handle exception when data not available
       setTargetPrice(data.data.priceTarget);
     } catch (error) {
       console.log(error);
@@ -85,6 +86,11 @@ export const StakeItem = ({
     }
   };
 
+  const priceDifference = () => {
+    if (!targetPrice) return;
+    return showValueWithSign(((targetPrice - Number(mktPrice)) / Number(mktPrice)) * 100, "");
+  };
+
   const targetPriceGraph = () => {
     if (!targetPrice) return;
     if (targetPrice > Number(mktPrice) + Number(mktPrice) * 0.2) {
@@ -118,7 +124,7 @@ export const StakeItem = ({
         <td className="text-left">{symbol}</td>
         <td className="flex items-center justify-end gap-1">
           {targetPriceGraph()}
-          {targetPrice ? targetPrice : "-"}
+          {targetPrice ? `${targetPrice} (${priceDifference()}%)` : "-"}
         </td>
         <td>{mktPrice}</td>
         <td>{showValueWithComma(marketValue, false)}</td>
@@ -131,10 +137,20 @@ export const StakeItem = ({
           <span className="ml-1">({showValueWithSign(unrealizedPLPercentage, "")}%)</span>
         </td>
         <td>{getAllocationPercentage()}%</td>
-        <td onClick={(e) => e.stopPropagation()}>
+        <td className="text-center" onClick={(e) => e.stopPropagation()}>
           <a
             className="hover:text-blue-600 underline"
-            href="https://finance.yahoo.com/quote/DOCN"
+            href={`https://finance.yahoo.com/quote/${symbol}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {symbol}
+          </a>
+        </td>
+        <td className="text-center" onClick={(e) => e.stopPropagation()}>
+          <a
+            className="hover:text-blue-600 underline"
+            href={`https://finviz.com/quote.ashx?t=${symbol}`}
             target="_blank"
             rel="noopener noreferrer"
           >
