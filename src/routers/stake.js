@@ -47,7 +47,7 @@ router.post("/stake/logout", stakeAuth, async (req, res) => {
   }
 });
 
-router.get("/stake/cash", [cache("1 minute"), stakeAuth], async (req, res) => {
+router.get("/stake/cash", stakeAuth, async (req, res) => {
   try {
     const stakeToken = req.cookies.stakeToken;
     const data = await getCashAvailableForWithdrawal(stakeToken);
