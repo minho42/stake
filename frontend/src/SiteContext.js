@@ -20,7 +20,31 @@ export const SiteProvider = ({ children }) => {
   const [transactionHistoryAsx, setTransactionHistoryAsx] = useLocalStorage("stakeTransactionHistoryAsx", []);
   const [marketStatus, setMarketStatus] = useState(null);
   const [marketStatusAsx, setMarketStatusAsx] = useState(null);
+  const [currencyUsdAud, setCurrencyUsdAud] = useLocalStorage("currencyUsdAud", 0);
+  const [currencyAudUsd, setCurrencyAudUsd] = useLocalStorage("currencyAudUsd", 0);
   const [cashStatus, setCashStatus] = useState(null);
+
+  const fetchCurrencyUsdAud = async () => {
+    try {
+      const res = await fetch("http://localhost:4000/currency/UsdAud");
+      const { rate } = await res.json();
+      setCurrencyUsdAud(rate);
+    } catch (error) {
+      console.log(error);
+      setCurrencyUsdAud(0);
+    }
+  };
+
+  const fetchCurrencyAudUsd = async () => {
+    try {
+      const res = await fetch("http://localhost:4000/currency/AudUsd");
+      const { rate } = await res.json();
+      setCurrencyAudUsd(rate);
+    } catch (error) {
+      console.log(error);
+      setCurrencyAudUsd(0);
+    }
+  };
 
   const fetchCashStatus = async () => {
     try {
@@ -194,6 +218,11 @@ export const SiteProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    fetchCurrencyUsdAud();
+    fetchCurrencyAudUsd();
+  }, []);
+
+  useEffect(() => {
     fetchEquityPositions();
     fetchTransactionHistory();
     fetchMarketStatus();
@@ -261,6 +290,8 @@ export const SiteProvider = ({ children }) => {
         marketStatusAsx,
         fetchMarketStatus,
         fetchMarketStatusAsx,
+        currencyUsdAud,
+        currencyAudUsd,
         cashStatus,
       }}
     >

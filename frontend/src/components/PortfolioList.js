@@ -7,6 +7,7 @@ import { useLocalStorage } from "./useLocalStorage";
 import { StakeList } from "./StakeList";
 import { useDocTitle } from "../useDocTitle";
 import { showValueWithComma } from "../utils";
+import { StakeInfo } from "./StakeInfo";
 
 export const PortfolioList = ({}) => {
   const { stakeToken, isStakeAuthLoading, userInfo } = useContext(UserContext);
@@ -27,11 +28,10 @@ export const PortfolioList = ({}) => {
     marketStatusAsx,
     fetchMarketStatus,
     fetchMarketStatusAsx,
-    cashStatus,
+    currencyUsdAud,
   } = useContext(SiteContext);
   const [equityValueInAud, setEquityValueInAud] = useState(0);
-  const [currencyUsdAud, setCurrencyUsdAud] = useLocalStorage("currencyUsdAud", 0);
-  const [currencyAudUsd, setCurrencyAudUsd] = useLocalStorage("currencyAudUsd", 0);
+
   const [focusedIndex, setFocusedIndex] = useLocalStorage("stakeFocusedIndex", 0);
   const [dayChangeSum, setDayChangeSum] = useState(0);
   const [dayChangeSumAsx, setDayChangeSumAsx] = useState(0);
@@ -60,28 +60,6 @@ export const PortfolioList = ({}) => {
         newIndex = equityPositions.length - 1;
       }
       setFocusedIndex(newIndex);
-    }
-  };
-
-  const fetchCurrencyUsdAud = async () => {
-    try {
-      const res = await fetch("http://localhost:4000/currency/UsdAud");
-      const { rate } = await res.json();
-      setCurrencyUsdAud(rate);
-    } catch (error) {
-      console.log(error);
-      setCurrencyUsdAud(0);
-    }
-  };
-
-  const fetchCurrencyAudUsd = async () => {
-    try {
-      const res = await fetch("http://localhost:4000/currency/AudUsd");
-      const { rate } = await res.json();
-      setCurrencyAudUsd(rate);
-    } catch (error) {
-      console.log(error);
-      setCurrencyAudUsd(0);
     }
   };
 
@@ -127,8 +105,6 @@ export const PortfolioList = ({}) => {
   }, [stakeToken]);
 
   useEffect(() => {
-    fetchCurrencyUsdAud();
-    fetchCurrencyAudUsd();
     fetchMarketStatus();
     fetchMarketStatusAsx();
     setInterval(fetchMarketStatus, 60 * 1000);
@@ -171,19 +147,7 @@ export const PortfolioList = ({}) => {
   }, [currencyUsdAud]);
 
   return (
-    <div className="flex flex-col flex-grow px-3 pb-3 space-y-3 min-h-screen bg-gray-100">
-      <div className="flex justify-center relative text-gray-500">
-        <div className="absolute top-1 right-0 text-gray-500 space-y-1 divide-y divide-gray-300 text-right uppercase">
-          {stakeToken && userInfo && (
-            <div className="flex justify-end">{userInfo.firstName + " " + userInfo.lastName}</div>
-          )}
-          <div>AUD/USD: {currencyAudUsd && currencyAudUsd.toFixed(3)}</div>
-          <div>USD/AUD: {currencyUsdAud && currencyUsdAud.toFixed(3)}</div>
-          <div>Buying power: {cashStatus && cashStatus.cashAvailableForTrade}</div>
-          <div>Pending: {cashStatus && cashStatus.pendingOrdersAmount}</div>
-        </div>
-      </div>
-
+    <div className="flex flex-row  px-3 pb-3 space-y-3 space-x-3 min-h-screen bg-gray-100">
       <div className="flex justify-center space-y-2">
         {isStakeAuthLoading ? (
           <div>Checking token...</div>
@@ -198,7 +162,7 @@ export const PortfolioList = ({}) => {
         )}
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-3">
+      <div className="flex flex-col lg:flex-row flex-grow items-center lg:items-start justify-start gap-3">
         {stakeToken && equityPositions && equityPositions.length > 0 && (
           <StakeList
             marketName="wall st"
@@ -236,6 +200,10 @@ export const PortfolioList = ({}) => {
             focusedIndex={focusedIndex}
           />
         )}
+      </div>
+
+      <div className="flex justify-center relative text-gray-500">
+        <StakeInfo />
       </div>
     </div>
   );
