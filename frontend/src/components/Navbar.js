@@ -39,13 +39,21 @@ export const Navbar = () => {
           >
             portfolio
           </Link>
-          <Link
+          {/* <Link
             to="/news"
             className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
               pathname === "/news" ? " border-gray-700" : "border-transparent"
             }`}
           >
             news
+          </Link> */}
+          <Link
+            to="/ratings"
+            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
+              pathname === "/ratings" ? " border-gray-700" : "border-transparent"
+            }`}
+          >
+            ratings
           </Link>
           <Link
             to="/history"
@@ -62,14 +70,6 @@ export const Navbar = () => {
             }`}
           >
             dividend
-          </Link>
-          <Link
-            to="/ratings"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
-              pathname === "/ratings" ? " border-gray-700" : "border-transparent"
-            }`}
-          >
-            ratings
           </Link>
           {!stakeToken && (
             <Link
