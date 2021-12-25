@@ -109,11 +109,11 @@ export const StakeItem = ({
         className="text-right hover:bg-gray-100 cursor-pointer"
       >
         <td
-          className={`py-1 text-center cursor-pointer border-l-8  ${
+          className={`py-1 text-center cursor-pointer border-l-8 px-1 ${
             index === focusedIndex ? "border-black" : "border-transparent"
           }`}
         >
-          {index + 1}
+          {index + 1}.
         </td>
         <td className="text-left">{symbol}</td>
         <td className="flex items-center justify-end gap-1">
