@@ -26,7 +26,8 @@ export const SiteProvider = ({ children }) => {
 
   const fetchCurrencyUsdAud = async () => {
     try {
-      const res = await fetch("http://localhost:4000/currency/UsdAud");
+      // const res = await fetch("http://localhost:4000/currency/UsdAud");
+      const res = await fetch("https://stake-node.herokuapp.com/currency/UsdAud");
       const { rate } = await res.json();
       setCurrencyUsdAud(rate);
     } catch (error) {
@@ -37,7 +38,8 @@ export const SiteProvider = ({ children }) => {
 
   const fetchCurrencyAudUsd = async () => {
     try {
-      const res = await fetch("http://localhost:4000/currency/AudUsd");
+      // const res = await fetch("http://localhost:4000/currency/AudUsd");
+      const res = await fetch("https://stake-node.herokuapp.com/currency/AudUsd");
       const { rate } = await res.json();
       setCurrencyAudUsd(rate);
     } catch (error) {
@@ -48,7 +50,8 @@ export const SiteProvider = ({ children }) => {
 
   const fetchCashStatus = async () => {
     try {
-      const res = await fetch("http://localhost:4000/stake/cash", {
+      // const res = await fetch("http://localhost:4000/stake/cash", {
+      const res = await fetch("https://stake-node.herokuapp.com/stake/cash", {
         credentials: "include",
       });
       const data = await res.json();
@@ -93,7 +96,8 @@ export const SiteProvider = ({ children }) => {
 
   const fetchTransactionHistory = async () => {
     try {
-      const res = await fetch("http://localhost:4000/stake/transaction-history", {
+      // const res = await fetch("http://localhost:4000/stake/transaction-history", {
+      const res = await fetch("https://stake-node.herokuapp.com/stake/transaction-history", {
         credentials: "include",
       });
       if (res.status !== 200) {
@@ -112,7 +116,8 @@ export const SiteProvider = ({ children }) => {
 
   const fetchTransactionHistoryAsx = async () => {
     try {
-      const res = await fetch("http://localhost:4000/stake/asx/transaction-history", {
+      // const res = await fetch("http://localhost:4000/stake/asx/transaction-history", {
+      const res = await fetch("https://stake-node.herokuapp.com/stake/asx/transaction-history", {
         credentials: "include",
       });
       if (res.status !== 200) {
@@ -149,7 +154,8 @@ export const SiteProvider = ({ children }) => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:4000/stake/equity-positions", {
+      // const res = await fetch("http://localhost:4000/stake/equity-positions", {
+      const res = await fetch("https://stake-node.herokuapp.com/stake/equity-positions", {
         credentials: "include",
       });
       if (res.status !== 200) {
@@ -190,7 +196,8 @@ export const SiteProvider = ({ children }) => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:4000/stake/asx/equity-positions", {
+      // const res = await fetch("http://localhost:4000/stake/asx/equity-positions", {
+      const res = await fetch("https://stake-node.herokuapp.com/stake/asx/equity-positions", {
         credentials: "include",
       });
       if (res.status !== 200) {

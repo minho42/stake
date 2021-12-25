@@ -131,7 +131,8 @@ export const StakeChartModal = ({
   const fetchChartData = async (symbol) => {
     setIsLoading(true);
     try {
-      const res = await fetch(`http://localhost:4000/chart/data/${symbol}`);
+      // const res = await fetch(`http://localhost:4000/chart/data/${symbol}`);
+      const res = await fetch(`https://stake-node.herokuapp.com/chart/data/${symbol}`);
       if (res.status !== 200) {
         throw new Error("StakeChartModal error");
       }

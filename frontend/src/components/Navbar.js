@@ -9,7 +9,8 @@ export const Navbar = () => {
 
   const requestLogout = async (stakeToken, setStakeToken, navigate) => {
     try {
-      const res = await fetch("http://localhost:4000/stake/logout", {
+      // const res = await fetch("http://localhost:4000/stake/logout", {
+      const res = await fetch("https://stake-node.herokuapp.com/stake/logout", {
         method: "POST",
         credentials: "include",
       });
