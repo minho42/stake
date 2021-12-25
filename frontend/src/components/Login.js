@@ -8,8 +8,7 @@ export const requestStakeLogin = async (stakeToken, setStakeToken) => {
     if (!stakeToken) {
       throw new Error("requestStakeLogin: !stakeToken");
     }
-    // const res = await fetch("http://localhost:4000/stake/login", {
-    const res = await fetch("https://stake-node.herokuapp.com/stake/login", {
+    const res = await fetch("http://localhost:4000/stake/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

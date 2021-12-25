@@ -1,8 +1,7 @@
 export const CheckUser = async (setStakeToken, setIsStakeAuthLoading) => {
   // console.log("CheckUser");
   try {
-    // const res = await fetch("http://localhost:4000/stake/check", {
-    const res = await fetch("https://stake-node.herokuapp.com/stake/check", {
+    const res = await fetch("http://localhost:4000/stake/check", {
       credentials: "include",
     });
     if (!res.ok) {

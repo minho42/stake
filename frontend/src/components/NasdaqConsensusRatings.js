@@ -8,8 +8,7 @@ export const NasdaqConsensusRatings = ({ symbol }) => {
 
   const fetchNasdaqConsensusRatings = async () => {
     try {
-      // const res = await fetch(`http://localhost:4000/nasdaq/consensus/${symbol}`);
-      const res = await fetch(`https://stake-node.herokuapp.com/nasdaq/consensus/${symbol}`);
+      const res = await fetch(`http://localhost:4000/nasdaq/consensus/${symbol}`);
       const data = await res.json();
       if (!res.ok) {
         throw new Error("fetchNasdaqConsensusRatings failed");
