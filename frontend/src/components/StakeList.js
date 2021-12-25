@@ -3,7 +3,6 @@ import { StakeItem } from "./StakeItem";
 import { isPositive, showValueWithSign, showValueWithComma } from "../utils";
 import { useLocalStorage } from "./useLocalStorage";
 import { LoadingIcon } from "./LoadingIcon";
-import { ExternalLinkIcon } from "@heroicons/react/outline";
 
 export const StakeList = ({
   marketName,
@@ -68,18 +67,6 @@ export const StakeList = ({
                   <th className="">Day P/L</th>
                   <th className="">Total P/L</th>
                   <th className="">Allocation</th>
-                  <th>
-                    <div className="flex items-center justify-end">
-                      Yahoo
-                      <ExternalLinkIcon className="w-5 h-5" />
-                    </div>
-                  </th>
-                  <th>
-                    <div className="flex items-center justify-end">
-                      finviz
-                      <ExternalLinkIcon className="w-5 h-5" />
-                    </div>
-                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-300">

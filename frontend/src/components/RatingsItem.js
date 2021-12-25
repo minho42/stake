@@ -15,6 +15,26 @@ export const RatingsItem = ({ symbol, selectedFilterCount }) => {
       <td className="">
         <NasdaqConsensusRatings symbol={symbol} />
       </td>
+      <td className="px-1">
+        <a
+          className="underline"
+          href={`https://finance.yahoo.com/quote/${symbol}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {symbol}
+        </a>
+      </td>
+      <td className="px-1">
+        <a
+          className="underline"
+          href={`https://finviz.com/quote.ashx?t=${symbol}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {symbol}
+        </a>
+      </td>
     </tr>
   );
 };
