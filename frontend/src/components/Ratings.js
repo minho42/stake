@@ -33,7 +33,7 @@ export const Ratings = () => {
           })}
         </div>
 
-        <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-start justify-evenly gap-2  w-11/12">
+        <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-start justify-evenly gap-3 w-11/12">
           <RatingsList
             title="portfolio"
             key="portfolio"
