@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { HeatMap } from "./HeatMap";
+import { SiteContext } from "../SiteContext";
 export const About = () => {
+  const { transactionHistory } = useContext(SiteContext);
+
   return (
     <div className="space-y-3">
       <div className="flex justify-center py-3 text-center">
@@ -25,6 +30,8 @@ export const About = () => {
           twitter
         </a>
       </div>
+
+      <HeatMap transactionHistory={transactionHistory} />
     </div>
   );
 };
