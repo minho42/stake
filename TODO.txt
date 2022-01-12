@@ -1,5 +1,0 @@
-asx:
-    reuse stakeList for asx, history
-get history list: had transacted before but not on the current equity list
-show sell on the trasaction with diff color
-apicache

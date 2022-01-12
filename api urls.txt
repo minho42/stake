@@ -1,0 +1,41 @@
+yahoo analysis
+
+recommendation rating
+//div[@data-test="rec-rating-txt"]
+
+
+
+news 
+
+https://global-prd-api.hellostake.com/api/news?tickers=DOCN
+
+https://api.nasdaq.com/api/news/topic/articlebysymbol?q=msft|stocks&offset=0&limit=7&fallback=true
+
+
+
+https://api.nasdaq.com/api/company/MSFT/company-profile
+
+
+
+https://global-prd-api.hellostake.com/api/products/getProductSuggestions/airbnb?showOtc=true
+
+
+
+https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=25&offset=50&download=true
+
+
+data.rows[
+	symbol
+	name
+	lastsale
+	netchange
+	pctchange
+	marketCap
+	country
+	ipoyear
+	volume
+	sector
+	industry
+	url
+]
+
