@@ -58,7 +58,7 @@ export const HeatMap = ({ transactionHistory }) => {
     <div className="flex flex-col items-center justify-center">
       <div className="text-base font-semibold">Transactions</div>
 
-      <div className="grid grid-flow-col grid-rows-5 ">
+      <div className="grid grid-flow-col grid-rows-5">
         {dates.map((d, i) => {
           if (d.getDay() % 6 > 5) {
             return;
