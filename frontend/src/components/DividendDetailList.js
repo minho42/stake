@@ -14,26 +14,26 @@ export const DividendDetailList = ({ symbol, transactionHistory }) => {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-300">
-          {transactionHistory.map((t) => {
-            if (
-              t.symbol === symbol &&
-              (t.transactionType === "Dividend" || t.transactionType === "Dividend Tax")
-            ) {
-              return (
-                <tr key={t.timestamp}>
-                  <td>{timestampToDate(dateStrToTimestamp(t.timestamp))}</td>
-                  <td>{t.transactionType}</td>
-                  <td
-                    className={`text-right ${
-                      t.transactionType === "Dividend" ? "text-green-600 font-semibold" : ""
-                    }`}
-                  >
-                    {t.tranAmount}
-                  </td>
-                </tr>
-              );
-            }
-          })}
+          {transactionHistory
+            // sort by date transactionType
+            .filter((t) => t.symbol === symbol)
+            .map((t) => {
+              if (t.transactionType === "Dividend" || t.transactionType === "Dividend Tax") {
+                return (
+                  <tr key={t.timestamp}>
+                    <td>{timestampToDate(dateStrToTimestamp(t.timestamp))}</td>
+                    <td>{t.transactionType}</td>
+                    <td
+                      className={`text-right ${
+                        t.transactionType === "Dividend" ? "text-green-600 font-semibold" : ""
+                      }`}
+                    >
+                      {t.tranAmount}
+                    </td>
+                  </tr>
+                );
+              }
+            })}
         </tbody>
       </table>
     </div>
