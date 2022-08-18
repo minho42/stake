@@ -1,11 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../UserContext";
 import { SiteContext } from "../SiteContext";
 import { RatingsList } from "./RatingsList";
 import { useLocalStorage } from "./useLocalStorage";
 
 export const Ratings = () => {
-  const { stakeToken, watchlistSymbols } = useContext(UserContext);
   const { prevSymbols } = useContext(SiteContext);
   const { equityPositions } = useContext(SiteContext);
   const filterCountOptions = [10, 20, 30, 40, 50];
@@ -38,12 +37,6 @@ export const Ratings = () => {
             title="portfolio"
             key="portfolio"
             symbols={equityPositions.map((p) => p.symbol)}
-            selectedFilterCount={selectedFilterCount}
-          />
-          <RatingsList
-            title="watchlist"
-            key="watchlist"
-            symbols={watchlistSymbols}
             selectedFilterCount={selectedFilterCount}
           />
           <RatingsList
