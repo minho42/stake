@@ -39,30 +39,6 @@ export const Navbar = () => {
           >
             portfolio
           </Link>
-          {/* <Link
-            to="/news"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
-              pathname === "/news" ? " border-gray-700" : "border-transparent"
-            }`}
-          >
-            news
-          </Link> */}
-          <Link
-            to="/ratings"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
-              pathname === "/ratings" ? " border-gray-700" : "border-transparent"
-            }`}
-          >
-            ratings
-          </Link>
-          <Link
-            to="/history"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
-              pathname === "/history" ? " border-gray-700" : "border-transparent"
-            }`}
-          >
-            history
-          </Link>
           <Link
             to="/dividend"
             className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
@@ -89,14 +65,6 @@ export const Navbar = () => {
               logout
             </button>
           )}
-          <Link
-            to="/about"
-            className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 hover:bg-gray-100 capitalize gap-1 ${
-              pathname === "/about" ? " border-gray-700" : "border-transparent"
-            }`}
-          >
-            about
-          </Link>
         </div>
       </header>
     </nav>

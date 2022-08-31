@@ -18,20 +18,6 @@ export const StakeItem = ({
   const [unrealizedPLPercentage, setUnrealizedPLPercentage] = useState(0);
   const [targetPrice, setTargetPrice] = useState(0);
 
-  const fetchTargetPrice = async () => {
-    try {
-      const res = await fetch(`http://localhost:4000/nasdaq/consensus/${symbol}`);
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error("fetchNasdaqConsensusRatings failed");
-      }
-      // TODO handle exception when data not available
-      setTargetPrice(data.data.priceTarget);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const getAllocationPercentage = () => {
     if (!equityValue) {
       return 100;
@@ -74,7 +60,6 @@ export const StakeItem = ({
   useEffect(async () => {
     getTransactions();
     setPercentages();
-    fetchTargetPrice();
   }, []);
 
   const keyboardShortcuts = (e) => {

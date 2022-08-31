@@ -8,7 +8,6 @@ const helmet = require("helmet");
 const fetchCurrency = require("./utils");
 const stakeRouter = require("./routers/stake");
 const chartRouter = require("./routers/chart");
-const nasdaqRouter = require("./routers/nasdaq");
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -26,7 +25,6 @@ app.use(helmet());
 app.use(express.json());
 app.use(stakeRouter);
 app.use(chartRouter);
-app.use(nasdaqRouter);
 
 app.get("", (req, res) => {
   res.send({
