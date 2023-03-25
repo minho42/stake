@@ -1,7 +1,7 @@
 export const CheckUser = async (setStakeToken, setIsStakeAuthLoading) => {
   // console.log("CheckUser");
   try {
-    const res = await fetch("http://localhost:4000/stake/check", {
+    const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/stake/check`, {
       credentials: "include",
     });
     if (!res.ok) {

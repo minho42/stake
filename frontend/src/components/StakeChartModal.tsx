@@ -131,7 +131,7 @@ export const StakeChartModal = ({
   const fetchChartData = async (symbol) => {
     setIsLoading(true);
     try {
-      const res = await fetch(`http://localhost:4000/chart/data/${symbol}`);
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/chart/data/${symbol}`);
       if (res.status !== 200) {
         throw new Error("StakeChartModal error");
       }

@@ -9,7 +9,7 @@ export const Navbar = () => {
 
   const requestLogout = async (stakeToken, setStakeToken, navigate) => {
     try {
-      const res = await fetch("http://localhost:4000/stake/logout", {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/stake/logout`, {
         method: "POST",
         credentials: "include",
       });
