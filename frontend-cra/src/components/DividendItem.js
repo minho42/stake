@@ -25,7 +25,7 @@ export const DividendItem = ({
         `https://global-prd-api.hellostake.com/api/instruments/getDWInstrumentStats/${encodedName}`
       );
       const data = await res.json();
-      return data.fundamentalDataModel.dividendYield;
+      setDividendYield(data.fundamentalDataModel.dividendYield);
     } catch (error) {
       console.log(error);
       return -1;
@@ -52,13 +52,12 @@ export const DividendItem = ({
     setTotalDividendTax(-dividendTaxSum);
   };
 
-  useEffect(async () => {
-    const dividendYield = await fetchDividendYield();
-    setDividendYield(dividendYield);
-    getTotalDividendInfo();
+  useEffect(() => {
+    fetchDividendYield();
   }, []);
 
   useEffect(() => {
+    getTotalDividendInfo();
     const expectedDividend = (marketValue * dividendYield) / 100;
     setExpectedDividend(expectedDividend);
     addTotalExpectedDividends(expectedDividend);

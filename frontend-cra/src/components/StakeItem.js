@@ -57,7 +57,7 @@ export const StakeItem = ({
     setUnrealizedPLPercentage(getChangePercentage(marketValue, unrealizedPL));
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     getTransactions();
     setPercentages();
   }, []);

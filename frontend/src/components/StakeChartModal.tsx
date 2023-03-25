@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import ReactDOM from "react-dom";
 import { LoadingIcon } from "./LoadingIcon";
 import { useLocalStorage } from "./useLocalStorage";
@@ -87,7 +87,7 @@ export const StakeChartModal = ({
     const r = 6;
     const strokeColor = "black";
     const strokeWidth = 1.6;
-    const strokeOpacity = 0.8;
+    const strokeOpacity = 0.9;
     const green = "#22C55E";
     const red = "#EF4444";
     if (payload.transactionType && payload.transactionType.toLowerCase() === "buy") {
@@ -157,7 +157,9 @@ export const StakeChartModal = ({
             const a = new Date(d.timestamp * 1000);
             const b = new Date(dateStrToTimestamp(t.timestamp) * 1000);
             return (
-              a.getYear() === b.getYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
+              a.getFullYear() === b.getFullYear() &&
+              a.getMonth() === b.getMonth() &&
+              a.getDate() === b.getDate()
             );
           });
 
@@ -282,13 +284,13 @@ export const StakeChartModal = ({
     <div className="fixed inset-0">
       <div
         id="overlay"
-        className="min-h-screen min-w-screen bg-black opacity-40"
+        className="min-h-screen min-w-screen bg-black opacity-50"
         onClick={() => onClose()}
       ></div>
 
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex bg-gray-200 space-x-1 p-2">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex space-x-1 p-2">
         <div className="flex flex-col space-y-1">
-          <div className="bg-white p-2 relative">
+          <div className="bg-primary-content p-2 relative">
             {name && <div className="text-center text-gray-500">{name}</div>}
             <div className="flex justify-center text-xl gap-6">
               <div className="flex items-end ">
@@ -308,7 +310,7 @@ export const StakeChartModal = ({
               {(isLoading || !chartDataTimeFramed) && <LoadingIcon />}
             </div>
           </div>
-          <div className="bg-white p-2">
+          <div className="bg-primary-content p-2">
             <div className="flex justify-center text-gray-600 space-x-1">
               {timeFrames.map((tf) => {
                 return (
@@ -316,7 +318,7 @@ export const StakeChartModal = ({
                     onClick={handleTimeFrameChange}
                     key={tf.name}
                     className={`${
-                      selectedTimeFrameName === tf.name ? " border-black font-semibold" : "border-white"
+                      selectedTimeFrameName === tf.name ? " border-primary font-semibold" : "border-white"
                     } border-b-4  px-2 py-0.5 uppercase focus:outline-none`}
                   >
                     {tf.name}
