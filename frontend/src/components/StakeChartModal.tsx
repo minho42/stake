@@ -290,7 +290,7 @@ export const StakeChartModal = ({
 
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex space-x-1 p-2">
         <div className="flex flex-col space-y-1">
-          <div className="bg-primary-content p-2 relative">
+          <div className="bg-base-100 p-2 relative">
             {name && <div className="text-center text-gray-500">{name}</div>}
             <div className="flex justify-center text-xl gap-6">
               <div className="flex items-end ">
@@ -310,7 +310,7 @@ export const StakeChartModal = ({
               {(isLoading || !chartDataTimeFramed) && <LoadingIcon />}
             </div>
           </div>
-          <div className="bg-primary-content p-2">
+          <div className="bg-base-100 p-2">
             <div className="flex justify-center text-gray-600 space-x-1">
               {timeFrames.map((tf) => {
                 return (
@@ -318,8 +318,10 @@ export const StakeChartModal = ({
                     onClick={handleTimeFrameChange}
                     key={tf.name}
                     className={`${
-                      selectedTimeFrameName === tf.name ? " border-primary font-semibold" : "border-white"
-                    } border-b-4  px-2 py-0.5 uppercase focus:outline-none`}
+                      selectedTimeFrameName === tf.name
+                        ? " border-primary font-semibold"
+                        : "border-transparent"
+                    } border-b-4 px-2 py-0.5 uppercase focus:outline-none`}
                   >
                     {tf.name}
                   </button>

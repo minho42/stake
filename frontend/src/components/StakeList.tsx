@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StakeItem } from "./StakeItem";
+import { StakeItem, Position } from "./StakeItem";
 import { isPositive, showValueWithSign, showValueWithComma } from "../utils";
 import { useLocalStorage } from "./useLocalStorage";
 import { LoadingIcon } from "./LoadingIcon";
@@ -23,7 +23,7 @@ export const StakeList = ({
   const [showItems, setShowItems] = useLocalStorage(`stakeShowItems-${flag}`, true);
 
   return (
-    <div className="flex flex-col bg-primary-content border-xl py-3 space-y-2 px-6 w-full min-w-min relative">
+    <div className="flex flex-col bg-base-100 border-xl py-3 space-y-2 px-6 w-full min-w-min relative">
       <div className="flex justify-center ">
         <div className="absolute top-0 left-2 uppercase text-center">
           <div className="text-4xl">{flag}</div>
@@ -70,7 +70,7 @@ export const StakeList = ({
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-300">
-                {equityPositions.map((position, index) => {
+                {equityPositions.map((position: Position, index: number) => {
                   return (
                     <StakeItem
                       index={index}

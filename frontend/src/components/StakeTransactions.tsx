@@ -38,7 +38,7 @@ export const StakeTransactions = ({ transactions }) => {
   };
 
   return (
-    <div className="bg-primary-content px-2 py-1 divide-y  overflow-y-auto" style={{ height: 470 }}>
+    <div className="bg-base-100 px-2 py-1 divide-y  overflow-y-auto" style={{ height: 470 }}>
       <div className="text-xl text-center py-2">Transactions</div>
 
       {transactions.map((t) => {

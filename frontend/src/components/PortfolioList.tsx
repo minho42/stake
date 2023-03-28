@@ -5,7 +5,6 @@ import { getChangePercentage, showValueWithComma } from "../utils";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
 import { StakeList } from "./StakeList";
-import { useDocTitle } from "../useDocTitle";
 import { StakeInfo } from "./StakeInfo";
 
 export const PortfolioList = ({}) => {
@@ -40,7 +39,6 @@ export const PortfolioList = ({}) => {
   const [dayChangePercentageAsx, setDayChangePercentageAsx] = useState(0);
   const [totalChangePercentage, setTotalChangePercentage] = useState(0);
   const [totalChangePercentageAsx, setTotalChangePercentageAsx] = useState(0);
-  const [docTitle, setDocTitle] = useDocTitle("");
 
   const keyboardShortcuts = (e) => {
     if (isStakeChartModalOpen) return;
@@ -67,7 +65,7 @@ export const PortfolioList = ({}) => {
     equityPositions.forEach((position) => {
       sum += Number.parseFloat(position.unrealizedDayPL);
     });
-    setDayChangeSum(sum.toFixed(2));
+    setDayChangeSum(sum);
     setDayChangePercentage(getChangePercentage(equityValue, sum));
   };
 
@@ -76,7 +74,7 @@ export const PortfolioList = ({}) => {
     equityPositionsAsx.forEach((position) => {
       sum += Number.parseFloat(position.unrealizedDayPL);
     });
-    setDayChangeSumAsx(sum.toFixed(2));
+    setDayChangeSumAsx(sum);
     setDayChangePercentageAsx(getChangePercentage(equityValueAsx, sum));
   };
 
@@ -85,7 +83,8 @@ export const PortfolioList = ({}) => {
     equityPositions.forEach((position) => {
       sum += Number.parseFloat(position.unrealizedPL);
     });
-    setTotalChangeSum(sum.toFixed(2));
+    // setTotalChangeSum(sum);
+    setTotalChangeSum(sum);
     setTotalChangePercentage(getChangePercentage(equityValue, sum));
   };
 
@@ -94,7 +93,7 @@ export const PortfolioList = ({}) => {
     equityPositionsAsx.forEach((position) => {
       sum += Number.parseFloat(position.unrealizedPL);
     });
-    setTotalChangeSumAsx(sum.toFixed(2));
+    setTotalChangeSumAsx(sum);
     setTotalChangePercentageAsx(getChangePercentage(equityValueAsx, sum));
   };
 
@@ -121,7 +120,7 @@ export const PortfolioList = ({}) => {
     getDayChangeSum();
     getTotalChangeSum();
     setEquityValueInAud(equityValue * currencyUsdAud);
-    setDocTitle(showValueWithComma(equityValue * currencyUsdAud, true));
+    document.title = showValueWithComma(equityValue * currencyUsdAud, true);
 
     if (equityPositions && equityPositions.length) {
       if (focusedIndex + 1 >= equityPositions.length) {

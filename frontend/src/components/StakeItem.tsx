@@ -1,7 +1,36 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { isPositive, showValueWithSign, showValueWithComma, getChangePercentage } from "../utils";
 import { StakeChartModal } from "./StakeChartModal";
 import { TrendingUpIcon } from "@heroicons/react/outline";
+
+export type Position = {
+  symbol: string;
+  openQty: number;
+  mktPrice: number;
+  marketValue: number;
+  unrealizedDayPL: number;
+  unrealizedPL: number;
+  encodedName: string;
+  name: string;
+};
+type Transaction = {
+  transactionType: string;
+  symbol: string;
+  orderID: string;
+  timestamp: number;
+  tranAmount: number;
+  comment: string;
+};
+
+type PropType = {
+  index: number;
+  marketName: string;
+  focusedIndex: number;
+  setFocusedIndex: React.Dispatch<React.SetStateAction<number>>;
+  position: Position;
+  equityValue: number;
+  transactionHistory: Transaction[];
+};
 
 export const StakeItem = ({
   index,
@@ -11,7 +40,7 @@ export const StakeItem = ({
   position: { symbol, openQty, mktPrice, marketValue, unrealizedDayPL, unrealizedPL, encodedName, name },
   equityValue,
   transactionHistory,
-}) => {
+}: PropType) => {
   const [transactions, setTransactions] = useState(null);
   const [isChartModalOpen, setIsChartModalOpen] = useState(false);
   const [unrealizedDayPLPercentage, setUnrealizedDayPLPercentage] = useState(0);
@@ -97,7 +126,7 @@ export const StakeItem = ({
           setFocusedIndex(index);
           setIsChartModalOpen(!isChartModalOpen);
         }}
-        className="text-right hover:bg-primary cursor-pointer"
+        className="text-right hover:bg-base-300 cursor-pointer"
       >
         <td
           className={`py-1 text-center cursor-pointer border-l-8 px-1 ${

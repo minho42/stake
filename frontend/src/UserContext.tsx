@@ -1,10 +1,18 @@
 import { createContext, useState, useEffect } from "react";
 import { CheckUser } from "./CheckUser";
 
-export const UserContext = createContext(null);
+type UserContextType = {
+  stakeToken: string | null;
+  setStakeToken: React.Dispatch<React.SetStateAction<string | null>>;
+  isStakeAuthLoading: boolean;
+  setIsStakeAuthLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  userInfo: any;
+};
+
+export const UserContext = createContext<UserContextType | null>(null);
 
 export const UserProvider = ({ children }) => {
-  const [stakeToken, setStakeToken] = useState(null);
+  const [stakeToken, setStakeToken] = useState<string | null>(null);
   const [isStakeAuthLoading, setIsStakeAuthLoading] = useState(true);
   const [userInfo, setUserInfo] = useState(null);
 
