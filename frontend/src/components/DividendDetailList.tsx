@@ -1,6 +1,12 @@
-import { timestampToDate, dateStrToTimestamp } from "../utils";
+import { timestampToDate } from "../utils";
+import { Transaction } from "./StakeItem";
 
-export const DividendDetailList = ({ symbol, transactionHistory }) => {
+type PropType = {
+  symbol: string;
+  transactionHistory: Transaction[];
+};
+
+export const DividendDetailList = ({ symbol, transactionHistory }: PropType) => {
   return (
     <div className="flex flex-col items-center w-full space-y-2">
       <div className="w-11/12 text-center max-w-md text-base font-semibold">{symbol}</div>
@@ -21,7 +27,7 @@ export const DividendDetailList = ({ symbol, transactionHistory }) => {
               if (t.transactionType === "Dividend" || t.transactionType === "Dividend Tax") {
                 return (
                   <tr key={t.timestamp}>
-                    <td>{timestampToDate(dateStrToTimestamp(t.timestamp))}</td>
+                    <td>{timestampToDate(t.timestamp)}</td>
                     <td>{t.transactionType}</td>
                     <td
                       className={`text-right ${

@@ -56,7 +56,7 @@ export const DividendList = () => {
             </tbody>
             <tfoot>
               <tr className="border-t-2 border-gray-700">
-                <td className="uppercase py-1">Totals</td>
+                <td className="text-left uppercase py-1">Totals</td>
                 <td>-</td>
                 <td className="">{showValueWithComma(totalExpectedDividends)}</td>
                 <td className="">{showValueWithComma(totalDividend)}</td>

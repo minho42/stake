@@ -34,7 +34,7 @@ export const Navbar = () => {
           <Link
             to="/"
             className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize gap-1 ${
-              pathname === "/" ? " border-secondary" : "border-transparent"
+              pathname === "/" ? " border-base-content" : "border-transparent"
             }`}
           >
             portfolio
@@ -42,7 +42,7 @@ export const Navbar = () => {
           <Link
             to="/dividend"
             className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize gap-1 ${
-              pathname === "/dividend" ? " border-secondary" : "border-transparent"
+              pathname === "/dividend" ? " border-base-content" : "border-transparent"
             }`}
           >
             dividend
@@ -51,7 +51,7 @@ export const Navbar = () => {
             <Link
               to="/login"
               className={`flex items-center h-full font-medium px-2 sm:px-4 py-3 cursor-pointer border-b-4 capitalize gap-1 ${
-                pathname === "/login" ? " border-secondary" : "border-transparent"
+                pathname === "/login" ? " border-base-content" : "border-transparent"
               }`}
             >
               login

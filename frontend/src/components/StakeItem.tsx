@@ -13,13 +13,13 @@ export type Position = {
   encodedName: string;
   name: string;
 };
-type Transaction = {
-  transactionType: string;
+export type Transaction = {
   symbol: string;
-  orderID: string;
-  timestamp: number;
-  tranAmount: number;
   comment: string;
+  orderID: string;
+  timestamp: string;
+  tranAmount: number;
+  transactionType: string;
 };
 
 type PropType = {
@@ -63,7 +63,6 @@ export const StakeItem = ({
 
     const trans = [];
 
-    // TODO remove this duplicate code StakePrevItem & StakeItem
     transactionHistory.forEach((t) => {
       if (t.symbol === symbol) {
         if (t.transactionType.toLowerCase() === "buy" || t.transactionType.toLowerCase() === "sell") {
@@ -126,7 +125,7 @@ export const StakeItem = ({
           setFocusedIndex(index);
           setIsChartModalOpen(!isChartModalOpen);
         }}
-        className="text-right hover:bg-base-300 cursor-pointer"
+        className="text-right hover:bg-neutral cursor-pointer"
       >
         <td
           className={`py-1 text-center cursor-pointer border-l-8 px-1 ${

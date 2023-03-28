@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ReactDOM from "react-dom";
 import { LoadingIcon } from "./LoadingIcon";
 import { useLocalStorage } from "./useLocalStorage";
@@ -7,6 +7,18 @@ import { SiteContext } from "../SiteContext";
 import { isPositive, showValueWithSign, timestampToDate, dateStrToTimestamp } from "../utils";
 import { StakeTransactions } from "./StakeTransactions";
 import { differenceInCalendarDays } from "date-fns";
+import { Transaction } from "./StakeItem";
+
+type PropType = {
+  symbol: string;
+  name: string;
+  mktPrice: number;
+  unrealizedPL: number;
+  unrealizedPLPercentage: number;
+  transactions: Transaction[];
+  isOpen: boolean;
+  onClose: any;
+};
 
 export const StakeChartModal = ({
   symbol,
@@ -17,7 +29,7 @@ export const StakeChartModal = ({
   transactions,
   isOpen,
   onClose,
-}) => {
+}: PropType) => {
   const [chartData, setChartData] = useLocalStorage(`stakeChartData-${symbol}`, []);
   const [chartDataTimeFramed, setChartDataTimeFramed] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -66,7 +78,7 @@ export const StakeChartModal = ({
     // },
   ];
 
-  const convertDateStringOrder = (str) => {
+  const convertDateStringOrder = (str: string) => {
     // '28/07/2017' -> '2017/07/28'
     const s = str.split("/");
     return new Date(`${s[2]}/${s[1]}/${s[0]}`);
@@ -79,18 +91,22 @@ export const StakeChartModal = ({
     const differenceInDays = differenceInCalendarDays(new Date(), firstDay);
   };
 
-  const CustomLineDot = ({ cx, cy, stroke, payload, value }) => {
-    // if (payload.transaction) {
-    //   console.log(payload);
-    // }
-
+  const CustomLineDot: React.FC = ({
+    cx,
+    cy,
+    payload,
+  }: {
+    cx: number | string | undefined;
+    cy: number | string | undefined;
+    payload: Transaction;
+  }) => {
     const r = 6;
     const strokeColor = "black";
     const strokeWidth = 1.6;
     const strokeOpacity = 0.9;
     const green = "#22C55E";
     const red = "#EF4444";
-    if (payload.transactionType && payload.transactionType.toLowerCase() === "buy") {
+    if (payload?.transactionType?.toLowerCase() === "buy") {
       return (
         <>
           <circle
@@ -108,7 +124,7 @@ export const StakeChartModal = ({
           </text> */}
         </>
       );
-    } else if (payload.transactionType && payload.transactionType.toLowerCase() === "sell") {
+    } else if (payload?.transactionType?.toLowerCase() === "sell") {
       return (
         <circle
           id={payload.orderID}
@@ -280,11 +296,17 @@ export const StakeChartModal = ({
     return Number(item).toFixed(2);
   };
 
+  const tooltipStyle = {
+    backgroundColor: "transparent",
+    color: "#9ca3af",
+    border: "transparent",
+  };
+
   return ReactDOM.createPortal(
     <div className="fixed inset-0">
       <div
         id="overlay"
-        className="min-h-screen min-w-screen bg-black opacity-50"
+        className="min-h-screen min-w-screen bg-black opacity-70"
         onClick={() => onClose()}
       ></div>
 
@@ -319,7 +341,7 @@ export const StakeChartModal = ({
                     key={tf.name}
                     className={`${
                       selectedTimeFrameName === tf.name
-                        ? " border-primary font-semibold"
+                        ? " border-primary font-semibold text-base-content"
                         : "border-transparent"
                     } border-b-4 px-2 py-0.5 uppercase focus:outline-none`}
                   >
@@ -340,27 +362,24 @@ export const StakeChartModal = ({
               }}
             >
               <CartesianGrid
-                // strokeDasharray="1"
-                stroke="#abafb1"
-                xAxis={false}
-                yAxis={false}
+                stroke="#404040"
                 vertical={false}
-                color="#dbdbdb"
+                // color="#dbdbdb"
               />
               <XAxis
                 dataKey="timestamp"
                 fontSize="11px"
                 color="#666666"
-                tickSize="0"
-                tickMargin="10"
+                tickSize={0}
+                tickMargin={10}
                 tickFormatter={xAxisFormatter}
               />
               <YAxis
                 fontSize="12px"
                 color="#666666"
-                tickSize="0"
-                tickCount="7"
-                tickMargin="10"
+                tickSize={0}
+                tickCount={7}
+                tickMargin={10}
                 tickFormatter={yAxisFormatter}
                 domain={[
                   (dataMin) => {
@@ -373,18 +392,23 @@ export const StakeChartModal = ({
                 ]}
                 allowDataOverflow={true}
               />
-              <Tooltip isAnimationActive={false} position={{ x: 70, y: 20 }} />
+              <Tooltip
+                isAnimationActive={false}
+                position={{ x: 70, y: 20 }}
+                contentStyle={tooltipStyle}
+                itemStyle={tooltipStyle}
+              />
               <defs>
                 <linearGradient id="gradientArea" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#cccccc" stopOpacity={0.5} />
-                  <stop offset="100%" stopColor="#ffffff" stopOpacity={1} />
+                  <stop offset="0%" stopColor="#2563eb" stopOpacity={1} />
+                  <stop offset="100%" stopColor="#2563eb" stopOpacity={0.1} />
                 </linearGradient>
               </defs>
               <Area
                 type="linear"
                 dataKey="quote"
                 fill="url(#gradientArea)"
-                stroke="#000000"
+                stroke="#60a5fa"
                 strokeWidth="1.6"
                 isAnimationActive={false}
               />

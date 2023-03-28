@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { showValueWithComma, timestampToDate, dateStrToTimestamp } from "../utils";
+import { showValueWithComma, timestampToDate } from "../utils";
 import { formatDistance } from "date-fns";
+import { Transaction } from "./StakeItem";
 
-export const StakeTransactions = ({ transactions }) => {
+export const StakeTransactions = ({ transactions }: { transactions: Transaction[] }) => {
   const [prevDotID, setPrevDotID] = useState(null);
   const [prevDotRadius, setPrevDotRadius] = useState(null);
 
@@ -23,7 +24,7 @@ export const StakeTransactions = ({ transactions }) => {
     }
   };
 
-  const handleHover = (id) => {
+  const handleEnter = (id: string) => {
     removePrevDotHighlight();
     const dot = document.getElementById(id);
     setPrevDotID(id);
@@ -44,7 +45,7 @@ export const StakeTransactions = ({ transactions }) => {
       {transactions.map((t) => {
         return (
           <div
-            onMouseOver={() => handleHover(t.orderID)}
+            onMouseEnter={() => handleEnter(t.orderID)}
             onMouseLeave={handleLeave}
             key={t.orderID}
             className="flex flex-col px-2 py-1 cursor-pointer"
@@ -72,7 +73,7 @@ export const StakeTransactions = ({ transactions }) => {
               {formatDistance(new Date(t.timestamp), new Date(), {
                 addSuffix: true,
               })}
-              <span className="ml-1">({timestampToDate(dateStrToTimestamp(t.timestamp))})</span>
+              <span className="ml-1">({timestampToDate(t.timestamp)})</span>
             </div>
           </div>
         );
