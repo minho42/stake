@@ -75,9 +75,7 @@ export const DividendItem = ({
   return (
     <tr
       onClick={handleClick}
-      className={`cursor-pointer text-right  ${
-        selectedSymbolForDetail === symbol ? "bg-base-300" : "hover:bg-neutral"
-      }`}
+      className={`cursor-pointer text-right  ${selectedSymbolForDetail === symbol ? "bg-base-300" : ""}`}
     >
       <td className="py-1 text-left">{symbol}</td>
       <td className="">{showValueWithComma(dividendYield)}%</td>

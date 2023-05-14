@@ -125,7 +125,7 @@ export const StakeItem = ({
           setFocusedIndex(index);
           setIsChartModalOpen(!isChartModalOpen);
         }}
-        className="text-right hover:bg-neutral cursor-pointer"
+        className="text-right hover:bg-base-300 cursor-pointer"
       >
         <td
           className={`py-1 text-center cursor-pointer border-l-8 px-1 ${
