@@ -27,7 +27,7 @@ export const DividendDetailList = ({ symbol, transactionHistory }: PropType) => 
               if (t.transactionType === "Dividend" || t.transactionType === "Dividend Tax") {
                 return (
                   <tr key={t.timestamp}>
-                    <td>{timestampToDate(t.timestamp)}</td>
+                    <td>{t.timestamp.substring(0, 10)}</td>
                     <td>{t.transactionType}</td>
                     <td
                       className={`text-right ${
